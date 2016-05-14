@@ -1,4 +1,5 @@
 ﻿using ASDXMLLibrary.Base.Classifications;
+using System.Xml.Serialization;
 
 namespace ASDXMLLibrary.Base
 {
@@ -7,7 +8,9 @@ namespace ASDXMLLibrary.Base
     /// </summary>
     public class Classification<TValueList>
     {
+        [XmlIgnore]
         private ClassificationBase validValues;
+
         private string chosenValue;
 
         public Classification()
@@ -16,14 +19,16 @@ namespace ASDXMLLibrary.Base
             chosenValue = null;
         }
 
-        public void Set(string value)
-        {
-            if (!validValues.Contains(value))
-                throw new ClassificationException(string.Format("Value '{0}' is not a valid value for {1}!", value, validValues.GetType().Name));
-            chosenValue = value;
+        [XmlText]
+        public string Value { get { return chosenValue; }
+            set
+            {
+                if (!validValues.Contains(value))
+                    throw new ClassificationException(string.Format("Value '{0}' is not a valid value for {1}!", value, validValues.GetType().Name));
+                chosenValue = value;
+            }
         }
-
-        public string Value { get { return chosenValue; } }
-        public bool IsSet { get { return chosenValue != null;} }
+        [XmlIgnore]
+        public bool HasValue { get { return chosenValue != null;} }
    }
 }
