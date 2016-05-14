@@ -1,10 +1,11 @@
 ﻿using System;
-using ASDXMLLibrary.Objects;
-using ASDXMLLibrary.Base.Classifications;
-using ASDXMLLibrary.Base.Properties;
+using AsdXMLLibrary.Objects;
+using AsdXMLLibrary.Base.Classifications;
+using AsdXMLLibrary.Base.Properties;
 using System.Xml.Serialization;
+using AsdXMLLibrary.Objects.References;
 
-namespace ASDXMLLibrary.Base
+namespace AsdXMLLibrary.Base
 {
     public class Descriptor
     {
@@ -20,10 +21,8 @@ namespace ASDXMLLibrary.Base
         [XmlElement(ElementName = "providedBy", Order = 3)]
         public OrganizationReference ProvidedBy { get; set; }
 
-
         #region XML Handling Properties
-        // these properties control if the respective property is written to the xml or not
-
+        /// these properties control if the respective property is written to the xml or not
         [XmlIgnore]
         protected bool LanguageSpecified { get { return Language.HasValue; } }
         [XmlIgnore] // if Ticks is 0 then the ProvidedDate equal 0001-01-01T00:00:00 and was most likely not set.

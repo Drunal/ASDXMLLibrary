@@ -1,22 +1,23 @@
-﻿using ASDXMLLibrary.Base;
-using ASDXMLLibrary.Base.Classifications;
-using ASDXMLLibrary.Base.Properties;
+﻿using AsdXMLLibrary.Base;
+using AsdXMLLibrary.Base.Classifications;
+using AsdXMLLibrary.Base.Properties;
+using AsdXMLLibrary.Objects.References;
 using System.Xml.Serialization;
 
-namespace ASDXMLLibrary.Objects
+namespace AsdXMLLibrary.Objects
 {
     
     public class Organization : OrganizationReference
     {
         [XmlElement(ElementName="name",IsNullable=true)]
-        public Descriptor OrgName { get; set; }
+        public Descriptor Name { get; set; }
 
         private OrganizationReference _reference;
 
         public Organization()
             : base()
         {
-            OrgName = new Descriptor();
+            Name = new Descriptor();
         }
 
         [XmlIgnore]

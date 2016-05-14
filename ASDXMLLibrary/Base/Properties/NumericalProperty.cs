@@ -1,7 +1,7 @@
-﻿using ASDXMLLibrary.Base.Classifications;
+﻿using AsdXMLLibrary.Base.Classifications;
 using System.Xml.Serialization;
 
-namespace ASDXMLLibrary.Base.Properties
+namespace AsdXMLLibrary.Base.Properties
 {
     public class NumericalProperty<UnitClassificationType> : Property
     {

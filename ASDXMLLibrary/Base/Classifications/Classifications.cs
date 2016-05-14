@@ -1,6 +1,7 @@
 ﻿
-namespace ASDXMLLibrary.Base.Classifications
+namespace AsdXMLLibrary.Base.Classifications
 {
+
     public class LanguageClassification : ClassificationBase { }
     
     public class PartIdentifierClassification : ClassificationBase { }

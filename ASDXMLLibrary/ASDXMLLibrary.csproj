@@ -7,8 +7,8 @@
     <ProjectGuid>{746E2DD2-4ADF-4923-870D-E49A8859B51C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASDXMLLibrary</RootNamespace>
-    <AssemblyName>ASDXMLLibrary</AssemblyName>
+    <RootNamespace>AsdXMLLibrary</RootNamespace>
+    <AssemblyName>AsdXMLLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ASDXMLLibrary.Program</StartupObject>
+    <StartupObject>AsdXMLLibrary.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,9 +53,13 @@
     <Compile Include="Base\Properties\TextProperty.cs" />
     <Compile Include="Base\Properties\ValueRangeProperty.cs" />
     <Compile Include="Base\Properties\ValueWithTolerancesProperty.cs" />
+    <Compile Include="ContentManager.cs" />
     <Compile Include="Objects\Organization.cs" />
-    <Compile Include="Objects\OrganizationReference.cs" />
-    <Compile Include="Objects\PartAsDesigned.cs" />
+    <Compile Include="Objects\References\OrganizationReference.cs" />
+    <Compile Include="Objects\UoF Part Definition\HardwarePartAsDesigned.cs" />
+    <Compile Include="Objects\UoF Part Definition\PartAsDesigned.cs" />
+    <Compile Include="Objects\Project.cs" />
+    <Compile Include="Objects\References\ProjectReference.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Base\Classification.cs" />
     <Compile Include="Base\Classifications\Classifications.cs" />

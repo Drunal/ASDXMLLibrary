@@ -1,7 +1,7 @@
-﻿using ASDXMLLibrary.Base.Classifications;
+﻿using AsdXMLLibrary.Base.Classifications;
 using System.Xml.Serialization;
 
-namespace ASDXMLLibrary.Base
+namespace AsdXMLLibrary.Base
 {
     /// <summary>
     /// Holds the chosen value and knowledge about the valid Values for this particular value.

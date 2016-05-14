@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ASDXMLLibrary.Base.Classifications
+namespace AsdXMLLibrary.Base.Classifications
 {
     public class ClassificationException : Exception
     {

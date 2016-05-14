@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASDXMLLibrary", "ASDXMLLibrary\ASDXMLLibrary.csproj", "{746E2DD2-4ADF-4923-870D-E49A8859B51C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsdXMLLibrary", "ASDXMLLibrary\AsdXMLLibrary.csproj", "{746E2DD2-4ADF-4923-870D-E49A8859B51C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsdXMLLibrary.Tests", "AsdXMLLibrary.Tests\AsdXMLLibrary.Tests.csproj", "{0FD3C50D-3789-4AC5-BC43-377548054DEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

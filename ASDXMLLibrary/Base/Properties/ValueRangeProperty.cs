@@ -1,6 +1,6 @@
 ﻿
 using System.Xml.Serialization;
-namespace ASDXMLLibrary.Base.Properties
+namespace AsdXMLLibrary.Base.Properties
 {
     public class ValueRangeProperty<UnitClassificationType> : NumericalProperty<UnitClassificationType>
     {

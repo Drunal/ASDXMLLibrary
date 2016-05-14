@@ -1,5 +1,5 @@
 ﻿using System.Xml.Serialization;
-namespace ASDXMLLibrary.Base.Properties
+namespace AsdXMLLibrary.Base.Properties
 {
     public class ValueWithTolerancesProperty<UnitClassificationType> : NumericalProperty<UnitClassificationType>
     {

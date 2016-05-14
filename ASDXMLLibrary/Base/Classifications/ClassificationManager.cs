@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASDXMLLibrary.Base.Classifications
+namespace AsdXMLLibrary.Base.Classifications
 {
     public static class ClassificationManager
     {
@@ -39,7 +39,19 @@ namespace ASDXMLLibrary.Base.Classifications
 
             return classificiations[type];
         }
-        
 
+        public static void FillDefaultValues()
+        {
+            Add(new LanguageClassification { "en" });
+            Add(new PartIdentifierClassification { "PNR" });
+            Add(new OrganizationIdentifierClassification { "CAGE" });
+            Add(new ProjectIdentifierClassification());
+            Add(new ValueDeterminationClassification());
+            Add(new UnitClassification());
+            Add(new HazardousClassClassification());
+            Add(new FitmentRequirementClassification {
+                "MINOR", "MAJOR"
+            });
+        }
     }
 }

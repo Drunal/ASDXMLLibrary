@@ -1,8 +1,8 @@
-﻿using ASDXMLLibrary.Base.Classifications;
+﻿using AsdXMLLibrary.Base.Classifications;
 using System;
 using System.Xml.Serialization;
 
-namespace ASDXMLLibrary.Base.Properties
+namespace AsdXMLLibrary.Base.Properties
 {
     public abstract class Property
     {

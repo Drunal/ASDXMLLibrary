@@ -1,6 +1,6 @@
 ﻿
 using System.Xml.Serialization;
-namespace ASDXMLLibrary.Base.Properties
+namespace AsdXMLLibrary.Base.Properties
 {
     class SingleValueProperty<UnitClassificationType> : NumericalProperty<UnitClassificationType>
     {

@@ -1,9 +1,10 @@
-﻿using ASDXMLLibrary.Objects;
-using ASDXMLLibrary.Base.Classifications;
-using ASDXMLLibrary.Base.Properties;
+﻿using AsdXMLLibrary.Objects;
+using AsdXMLLibrary.Base.Classifications;
+using AsdXMLLibrary.Base.Properties;
 using System.Xml.Serialization;
+using AsdXMLLibrary.Objects.References;
 
-namespace ASDXMLLibrary.Base
+namespace AsdXMLLibrary.Base
 {
     public class Identifier<IdentifierClassification> 
     {

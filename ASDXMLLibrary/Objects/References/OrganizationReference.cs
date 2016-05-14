@@ -1,8 +1,8 @@
-﻿using ASDXMLLibrary.Base;
-using ASDXMLLibrary.Base.Classifications;
+﻿using AsdXMLLibrary.Base;
+using AsdXMLLibrary.Base.Classifications;
 using System.Xml.Serialization;
 
-namespace ASDXMLLibrary.Objects
+namespace AsdXMLLibrary.Objects.References
 {
     public class OrganizationReference
     {

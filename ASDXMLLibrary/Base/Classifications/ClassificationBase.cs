@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ASDXMLLibrary.Base.Classifications
+namespace AsdXMLLibrary.Base.Classifications
 {
     /// <summary>
     /// Base class to handle all classifications. 
