@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 namespace ASDXMLLibrary.Base.Properties
 {
-    public class ValueWithTolerancesProperty : NumericalProperty
+    public class ValueWithTolerancesProperty<UnitClassificationType> : NumericalProperty<UnitClassificationType>
     {
         [XmlElement(ElementName="nomVal")]
         public double? Value { get; set; }

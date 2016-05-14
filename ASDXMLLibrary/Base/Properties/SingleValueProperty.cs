@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 namespace ASDXMLLibrary.Base.Properties
 {
-    class SingleValueProperty : NumericalProperty
+    class SingleValueProperty<UnitClassificationType> : NumericalProperty<UnitClassificationType>
     {
         [XmlElement(ElementName="value")]
         public double Value { get; set; }
