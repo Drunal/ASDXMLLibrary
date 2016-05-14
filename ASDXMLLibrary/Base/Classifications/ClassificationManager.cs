@@ -10,14 +10,14 @@ namespace ASDXMLLibrary.Base.Classifications
     {
         private static Dictionary<Type, ClassificationBase> classificiations = new Dictionary<Type, ClassificationBase>();
 
-        public static void Add<TValueList>(ClassificationBase validValues)
+        public static void Add(ClassificationBase validValues)
         {
-            Add<TValueList>(validValues, false);
+            Add(validValues, false);
         }
 
-        public static void Add<TValueList>(ClassificationBase validValues, bool overwrite) 
+        public static void Add(ClassificationBase validValues, bool overwrite) 
         {
-            Type type = typeof(TValueList);
+            Type type = validValues.GetType();
 
             if (classificiations.ContainsKey(type))
             {
