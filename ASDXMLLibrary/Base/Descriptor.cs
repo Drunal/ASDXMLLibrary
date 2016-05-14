@@ -7,13 +7,13 @@ namespace ASDXMLLibrary.Base
     public class Descriptor
     {
         public string Text { get; private set; }
-        public Classification Language { get; private set; }
+        public Classification<LanguageClassification> Language { get; private set; }
         public Organization ProvidedBy { get; set; }
         public DateTime ProvidedDate { get; set; }
 
         public Descriptor()
         {
-            Language = new Classification(LanguageClassification.Instance);
+            Language = new Classification<LanguageClassification>();
             ProvidedDate = new DateTime();
         }
 

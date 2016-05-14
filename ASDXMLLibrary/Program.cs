@@ -8,9 +8,15 @@ namespace ASDXMLLibrary
     {
         public static void Main()
         {
-            LanguageClassification.Instance.Values.AddRange(new string[]{"de", "en"});
-            PartIdentifierClassification.Instance.Values.Add("PNR");
-            PartIdentifierClassification.Instance.Values.Add("NSN");
+            LanguageClassification language = new LanguageClassification();
+            language.AddRange(new string[]{"de", "en"});
+
+            PartIdentifierClassification partIdent = new PartIdentifierClassification();
+            partIdent.Add("PNR");
+            partIdent.Add("NSN");
+
+            ClassificationManager.Add<LanguageClassification>(language);
+            ClassificationManager.Add<PartIdentifierClassification>(partIdent);
 
             PartAsDesigned part = new PartAsDesigned();
 

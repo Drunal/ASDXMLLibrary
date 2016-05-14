@@ -5,14 +5,14 @@ namespace ASDXMLLibrary.Base
     /// <summary>
     /// Holds the chosen value and knowledge about the valid Values for this particular value.
     /// </summary>
-    public class Classification
+    public class Classification<TValueList>
     {
         private ClassificationBase validValues;
         private string chosenValue;
 
-        public Classification(ClassificationBase classificationHandler)
+        public Classification()
         {
-            this.validValues = classificationHandler;
+            validValues = ClassificationManager.Get<TValueList>();
             chosenValue = null;
         }
 

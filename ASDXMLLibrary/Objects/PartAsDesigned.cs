@@ -5,12 +5,12 @@ namespace ASDXMLLibrary.Objects
 {
     public class PartAsDesigned
     {
-        public Identifier PartID { get; set; }
+        public Identifier<PartIdentifierClassification> PartID { get; set; }
         public Descriptor PartName { get; set; }
 
         public PartAsDesigned()
         {
-            PartID = new Identifier(PartIdentifierClassification.Instance);
+            PartID = new Identifier<PartIdentifierClassification>();
             PartName = new Descriptor();
         }
     }
