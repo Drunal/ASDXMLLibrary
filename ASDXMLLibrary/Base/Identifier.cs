@@ -20,9 +20,9 @@ namespace AsdXMLLibrary.Base
         #region XML Handling Properties
 
         [XmlIgnore]
-        protected bool ClassSpecified { get { return Class.HasValue; } }
+        public bool ClassSpecified { get { return Class.HasValue; } }
         [XmlIgnore] 
-        protected bool SetBySpecified { get { return SetBy != null; } }
+        public bool SetBySpecified { get { return SetBy != null; } }
 
         #endregion
 

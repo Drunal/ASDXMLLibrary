@@ -24,11 +24,11 @@ namespace AsdXMLLibrary.Base
         #region XML Handling Properties
         /// these properties control if the respective property is written to the xml or not
         [XmlIgnore]
-        protected bool LanguageSpecified { get { return Language.HasValue; } }
+        public bool LanguageSpecified { get { return Language.HasValue; } }
         [XmlIgnore] // if Ticks is 0 then the ProvidedDate equal 0001-01-01T00:00:00 and was most likely not set.
-        protected bool ProvidedDateSpecified { get { return ProvidedDate.Ticks > 0; } }
+        public bool ProvidedDateSpecified { get { return ProvidedDate.Ticks > 0; } }
         [XmlIgnore]
-        protected bool ProvidedBySpecified { get { return ProvidedBy != null; } }
+        public bool ProvidedBySpecified { get { return ProvidedBy != null; } }
 
         #endregion
 
