@@ -47,7 +47,14 @@
     <Compile Include="Base\Identifier.cs" />
     <Compile Include="Base\Classifications\ClassificationException.cs" />
     <Compile Include="Base\Classifications\ClassificationBase.cs" />
+    <Compile Include="Base\Properties\NumericalProperty.cs" />
+    <Compile Include="Base\Properties\Property.cs" />
+    <Compile Include="Base\Properties\SingleValueProperty.cs" />
+    <Compile Include="Base\Properties\TextProperty.cs" />
+    <Compile Include="Base\Properties\ValueRangeProperty.cs" />
+    <Compile Include="Base\Properties\ValueWithTolerancesProperty.cs" />
     <Compile Include="Objects\Organization.cs" />
+    <Compile Include="Objects\OrganizationReference.cs" />
     <Compile Include="Objects\PartAsDesigned.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Base\Classification.cs" />
