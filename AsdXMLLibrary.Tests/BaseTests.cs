@@ -5,14 +5,14 @@ using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Objects.References;
 using AsdXMLLibrary.Objects;
 using System.Xml.Linq;
+using System.Xml.XPath;
+using System.IO;
 
 namespace AsdXMLLibrary.Tests
 {
     [TestClass]
     public class BaseTests
     {
-        private const string tempFileName = "serialized.xml";
-
         private Organization createMockOrganization()
         {
             Organization organization = new Organization();
@@ -33,23 +33,17 @@ namespace AsdXMLLibrary.Tests
         [TestMethod]
         public void SerializeFullDescriptor()
         {
-
             Organization org = createMockOrganization();
 
             org.Name.ProvidedDate = DateTime.Today;
             org.Name.ProvidedBy = org.Reference;
 
-            ContentManager.Serialize<Descriptor>(org.Name, tempFileName);
-            XDocument result = XDocument.Load(tempFileName);
+            var ms = new MemoryStream();
+            ContentManager.SerializeToStream<Descriptor>(org.Name, ms);
+            ms.Position = 0;
+            XDocument result = XDocument.Load(ms);
 
-            Assert.AreEqual("Descriptor", result.Root.Name);
-            Assert.AreEqual(org.Name.Text, result.Root.Element("descr").Value);
-            Assert.AreEqual(org.Name.Language.Value, result.Root.Element("lang").Value, org.Name.Language.Value);
-            Assert.AreEqual(org.Name.ProvidedDate.ToXmlDateString(), result.Root.Element("date").Value);
-            Assert.IsNotNull(result.Root.Element("providedBy"));
-
-            
-//            Assert.AreEqual(result.ToString(),"<Descriptor xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">
+//<Descriptor xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">
 //  <descr>OrgName</descr>
 //  <lang>en</lang>
 //  <date>2016-05-14</date>
@@ -59,15 +53,15 @@ namespace AsdXMLLibrary.Tests
 //      <class>CAGE</class>
 //    </orgId>
 //  </providedBy>
-//</Descriptor>")
-        }
-    }
+//</Descriptor>"
 
-    public static class DateTimeExtensions
-    {
-        public static string ToXmlDateString(this DateTime dateTime)
-        {
-            return String.Format("{0}-{1}-{2}", dateTime.Year.ToString("0000"), dateTime.Month.ToString("00"), dateTime.Day.ToString("00"));
+            Assert.AreEqual(org.Name.Text, result.XPathSelectElement("/*", "descr", 1).Value);
+            Assert.AreEqual(org.Name.Language.Value, result.XPathSelectElement("/*", "lang", 2).Value);
+            Assert.AreEqual(org.Name.ProvidedDate.ToXmlDateString(), result.XPathSelectElement("/*", "date", 3).Value);
+            XElement providedBy = result.XPathSelectElement("/*", "providedBy", 4);
+            Assert.IsNotNull(providedBy);
+            Assert.AreEqual(org.Name.ProvidedBy.OrgID.ID, providedBy.XPathSelectElement("orgId", "id", 1).Value);
+            Assert.AreEqual(org.Name.ProvidedBy.OrgID.Class.Value, providedBy.XPathSelectElement("orgId", "class", 2).Value);
         }
     }
 }
