@@ -52,6 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AssertHelper.cs" />
     <Compile Include="BaseTests.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +63,17 @@
       <Project>{746e2dd2-4adf-4923-870d-e49a8859b51c}</Project>
       <Name>AsdXMLLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Schemas\Basics.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\Descriptor.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
