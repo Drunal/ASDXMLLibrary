@@ -44,15 +44,9 @@ namespace AsdXMLLibrary.Tests
             MemoryStream ms = new MemoryStream();
             ContentManager.SerializeToStream<T>(input, ms);
             ms.Position = 0;
-            try
-            {
-                XDocument createdXML = XDocument.Load(ms);
-                createdXML.Validate(schemas, null);
-            }
-            catch (XmlSchemaValidationException xsve)
-            {
-                Assert.Fail(String.Format("Created XML does not comply with the XML Schema:\n{0}", xsve.ToString()));
-            }
+
+            XDocument createdXML = XDocument.Load(ms);
+            createdXML.Validate(schemas, null);
 
             ms.Position = 0;
             return ContentManager.DeserializeFromStream<T>(ms);
