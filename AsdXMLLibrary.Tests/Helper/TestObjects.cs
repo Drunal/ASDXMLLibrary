@@ -15,7 +15,7 @@ namespace AsdXMLLibrary.Tests.Helper
             {
                 var org = new Organization();
                 org.Name.Text = "OrgMini";
-                org.OrgID.ID = "N1234";
+                org.OrgId.ID = "N1234";
                 return org;
             }
         }
@@ -29,7 +29,7 @@ namespace AsdXMLLibrary.Tests.Helper
             {
                 var org = TestObjects.OrganizationMinimum;
                 org.Name.Language.Value = "en";
-                org.OrgID.Class.Value = "CAGE";
+                org.OrgId.Class.Value = "CAGE";
                 return org;
             }
         }
@@ -44,7 +44,7 @@ namespace AsdXMLLibrary.Tests.Helper
                 var org = TestObjects.OrganizationMedium;
                 org.Name.ProvidedBy = TestObjects.OrganizationMinimum.Reference;
                 org.Name.ProvidedDate = DateTime.Now;
-                org.OrgID.SetBy = TestObjects.OrganizationMinimum.Reference;
+                org.OrgId.SetBy = TestObjects.OrganizationMinimum.Reference;
                 return org;
             }
         }

@@ -29,8 +29,8 @@ namespace AsdXMLLibrary
             Organization org = new Organization();
 
             try {
-                org.OrgID.ID = "N1234";
-                org.OrgID.Class.Value = "CAGE";
+                org.OrgId.ID = "N1234";
+                org.OrgId.Class.Value = "CAGE";
                 //org.Name.Set("HiCo-ICS", "en");
                 org.Name.ProvidedBy = org.Reference;
                 org.Name.ProvidedDate = DateTime.Now;
@@ -39,9 +39,9 @@ namespace AsdXMLLibrary
                 part.PartName.ProvidedDate = DateTime.Now;
                 part.PartName.ProvidedBy = org.Reference;
 
-                part.PartID.ID = "934.1234.1234.0";
-                part.PartID.Class.Value = "PNR";
-                part.PartID.SetBy = org.Reference;
+                part.PartId.ID = "934.1234.1234.0";
+                part.PartId.Class.Value = "PNR";
+                part.PartId.SetBy = org.Reference;
                 part.ElectrostaticSensitive = true;
 
             }
@@ -65,14 +65,14 @@ namespace AsdXMLLibrary
 
 
             System.Console.WriteLine(String.Format("The part is called '{0}' in language '{1}'", part.PartName.Text, part.PartName.Language.Value));
-            System.Console.WriteLine(String.Format("  with the {0} identification of '{1}'", part.PartID.Class.Value, part.PartID.ID));
-            System.Console.WriteLine(String.Format("  provided by {0}", part.PartID.SetBy.OrgID.ID));
+            System.Console.WriteLine(String.Format("  with the {0} identification of '{1}'", part.PartId.Class.Value, part.PartId.ID));
+            System.Console.WriteLine(String.Format("  provided by {0}", part.PartId.SetBy.OrgId.ID));
             System.Console.WriteLine("------------------------");
             System.Console.WriteLine(String.Format("And a organization called '{0}' in langauge '{1}'", org.Name.Text, org.Name.Language.Value));
-            System.Console.WriteLine(String.Format("  with the {0} identification of '{1}'", org.OrgID.Class.Value, org.OrgID.ID));
+            System.Console.WriteLine(String.Format("  with the {0} identification of '{1}'", org.OrgId.Class.Value, org.OrgId.ID));
             System.Console.WriteLine("------------------------");
             System.Console.WriteLine(String.Format("The read part is called '{0}' in language '{1}'", hwpart.PartName.Text, hwpart.PartName.Language.Value));
-            System.Console.WriteLine(String.Format("  with the {0} identification of '{1}'", hwpart.PartID.Class.Value, hwpart.PartID.ID));
+            System.Console.WriteLine(String.Format("  with the {0} identification of '{1}'", hwpart.PartId.Class.Value, hwpart.PartId.ID));
             System.Console.ReadKey();
         }
     }

@@ -24,8 +24,8 @@ namespace AsdXMLLibrary.Objects
             {
                 if (_reference == null)
                     _reference = new ProjectReference();
-                if (_reference.ProjectID != this.ProjectID)
-                    _reference.ProjectID = this.ProjectID;
+                if (_reference.ProjectId != this.ProjectId)
+                    _reference.ProjectId = this.ProjectId;
 
                 return _reference;
             }

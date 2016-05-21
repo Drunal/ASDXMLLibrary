@@ -7,11 +7,11 @@ namespace AsdXMLLibrary.Objects.References
     public class OrganizationReference
     {
         [XmlElement(ElementName = "orgId")]
-        public Identifier<OrganizationIdentifierClassification> OrgID { get; set; }
+        public Identifier<OrganizationIdentifierClassification> OrgId { get; set; }
 
         public OrganizationReference()
         {
-            OrgID = new Identifier<OrganizationIdentifierClassification>();
+            OrgId = new Identifier<OrganizationIdentifierClassification>();
         }
     }
 }

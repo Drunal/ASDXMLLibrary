@@ -7,11 +7,11 @@ namespace AsdXMLLibrary.Objects.References
     public class ProjectReference
     {
         [XmlElement(ElementName = "prjId")]
-        public Identifier<ProjectIdentifierClassification> ProjectID { get; set; }
+        public Identifier<ProjectIdentifierClassification> ProjectId { get; set; }
 
         public ProjectReference()
         {
-            ProjectID = new Identifier<ProjectIdentifierClassification>();
+            ProjectId = new Identifier<ProjectIdentifierClassification>();
         }
     }
 }

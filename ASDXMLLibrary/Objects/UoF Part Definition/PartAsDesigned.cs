@@ -1,13 +1,12 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
+using AsdXMLLibrary.Objects.References;
 using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects
 {
-    public abstract class PartAsDesigned
+    public abstract class PartAsDesigned : PartReference
     {
-        [XmlElement(ElementName="partId")]
-        public Identifier<PartIdentifierClassification> PartID { get; set; }
         [XmlElement(ElementName = "name")]
         public Descriptor PartName { get; set; }
 
@@ -19,7 +18,7 @@ namespace AsdXMLLibrary.Objects
 
         public PartAsDesigned()
         {
-            PartID = new Identifier<PartIdentifierClassification>();
+            PartId = new Identifier<PartIdentifierClassification>();
         }
     }
 }

@@ -25,8 +25,8 @@ namespace AsdXMLLibrary.Objects
             {
                 if (_reference == null)
                     _reference = new OrganizationReference();
-                if( _reference.OrgID != this.OrgID)
-                    _reference.OrgID = this.OrgID;
+                if( _reference.OrgId != this.OrgId)
+                    _reference.OrgId = this.OrgId;
 
                 return _reference;
             }
