@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AsdXMLLibrary.Tests
+namespace AsdXMLLibrary.Tests.Helper
 {
     public static class DateTimeExtensions
     {

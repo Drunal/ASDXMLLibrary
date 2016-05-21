@@ -55,11 +55,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BaseTests.cs" />
-    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="DescriptorTests.cs" />
+    <Compile Include="Helper\DateTimeExtensions.cs" />
     <Compile Include="Helper\DateComparison.cs" />
     <Compile Include="Helper\DeepEqualExtension.cs" />
+    <Compile Include="Helper\TestBase.cs" />
     <Compile Include="Helper\TestObjects.cs" />
+    <Compile Include="IdentifierTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XNodeExtensions.cs" />
   </ItemGroup>

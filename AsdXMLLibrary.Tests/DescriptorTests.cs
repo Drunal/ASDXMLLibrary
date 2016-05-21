@@ -14,26 +14,8 @@ using AsdXMLLibrary.Tests.Helper;
 namespace AsdXMLLibrary.Tests
 {
     [TestClass]
-    public class BaseTests
+    public class DescriptorTests : TestBase
     {
-        /// <summary>
-        /// The set of schemas needed for validation
-        /// </summary>
-        private XmlSchemaSet schemas;
-
-        public BaseTests()
-        {
-            schemas = new XmlSchemaSet();
-            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Descriptor.xsd");
-            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Basics.xsd");
-        }
-
-        [ClassInitialize]
-        public static void TestSetup(TestContext context)
-        {
-            // Fill the validValues with default values.
-            ClassificationManager.FillDefaultValues();
-        }
 
         /// <summary>
         /// serializes the given object to a Stream.
@@ -55,8 +37,6 @@ namespace AsdXMLLibrary.Tests
             ms.Position = 0;
             return ContentManager.DeserializeFromStream<T>(ms);
         }
-
-        
 
         [TestMethod]
         public void SerializeCompleteDescriptor()
