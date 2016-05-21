@@ -8,22 +8,17 @@ using AsdXMLLibrary.Objects;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using System.Xml.Schema;
+using DeepEqual.Syntax;
+using AsdXMLLibrary.Tests.Helper;
 
 namespace AsdXMLLibrary.Tests
 {
     [TestClass]
     public class BaseTests
     {
-        private Organization createMockOrganization()
-        {
-            Organization organization = new Organization();
-            organization.Name.Text = "OrgName";
-            organization.Name.Language.Value = "en";
-            organization.OrgID.ID = "N1234";
-            organization.OrgID.Class.Value = "CAGE";
-            return organization;
-        }
-
+        /// <summary>
+        /// The set of schemas needed for validation
+        /// </summary>
         private XmlSchemaSet schemas;
 
         public BaseTests()
@@ -36,42 +31,38 @@ namespace AsdXMLLibrary.Tests
         [TestInitialize]
         public void TestSetup()
         {
+            // Fill the validValues with default values.
             ClassificationManager.FillDefaultValues();
         }
 
         [TestMethod]
         public void SerializeFullDescriptor()
         {
-            Organization expected = createMockOrganization();
+            Organization expected = TestObjects.MinimumOrganization;
 
+            // expand the minimum organization by its optional fields
             expected.Name.ProvidedDate = DateTime.Today;
             expected.Name.ProvidedBy = expected.Reference;
 
             var ms = new MemoryStream();
             ContentManager.SerializeToStream<Descriptor>(expected.Name, ms);
+            ContentManager.SerializeToFile<Descriptor>(expected.Name, "descriptor.xml");
             ms.Position = 0;
             XDocument createdXML = XDocument.Load(ms);
             try
             {
                 createdXML.Validate(schemas, null);
             }
-            catch (XmlSchemaValidationException)
+            catch (XmlSchemaValidationException xsve)
             {
-                Assert.Fail();
+                Assert.Fail(String.Format("Created XML does not comply with the XML Schema:\n{0}", xsve.ToString()));
             }
 
             ms.Position = 0;
             Organization result = new Organization();
             result.Name = ContentManager.DeserializeFromStream<Descriptor>(ms);
 
-            Assert.AreEqual(expected.Name, result.Name);
-            //Assert.AreEqual(expected.Name.Text, result.Name.Text);
-            //Assert.AreEqual(expected.Name.Language.Value, createdXML.XPathSelectElement("/*", "lang", 2).Value);
-            //Assert.AreEqual(expected.Name.ProvidedDate.ToXmlDateString(), createdXML.XPathSelectElement("/*", "date", 3).Value);
-            //XElement providedBy = createdXML.XPathSelectElement("/*", "providedBy", 4);
-            //Assert.IsNotNull(providedBy);
-            //Assert.AreEqual(expected.Name.ProvidedBy.OrgID.ID, providedBy.XPathSelectElement("orgId", "id", 1).Value);
-            //Assert.AreEqual(expected.Name.ProvidedBy.OrgID.Class.Value, providedBy.XPathSelectElement("orgId", "class", 2).Value);
+            result.Name.ShouldDeepEqual(expected.Name);
         }
     }
 }

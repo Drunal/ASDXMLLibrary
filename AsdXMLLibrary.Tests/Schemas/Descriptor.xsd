@@ -9,12 +9,10 @@
     <xsd:element name="Descriptor" type="descriptor"/> 
 
     <xsd:complexType name="descriptor">
-        <xsd:annotation>
-            <xsd:appinfo>SX001G:productName</xsd:appinfo>
-        </xsd:annotation>
         <xsd:sequence>          
             <xsd:element name="descr" type="nonEmptyString"/>
-            <xsd:element name="lang" type="xsd:language" minOccurs="0" nillable="true"/>              
+            <xsd:element name="lang" type="xsd:language" minOccurs="0" nillable="true"/> 
+            <xsd:element name="date" type="xsd:date" minOccurs="0" nillable="true"/>			
             <xsd:element name="providedBy" type="organizationReference" minOccurs="0" nillable="true"/>
             <!--<xsd:group ref="applicabilityAssignmentItem"/>-->
         </xsd:sequence>
