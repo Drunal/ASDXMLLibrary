@@ -26,31 +26,27 @@ namespace AsdXMLLibrary.Tests
             schemas = new XmlSchemaSet();
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Descriptor.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Basics.xsd");
-        }
 
-        [TestInitialize]
-        public void TestSetup()
-        {
             // Fill the validValues with default values.
             ClassificationManager.FillDefaultValues();
         }
 
-        [TestMethod]
-        public void SerializeFullDescriptor()
+        /// <summary>
+        /// serializes the given object to a Stream.
+        /// Loads that stream as an XDocument, which is validated against the schemas
+        /// deserializes the stream and returns the new object.
+        /// </summary>
+        /// <typeparam name="T">The type of object to serialize</typeparam>
+        /// <param name="input">The actual object to be serialized</param>
+        /// <returns>A deserialized object of type T</returns>
+        private T ObjectStreamtoObject<T>(T input)
         {
-            Organization expected = TestObjects.OrganizationMinimum;
-
-            // expand the minimum organization by its optional fields
-            expected.Name.ProvidedDate = DateTime.Today;
-            expected.Name.ProvidedBy = expected.Reference;
-
-            var ms = new MemoryStream();
-            ContentManager.SerializeToStream<Descriptor>(expected.Name, ms);
-            ContentManager.SerializeToFile<Descriptor>(expected.Name, "descriptor.xml");
+            MemoryStream ms = new MemoryStream();
+            ContentManager.SerializeToStream<T>(input, ms);
             ms.Position = 0;
-            XDocument createdXML = XDocument.Load(ms);
             try
             {
+                XDocument createdXML = XDocument.Load(ms);
                 createdXML.Validate(schemas, null);
             }
             catch (XmlSchemaValidationException xsve)
@@ -59,9 +55,29 @@ namespace AsdXMLLibrary.Tests
             }
 
             ms.Position = 0;
-            Organization result = new Organization();
-            result.Name = ContentManager.DeserializeFromStream<Descriptor>(ms);
+            return ContentManager.DeserializeFromStream<T>(ms);
+        }
 
+        [TestInitialize]
+        public void TestSetup()
+        {
+        }
+
+        [TestMethod]
+        public void SerializeCompleteDescriptor()
+        {
+            Organization expected = TestObjects.OrganizationFull;
+            Organization result = new Organization();
+            result.Name = ObjectStreamtoObject(expected.Name);
+            result.Name.ShouldDeepEqualwithDate(expected.Name);
+        }
+
+        [TestMethod]
+        public void SerializeMinimalDescriptor()
+        {
+            Organization expected = TestObjects.OrganizationMinimum;
+            Organization result = new Organization();
+            result.Name = ObjectStreamtoObject(expected.Name);
             result.Name.ShouldDeepEqual(expected.Name);
         }
     }
