@@ -26,7 +26,11 @@ namespace AsdXMLLibrary.Tests
             schemas = new XmlSchemaSet();
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Descriptor.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Basics.xsd");
+        }
 
+        [ClassInitialize]
+        public static void TestSetup(TestContext context)
+        {
             // Fill the validValues with default values.
             ClassificationManager.FillDefaultValues();
         }
@@ -52,10 +56,7 @@ namespace AsdXMLLibrary.Tests
             return ContentManager.DeserializeFromStream<T>(ms);
         }
 
-        [TestInitialize]
-        public void TestSetup()
-        {
-        }
+        
 
         [TestMethod]
         public void SerializeCompleteDescriptor()
@@ -70,6 +71,18 @@ namespace AsdXMLLibrary.Tests
         public void SerializeMinimalDescriptor()
         {
             Organization expected = TestObjects.OrganizationMinimum;
+            Organization result = new Organization();
+            result.Name = ObjectStreamtoObject(expected.Name);
+            result.Name.ShouldDeepEqual(expected.Name);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(XmlSchemaValidationException))]
+        public void ShouldFailOnMissingName()
+        {
+            Organization expected = TestObjects.OrganizationMinimum;
+            // remove the Name;
+            expected.Name.Text = "";
             Organization result = new Organization();
             result.Name = ObjectStreamtoObject(expected.Name);
             result.Name.ShouldDeepEqual(expected.Name);
