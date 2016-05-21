@@ -55,10 +55,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ClassificationManagerTests.cs" />
     <Compile Include="DescriptorTests.cs" />
     <Compile Include="Helper\DateTimeExtensions.cs" />
     <Compile Include="Helper\DateComparison.cs" />
     <Compile Include="Helper\DeepEqualExtension.cs" />
+    <Compile Include="Helper\ExceptionAssert.cs" />
     <Compile Include="Helper\TestBase.cs" />
     <Compile Include="Helper\TestObjects.cs" />
     <Compile Include="IdentifierTests.cs" />

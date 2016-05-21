@@ -21,7 +21,7 @@ namespace AsdXMLLibrary.Base.Classifications
                 if (overwrite)
                     classificiations.Remove(type);
                 else
-                    throw new ClassificationException(String.Format("Classification '{0}' already initialized!", type.Name));
+                    throw new ClassificationException(string.Format("Classification '{0}' already initialized!", type.Name));
             }
 
             classificiations.Add(type, validValues);
@@ -32,7 +32,7 @@ namespace AsdXMLLibrary.Base.Classifications
             Type type = typeof(TValueList);
 
             if (!classificiations.ContainsKey(type))
-                throw new ClassificationException(String.Format("Classification '{0}' is not initialized!", type.Name));
+                throw new ClassificationException(string.Format("Classification '{0}' is not initialized!", type.Name));
 
             return classificiations[type];
         }
@@ -49,6 +49,11 @@ namespace AsdXMLLibrary.Base.Classifications
             Add(new FitmentRequirementClassification {
                 "MINOR", "MAJOR"
             });
+        }
+
+        public static void ClearClassifications()
+        {
+            classificiations.Clear();
         }
     }
 }

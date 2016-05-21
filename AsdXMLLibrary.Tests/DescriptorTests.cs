@@ -28,15 +28,15 @@ namespace AsdXMLLibrary.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(XmlSchemaValidationException))]
         public void ShouldFailOnMissingName()
         {
             Organization expected = TestObjects.OrganizationMinimum;
             // remove the Name;
             expected.Name.Text = string.Empty;
             Organization result = new Organization();
-            result.Name = ObjectStreamtoObject(expected.Name);
-            result.Name.ShouldDeepEqual(expected.Name);
+            ExceptionAssert.Throws<XmlSchemaValidationException>(
+                () => ObjectStreamtoObject(expected.Name)                
+            );
         }
     }
 }

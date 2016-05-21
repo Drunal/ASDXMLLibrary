@@ -28,14 +28,14 @@ namespace AsdXMLLibrary.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(XmlSchemaValidationException))]
         public void ShouldFailOnMissingId()
         {
             Organization expected = TestObjects.OrganizationMinimum;
             expected.OrgId.ID = string.Empty;
             Organization result = new Organization();
-            result.OrgId = ObjectStreamtoObject(expected.OrgId);
-            result.OrgId.ShouldDeepEqual(expected.OrgId);
+            ExceptionAssert.Throws<XmlSchemaValidationException>(
+                () => ObjectStreamtoObject(expected.OrgId)
+            );
         }
     }
 }
