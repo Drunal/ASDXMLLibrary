@@ -38,7 +38,7 @@ namespace AsdXMLLibrary.Tests
         [TestMethod]
         public void SerializeFullDescriptor()
         {
-            Organization expected = TestObjects.MinimumOrganization;
+            Organization expected = TestObjects.OrganizationMinimum;
 
             // expand the minimum organization by its optional fields
             expected.Name.ProvidedDate = DateTime.Today;
