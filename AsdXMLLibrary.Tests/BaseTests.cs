@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
@@ -6,62 +7,62 @@ using AsdXMLLibrary.Objects.References;
 using AsdXMLLibrary.Objects;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using System.IO;
+using System.Xml.Schema;
+using DeepEqual.Syntax;
+using AsdXMLLibrary.Tests.Helper;
 
 namespace AsdXMLLibrary.Tests
 {
     [TestClass]
     public class BaseTests
     {
-        private Organization createMockOrganization()
-        {
-            Organization organization = new Organization();
-            organization.Name.Text = "OrgName";
-            organization.Name.Language.Value = "en";
-            organization.OrgID.ID = "N1234";
-            organization.OrgID.Class.Value = "CAGE";
-            return organization;
-        }
+        /// <summary>
+        /// The set of schemas needed for validation
+        /// </summary>
+        private XmlSchemaSet schemas;
 
+        public BaseTests()
+        {
+            schemas = new XmlSchemaSet();
+            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Descriptor.xsd");
+            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Basics.xsd");
+        }
 
         [TestInitialize]
         public void TestSetup()
         {
+            // Fill the validValues with default values.
             ClassificationManager.FillDefaultValues();
         }
 
         [TestMethod]
         public void SerializeFullDescriptor()
         {
-            Organization org = createMockOrganization();
+            Organization expected = TestObjects.MinimumOrganization;
 
-            org.Name.ProvidedDate = DateTime.Today;
-            org.Name.ProvidedBy = org.Reference;
+            // expand the minimum organization by its optional fields
+            expected.Name.ProvidedDate = DateTime.Today;
+            expected.Name.ProvidedBy = expected.Reference;
 
             var ms = new MemoryStream();
-            ContentManager.SerializeToStream<Descriptor>(org.Name, ms);
+            ContentManager.SerializeToStream<Descriptor>(expected.Name, ms);
+            ContentManager.SerializeToFile<Descriptor>(expected.Name, "descriptor.xml");
             ms.Position = 0;
-            XDocument result = XDocument.Load(ms);
+            XDocument createdXML = XDocument.Load(ms);
+            try
+            {
+                createdXML.Validate(schemas, null);
+            }
+            catch (XmlSchemaValidationException xsve)
+            {
+                Assert.Fail(String.Format("Created XML does not comply with the XML Schema:\n{0}", xsve.ToString()));
+            }
 
-//<Descriptor xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">
-//  <descr>OrgName</descr>
-//  <lang>en</lang>
-//  <date>2016-05-14</date>
-//  <providedBy>
-//    <orgId>
-//      <id>N1234</id>
-//      <class>CAGE</class>
-//    </orgId>
-//  </providedBy>
-//</Descriptor>"
+            ms.Position = 0;
+            Organization result = new Organization();
+            result.Name = ContentManager.DeserializeFromStream<Descriptor>(ms);
 
-            Assert.AreEqual(org.Name.Text, result.XPathSelectElement("/*", "descr", 1).Value);
-            Assert.AreEqual(org.Name.Language.Value, result.XPathSelectElement("/*", "lang", 2).Value);
-            Assert.AreEqual(org.Name.ProvidedDate.ToXmlDateString(), result.XPathSelectElement("/*", "date", 3).Value);
-            XElement providedBy = result.XPathSelectElement("/*", "providedBy", 4);
-            Assert.IsNotNull(providedBy);
-            Assert.AreEqual(org.Name.ProvidedBy.OrgID.ID, providedBy.XPathSelectElement("orgId", "id", 1).Value);
-            Assert.AreEqual(org.Name.ProvidedBy.OrgID.Class.Value, providedBy.XPathSelectElement("orgId", "class", 2).Value);
+            result.Name.ShouldDeepEqual(expected.Name);
         }
     }
 }

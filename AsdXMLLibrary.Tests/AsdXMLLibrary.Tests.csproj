@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DeepEqual">
+      <HintPath>..\packages\DeepEqual.1.6.0.0\lib\net40\DeepEqual.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
@@ -54,6 +57,7 @@
   <ItemGroup>
     <Compile Include="BaseTests.cs" />
     <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="Helper\TestObjects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XNodeExtensions.cs" />
   </ItemGroup>
@@ -62,6 +66,18 @@
       <Project>{746e2dd2-4adf-4923-870d-e49a8859b51c}</Project>
       <Name>AsdXMLLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Schemas\Basics.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\Descriptor.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

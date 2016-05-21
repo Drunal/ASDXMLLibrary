@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.asd-europe.org/s-series/s3000l"
+    targetNamespace="http://www.asd-europe.org/s-series/s3000l"
+    elementFormDefault="qualified">
+
+    <xsd:include schemaLocation="basics.xsd"/>
+
+    <xsd:element name="Descriptor" type="descriptor"/> 
+
+    <xsd:complexType name="descriptor">
+        <xsd:sequence>          
+            <xsd:element name="descr" type="nonEmptyString"/>
+            <xsd:element name="lang" type="xsd:language" minOccurs="0" nillable="true"/> 
+            <xsd:element name="date" type="xsd:date" minOccurs="0" nillable="true"/>			
+            <xsd:element name="providedBy" type="organizationReference" minOccurs="0" nillable="true"/>
+            <!--<xsd:group ref="applicabilityAssignmentItem"/>-->
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+</xsd:schema>

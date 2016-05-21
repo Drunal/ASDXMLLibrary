@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.asd-europe.org/s-series/s3000l"
+    targetNamespace="http://www.asd-europe.org/s-series/s3000l"
+    elementFormDefault="qualified"> 
+
+    <xsd:complexType name="organizationReference">
+        <xsd:sequence minOccurs="0">
+            <xsd:element name="orgId" type="identifier"/>
+        </xsd:sequence>
+        <!--<xsd:attribute name="uidRef" use="optional">
+            <xsd:simpleType>
+                <xsd:restriction base="uidRef">
+                    <xsd:pattern value="org[1-9][0-9]*"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>-->
+        <!--<xsd:assert test="(@uidRef and not(orgId)) or (not(@uidRef) and orgId)"/>-->
+    </xsd:complexType>
+    
+    <xsd:complexType name="identifier">
+        <xsd:annotation>
+            <xsd:appinfo>SX001G:organizationIdentifier</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="nonEmptyString"/> 
+            <!-- type changed from 'value:organizationIdentifierClassValues' to 'nonEmptyString'
+                to offset the necessarity to match the validValues file which is project dependent anyway
+            -->
+            <xsd:element name="class" type="nonEmptyString" minOccurs="0" nillable="true" default="CAGE"/> 
+            <xsd:element name="setBy" type="organizationReference" minOccurs="0" maxOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="nonEmptyString">  
+        <xsd:restriction base="xsd:token">  
+            <xsd:minLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+</xsd:schema>
