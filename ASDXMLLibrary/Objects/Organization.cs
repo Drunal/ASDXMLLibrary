@@ -1,6 +1,4 @@
 ﻿using AsdXMLLibrary.Base;
-using AsdXMLLibrary.Base.Classifications;
-using AsdXMLLibrary.Base.Properties;
 using AsdXMLLibrary.Objects.References;
 using System.Xml.Serialization;
 

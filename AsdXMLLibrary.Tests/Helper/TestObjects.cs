@@ -1,20 +1,10 @@
 ﻿using AsdXMLLibrary.Objects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AsdXMLLibrary.Tests.Helper
 {
     public static class TestObjects
     {
-        private static Organization _orgMini = null;
-        private static Organization _orgMedium = null;
-        private static Organization _orgFull = null;
-
-        private static Organization _originator = new Organization();
-        
         /// <summary>
         /// creates a MockOrganization with Name and ID
         /// </summary>
@@ -23,13 +13,10 @@ namespace AsdXMLLibrary.Tests.Helper
         {
             get
             {
-                if (_orgMini == null) 
-                {
-                    _orgMini = new Organization();
-                    _orgMini.Name.Text = "OrgMini";
-                    _orgMini.OrgID.ID = "N1234";
-                }
-                return _orgMini;
+                var org = new Organization();
+                org.Name.Text = "OrgMini";
+                org.OrgID.ID = "N1234";
+                return org;
             }
         }
 
@@ -40,15 +27,10 @@ namespace AsdXMLLibrary.Tests.Helper
         {
             get
             {
-                if (_orgMedium == null)
-                {
-                    _orgMedium = new Organization();
-                    _orgMedium.Name.Text = "OrgMedium";
-                    _orgMedium.Name.Language.Value = "en";
-                    _orgMedium.OrgID.ID = "N5678";
-                    _orgMedium.OrgID.Class.Value = "CAGE";
-                }
-                return _orgMedium;
+                var org = TestObjects.OrganizationMinimum;
+                org.Name.Language.Value = "en";
+                org.OrgID.Class.Value = "CAGE";
+                return org;
             }
         }
 
@@ -59,19 +41,11 @@ namespace AsdXMLLibrary.Tests.Helper
         {
             get
             {
-                if (_orgFull == null)
-                {
-                    _orgFull = new Organization();
-                    _orgFull.Name.Text = "OrgMedium";
-                    _orgFull.Name.Language.Value = "en";
-                    _orgFull.Name.ProvidedBy = TestObjects.OrganizationMinimum.Reference;
-                    _orgFull.Name.ProvidedDate = DateTime.Now;
-                    _orgFull.OrgID.ID = "N5678";
-                    _orgFull.OrgID.Class.Value = "CAGE";
-                    _orgFull.OrgID.SetBy = TestObjects.OrganizationMinimum.Reference;
-                    
-                }
-                return _orgFull;
+                var org = TestObjects.OrganizationMedium;
+                org.Name.ProvidedBy = TestObjects.OrganizationMinimum.Reference;
+                org.Name.ProvidedDate = DateTime.Now;
+                org.OrgID.SetBy = TestObjects.OrganizationMinimum.Reference;
+                return org;
             }
         }
     }

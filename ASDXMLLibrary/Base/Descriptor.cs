@@ -1,9 +1,7 @@
-﻿using System;
-using AsdXMLLibrary.Objects;
-using AsdXMLLibrary.Base.Classifications;
-using AsdXMLLibrary.Base.Properties;
-using System.Xml.Serialization;
+﻿using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Objects.References;
+using System;
+using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
@@ -39,20 +37,18 @@ namespace AsdXMLLibrary.Base
             Language = new Classification<LanguageClassification>();
         }
 
-        #endregion
-
-
-        #region Easy Work Methods
-
-        public void Set(string value, string language)
+        public Descriptor(string text)
+            : this()
         {
-            Set(value);
+            Text = text;
+        }
+
+        public Descriptor(string text, string language)
+            : this(text)
+        {
             Language.Value = language;
         }
-        public void Set(string value)
-        {
-            Text = value;
-        }
+
         #endregion
     }
 }

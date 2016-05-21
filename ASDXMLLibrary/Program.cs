@@ -31,11 +31,11 @@ namespace AsdXMLLibrary
             try {
                 org.OrgID.ID = "N1234";
                 org.OrgID.Class.Value = "CAGE";
-                org.Name.Set("HiCo-ICS", "en");
+                //org.Name.Set("HiCo-ICS", "en");
                 org.Name.ProvidedBy = org.Reference;
                 org.Name.ProvidedDate = DateTime.Now;
                 
-                part.PartName.Set("Screw", "de");
+                //part.PartName.Set("Screw", "de");
                 part.PartName.ProvidedDate = DateTime.Now;
                 part.PartName.ProvidedBy = org.Reference;
 
