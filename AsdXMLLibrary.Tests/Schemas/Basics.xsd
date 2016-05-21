@@ -4,6 +4,16 @@
     targetNamespace="http://www.asd-europe.org/s-series/s3000l"
     elementFormDefault="qualified"> 
 
+    <xsd:complexType name="descriptor">
+        <xsd:sequence>          
+            <xsd:element name="descr" type="nonEmptyString"/>
+            <xsd:element name="lang" type="xsd:language" minOccurs="0" nillable="true"/> 
+            <xsd:element name="date" type="xsd:date" minOccurs="0" nillable="true"/>			
+            <xsd:element name="providedBy" type="organizationReference" minOccurs="0" nillable="true"/>
+            <!--<xsd:group ref="applicabilityAssignmentItem"/>-->
+        </xsd:sequence>
+    </xsd:complexType>
+
     <xsd:complexType name="organizationReference">
         <xsd:sequence minOccurs="0">
             <xsd:element name="orgId" type="identifier"/>
@@ -27,8 +37,8 @@
             <!-- type changed from 'value:organizationIdentifierClassValues' to 'nonEmptyString'
                 to offset the necessarity to match the validValues file which is project dependent anyway
             -->
-            <xsd:element name="class" type="nonEmptyString" minOccurs="0" nillable="true" default="CAGE"/> 
-            <xsd:element name="setBy" type="organizationReference" minOccurs="0" maxOccurs="0"/>
+            <xsd:element name="class" type="nonEmptyString" minOccurs="0" nillable="true"/> 
+            <xsd:element name="setBy" type="organizationReference" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
 

@@ -23,6 +23,7 @@ namespace AsdXMLLibrary.Tests.Helper
         {
             schemas = new XmlSchemaSet();
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Descriptor.xsd");
+            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Identifier.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Basics.xsd");
 
             // Fill the validValues with default values.

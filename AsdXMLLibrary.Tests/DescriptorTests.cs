@@ -33,7 +33,7 @@ namespace AsdXMLLibrary.Tests
         {
             Organization expected = TestObjects.OrganizationMinimum;
             // remove the Name;
-            expected.Name.Text = "";
+            expected.Name.Text = string.Empty;
             Organization result = new Organization();
             result.Name = ObjectStreamtoObject(expected.Name);
             result.Name.ShouldDeepEqual(expected.Name);

@@ -1,4 +1,5 @@
-
+# Oxygen Project file
+*.xpr
 
 # Added by gemignore. Snippet 'Global/OSX'
 .DS_Store

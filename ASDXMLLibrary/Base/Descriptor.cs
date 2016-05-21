@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
+    [XmlRoot(ElementName="Descriptor")]
     public class Descriptor
     {
         [XmlElement(ElementName = "descr", Order = 0)]

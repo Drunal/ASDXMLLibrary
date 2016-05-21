@@ -6,6 +6,7 @@ using AsdXMLLibrary.Objects.References;
 
 namespace AsdXMLLibrary.Base
 {
+    [XmlRoot(ElementName = "Identifier")]
     public class Identifier<IdentifierClassification> 
     {
         [XmlElement(ElementName = "id")]

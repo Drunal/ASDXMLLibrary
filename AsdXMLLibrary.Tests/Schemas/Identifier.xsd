@@ -3,9 +3,9 @@
     xmlns="http://www.asd-europe.org/s-series/s3000l"
     targetNamespace="http://www.asd-europe.org/s-series/s3000l"
     elementFormDefault="qualified">
-
+    
     <xsd:include schemaLocation="Basics.xsd"/>
-
-    <xsd:element name="Descriptor" type="descriptor"/> 
+    
+    <xsd:element name="Identifier" type="identifier"/> 
 
 </xsd:schema>
