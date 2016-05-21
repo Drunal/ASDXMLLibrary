@@ -22,7 +22,7 @@ namespace AsdXMLLibrary.Tests.Helper
                 if (_org == null) 
                 {
                     _org = new Organization();
-                    //_org.Name.Text = "OrgName";
+                    _org.Name.Text = "OrgName";
                     _org.Name.Language.Value = "en";
                     _org.OrgID.ID = "N1234";
                     _org.OrgID.Class.Value = "CAGE";
