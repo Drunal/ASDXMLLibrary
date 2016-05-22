@@ -154,5 +154,7 @@ namespace AsdXMLLibrary.Tests.Base
             result.SoftwarePartSize.ShouldDeepEqualwithDate(expected.SoftwarePartSize);
         }
         #endregion
+    
+        // TODO: create tests to ensure, that the "last" set property Type wins.
     }
 }

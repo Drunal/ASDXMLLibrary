@@ -44,7 +44,7 @@ namespace AsdXMLLibrary.Tests.Helper
         {
             MemoryStream ms = new MemoryStream();
             ContentManager.SerializeToStream<T>(input, ms);
-            ContentManager.SerializeToFile<T>(input, "property.xml");
+            //ContentManager.SerializeToFile<T>(input, "property.xml");
             
             ms.Position = 0;
             XDocument createdXML = XDocument.Load(ms);
