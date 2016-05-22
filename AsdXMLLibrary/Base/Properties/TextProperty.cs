@@ -11,5 +11,10 @@ namespace AsdXMLLibrary.Base.Properties
             : base()
         {
         }
+
+        public override bool HasValue
+        {
+            get { return !string.IsNullOrEmpty(Text); }
+        }
     }
 }

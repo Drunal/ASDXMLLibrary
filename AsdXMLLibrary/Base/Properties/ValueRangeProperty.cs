@@ -15,5 +15,10 @@ namespace AsdXMLLibrary.Base.Properties
             LowerLimit = null;
             UpperLimit = null;
         }
+
+        public override bool HasValue
+        {
+            get { return LowerLimit.HasValue && UpperLimit.HasValue; }
+        }
     }
 }

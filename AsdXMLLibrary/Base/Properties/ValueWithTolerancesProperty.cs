@@ -17,6 +17,11 @@ namespace AsdXMLLibrary.Base.Properties
             LowerOffset = null;
             UpperOffset = null;
         }
-        
+
+
+        public override bool HasValue
+        {
+            get { return Value.HasValue && LowerOffset.HasValue && UpperOffset.HasValue; }
+        }
     }
 }

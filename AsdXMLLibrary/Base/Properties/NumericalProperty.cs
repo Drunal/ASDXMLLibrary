@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base.Properties
 {
-    public class NumericalProperty<UnitClassificationType> : Property
+    public abstract class NumericalProperty<UnitClassificationType> : Property
     {
         [XmlElement(ElementName = "unit")]
         public Classification<UnitClassificationType> Unit { get; set; }

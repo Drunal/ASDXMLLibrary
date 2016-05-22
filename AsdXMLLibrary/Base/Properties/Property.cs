@@ -25,5 +25,8 @@ namespace AsdXMLLibrary.Base.Properties
         {
             ValueDetermination = new Classification<ValueDeterminationClassification>();
         }
+
+        [XmlIgnore]
+        public abstract bool HasValue { get; }
     }
 }
