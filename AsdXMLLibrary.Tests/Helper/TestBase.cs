@@ -22,11 +22,13 @@ namespace AsdXMLLibrary.Tests.Helper
         static TestBase()
         {
             schemas = new XmlSchemaSet();
+            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Basics.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Descriptor.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Identifier.xsd");
-            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Basics.xsd");
+            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Property.xsd");            
 
             // Fill the validValues with default values.
+            // TODO: change this to actual .Add() calls so that the testcaes are independent from the actual default values.
             ClassificationManager.FillDefaultValues();
         }
 
@@ -42,8 +44,9 @@ namespace AsdXMLLibrary.Tests.Helper
         {
             MemoryStream ms = new MemoryStream();
             ContentManager.SerializeToStream<T>(input, ms);
+            ContentManager.SerializeToFile<T>(input, "property.xml");
+            
             ms.Position = 0;
-
             XDocument createdXML = XDocument.Load(ms);
             createdXML.Validate(schemas, null);
 

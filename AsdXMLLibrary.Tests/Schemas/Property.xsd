@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.asd-europe.org/s-series/s3000l"
+    targetNamespace="http://www.asd-europe.org/s-series/s3000l"
+    elementFormDefault="qualified">
+    
+    <xsd:include schemaLocation="Basics.xsd"/>
+    
+    <xsd:element name="Property" type="property"/> 
+
+</xsd:schema>

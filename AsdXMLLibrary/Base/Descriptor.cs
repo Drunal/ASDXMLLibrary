@@ -12,7 +12,7 @@ namespace AsdXMLLibrary.Base
         public string Text { get; set; }
 
         [XmlElement(ElementName = "lang", Order = 1)]
-        public Classification<LanguageClassification> Language { get; set; }
+        public Classification Language { get; set; }
 
         [XmlElement(ElementName = "date", Order = 2, DataType = "date")]
         public DateTime ProvidedDate { get; set; }
@@ -35,7 +35,7 @@ namespace AsdXMLLibrary.Base
 
         public Descriptor()
         {
-            Language = new Classification<LanguageClassification>();
+            Language = new Classification(typeof(LanguageClassification));
         }
 
         public Descriptor(string text)

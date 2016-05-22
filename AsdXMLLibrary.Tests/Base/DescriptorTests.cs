@@ -4,7 +4,7 @@ using DeepEqual.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Schema;
 
-namespace AsdXMLLibrary.Tests
+namespace AsdXMLLibrary.Tests.Base
 {
     [TestClass]
     public class DescriptorTests : TestBase
@@ -28,7 +28,7 @@ namespace AsdXMLLibrary.Tests
         }
 
         [TestMethod]
-        public void ShouldFailOnMissingName()
+        public void ShouldThrowOnMissingName()
         {
             Organization expected = TestObjects.OrganizationMinimum;
             // remove the Name;

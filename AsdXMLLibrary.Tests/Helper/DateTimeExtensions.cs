@@ -6,7 +6,7 @@ namespace AsdXMLLibrary.Tests.Helper
     {
         public static string ToXmlDateString(this DateTime dateTime)
         {
-            return String.Format("{0}-{1}-{2}", dateTime.Year.ToString("0000"), dateTime.Month.ToString("00"), dateTime.Day.ToString("00"));
+            return string.Format("{0}-{1}-{2}", dateTime.Year.ToString("0000"), dateTime.Month.ToString("00"), dateTime.Day.ToString("00"));
         }
     }
 }

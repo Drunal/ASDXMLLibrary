@@ -13,7 +13,7 @@ namespace AsdXMLLibrary.Base
         public string ID { get; set; }
 
         [XmlElement(ElementName = "class")]
-        public Classification<IdentifierClassification> Class { get; set; }
+        public Classification Class { get; set; }
 
         [XmlElement(ElementName = "setBy")]
         public OrganizationReference SetBy { get; set; }
@@ -29,7 +29,7 @@ namespace AsdXMLLibrary.Base
 
         public Identifier()
         {
-            Class = new Classification<IdentifierClassification>();
+            Class = new Classification(typeof(IdentifierClassification));
         }
     }
 }

@@ -3,7 +3,7 @@ using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Tests.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AsdXMLLibrary.Tests
+namespace AsdXMLLibrary.Tests.Base
 {
     [TestClass]
     public class ClassificationManagerTests : TestBase
@@ -22,7 +22,7 @@ namespace AsdXMLLibrary.Tests
         public void SetExistingClassification()
         {
             ClassificationManager.Add(new TestClassification { TestValue });
-            var testClass = new Classification<TestClassification>();
+            var testClass = new Classification(typeof(TestClassification));
             testClass.Value = TestValue;
             Assert.AreEqual(TestValue, testClass.Value);
         }
@@ -30,9 +30,9 @@ namespace AsdXMLLibrary.Tests
         [TestMethod]
         public void ShouldThrowOnNotConfiguredClassification()
         {
-            Classification<TestClassification> testClass = null;
+            Classification testClass = null;
             ExceptionAssert.Throws<ClassificationException>(
-                () => testClass = new Classification<TestClassification>(),
+                () => testClass = new Classification(typeof(TestClassification)),
                 string.Format("Classification '{0}' is not initialized!", typeof(TestClassification).Name)
             );
         }
@@ -43,7 +43,7 @@ namespace AsdXMLLibrary.Tests
             string invalidValue = "invalid";
 
             ClassificationManager.Add(new TestClassification { TestValue });
-            Classification<TestClassification> testClass = new Classification<TestClassification>();
+            Classification testClass = new Classification(typeof(TestClassification));
             ExceptionAssert.Throws<ClassificationException>(
                 () =>  testClass.Value = invalidValue,
                 string.Format("Value '{0}' is not a valid value for {1}!", invalidValue, typeof(TestClassification).Name)

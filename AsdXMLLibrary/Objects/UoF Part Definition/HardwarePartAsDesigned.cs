@@ -13,10 +13,10 @@ namespace AsdXMLLibrary.Objects
     {
         #region Design Data
         [XmlElement(ElementName = "haz")]
-        public Classification<HazardousClassClassification> HazardousClass { get; set; }
+        public Classification HazardousClass { get; set; }
         // Authorized Life
         [XmlElement(ElementName = "ftc")]
-        public Classification<FitmentRequirementClassification> FitmentRequirement { get; set; }
+        public Classification FitmentRequirement { get; set; }
         [XmlElement(ElementName = "emi")]
         public bool? ElectromagneticIncompatible { get; set; }
         [XmlElement(ElementName = "ess")]
@@ -50,8 +50,8 @@ namespace AsdXMLLibrary.Objects
 
         public HardwarePartAsDesigned()
         {
-            HazardousClass = new Classification<HazardousClassClassification>();
-            FitmentRequirement = new Classification<FitmentRequirementClassification>();
+            HazardousClass = new Classification(typeof(HazardousClassClassification));
+            FitmentRequirement = new Classification(typeof(FitmentRequirementClassification));
         }
     }
 }

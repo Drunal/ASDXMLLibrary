@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DeepEqual.Syntax;
 using System.Xml.Schema;
 
-namespace AsdXMLLibrary.Tests
+namespace AsdXMLLibrary.Tests.Base
 {
     [TestClass]
     public class IdentifierTests : TestBase
@@ -28,7 +28,7 @@ namespace AsdXMLLibrary.Tests
         }
 
         [TestMethod]
-        public void ShouldFailOnMissingId()
+        public void ShouldThrowOnMissingId()
         {
             Organization expected = TestObjects.OrganizationMinimum;
             expected.OrgId.ID = string.Empty;

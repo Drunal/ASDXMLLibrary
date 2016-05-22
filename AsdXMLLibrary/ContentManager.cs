@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AsdXMLLibrary.Base.Properties;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace AsdXMLLibrary
 {
@@ -43,5 +46,7 @@ namespace AsdXMLLibrary
             var serializer = new XmlSerializer(typeof(T), "http://www.asd-europe.org/s-series/s3000l");
             return (T)serializer.Deserialize(stream);
         }
+
+        
     }
 }

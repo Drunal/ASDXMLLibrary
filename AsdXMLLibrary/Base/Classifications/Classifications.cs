@@ -1,6 +1,8 @@
 ﻿
 namespace AsdXMLLibrary.Base.Classifications
 {
+    // used for serialization
+    public class DummyClassification : ClassificationBase { }
 
     public class LanguageClassification : ClassificationBase { }
     
@@ -11,11 +13,14 @@ namespace AsdXMLLibrary.Base.Classifications
     public class ValueDeterminationClassification : ClassificationBase { }
     
     public class UnitClassification : ClassificationBase { }
+    public class BinaryUnitClassification : ClassificationBase { }
 
     #region HardwarePartAsDesignedDesignData
     public class HazardousClassClassification : ClassificationBase { }
     public class FitmentRequirementClassification : ClassificationBase { }
     #endregion
 
-    
+    #region SoftwarePartAsDesignedDesignData
+    public class SoftwareTypeClassification : ClassificationBase { }
+    #endregion
 }
