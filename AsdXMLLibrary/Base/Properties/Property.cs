@@ -5,7 +5,8 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base.Properties
 {
-    public class Property
+    [XmlRoot(ElementName="Property")]
+    public class Property<T>
     {
         [XmlIgnore]
         public PropertyType Type { get; private set; }
@@ -142,26 +143,22 @@ namespace AsdXMLLibrary.Base.Properties
         public Property()
         {
             ValueDetermination = new Classification(typeof(ValueDeterminationClassification));
-        }
-
-        public Property(Type unitClassification)
-        {
-            Unit = new Classification(unitClassification);
+            Unit = new Classification(typeof(T));
         }
 
         #region SingleValue Constructor
-        public Property(Type unitClassification, double? singleValue)
-            : this(unitClassification, singleValue, string.Empty)
+        public Property(double? singleValue)
+            : this(singleValue, string.Empty)
         { }
 
-        public Property(Type unitClassification, double? singleValue, string unit)
-            : this(unitClassification, singleValue, unit, null, null)
+        public Property(double? singleValue, string unit)
+            : this(singleValue, unit, null, null)
         { }
 
-        public Property(Type unitClassification, double? singleValue, string unit, DateTime? recordingDate, string determinationType)
+        public Property(double? singleValue, string unit, DateTime? recordingDate, string determinationType)
         {
             SetOptionalAttributes(recordingDate, determinationType);
-            Unit = new Classification(unitClassification);
+            Unit = new Classification(typeof(T));
             Unit.Value = unit;
 
             Value = singleValue;
@@ -169,18 +166,18 @@ namespace AsdXMLLibrary.Base.Properties
         #endregion
 
         #region RangeValue Constructor
-        public Property(Type unitClassification, double? lowerLimit, double? upperLimit)
-            : this(unitClassification, lowerLimit, upperLimit, string.Empty)
+        public Property(double? lowerLimit, double? upperLimit)
+            : this(lowerLimit, upperLimit, string.Empty)
         { }
 
-        public Property(Type unitClassification, double? lowerLimit, double? upperLimit, string unit)
-            : this(unitClassification, lowerLimit, upperLimit, unit, null, null)
+        public Property(double? lowerLimit, double? upperLimit, string unit)
+            : this(lowerLimit, upperLimit, unit, null, null)
         { }
 
-        public Property(Type unitClassification, double? lowerLimit, double? upperLimit, string unit, DateTime? recordingDate, string determinationType)
+        public Property(double? lowerLimit, double? upperLimit, string unit, DateTime? recordingDate, string determinationType)
         {
             SetOptionalAttributes(recordingDate, determinationType);
-            Unit = new Classification(unitClassification);
+            Unit = new Classification(typeof(T));
             Unit.Value = unit;
 
             LowerLimit = lowerLimit;
@@ -190,18 +187,18 @@ namespace AsdXMLLibrary.Base.Properties
 
         #region Tolerance Constructor
 
-        public Property(Type unitClassification, double? nominalValue, double? lowerOffset, double? upperOffset)
-            : this(unitClassification, nominalValue, lowerOffset, upperOffset, string.Empty)
+        public Property(double? nominalValue, double? lowerOffset, double? upperOffset)
+            : this(nominalValue, lowerOffset, upperOffset, string.Empty)
         { }
 
-        public Property(Type unitClassification, double? nominalValue, double? lowerOffset, double? upperOffset, string unit)
-            : this(unitClassification, nominalValue, lowerOffset, upperOffset, unit, null, null)
+        public Property(double? nominalValue, double? lowerOffset, double? upperOffset, string unit)
+            : this(nominalValue, lowerOffset, upperOffset, unit, null, null)
         { }
         
-        public Property(Type unitClassification, double? nominalValue, double? lowerOffset, double? upperOffset, string unit, DateTime? recordingDate, string determinationType)
+        public Property(double? nominalValue, double? lowerOffset, double? upperOffset, string unit, DateTime? recordingDate, string determinationType)
         {
             SetOptionalAttributes(recordingDate, determinationType);
-            Unit = new Classification(unitClassification);
+            Unit = new Classification(typeof(T));
             Unit.Value = unit;
 
             NominalValue = nominalValue;
@@ -211,7 +208,7 @@ namespace AsdXMLLibrary.Base.Properties
         #endregion
 
         #region Text Constructor
-        public Property( string text)
+        public Property(string text)
             : this(text, null, null)
         { }
         
@@ -219,6 +216,7 @@ namespace AsdXMLLibrary.Base.Properties
         {
             SetOptionalAttributes(recordingDate, determinationType);
             Text = text;
+            Unit = new Classification(typeof(T));
         }
 
         #endregion

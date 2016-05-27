@@ -168,11 +168,10 @@ namespace AsdXMLLibrary.Tests.Base
         public void LastToleranceValueProptySetShouldWin()
         {
             SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create("text property");
+            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>("text property");
             expected.SoftwarePartSize.LowerOffset = 7.5;
             expected.SoftwarePartSize.UpperOffset = 8.6;
             expected.SoftwarePartSize.NominalValue = 8;
-            expected.SoftwarePartSize.Unit = new AsdXMLLibrary.Base.Classification(typeof(BinaryUnitClassification));
             expected.SoftwarePartSize.Unit.Value = "BIT";
 
             SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
@@ -191,7 +190,7 @@ namespace AsdXMLLibrary.Tests.Base
         public void SerializeTextValueProperty()
         {
             SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create("value");
+            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>("value");
 
             SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
             result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
@@ -202,7 +201,7 @@ namespace AsdXMLLibrary.Tests.Base
         public void SerializeCompleteTextValueProperty()
         {
             SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create("value");
+            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>("value");
             expected.SoftwarePartSize.RecordingDate = DateTime.Now;
             expected.SoftwarePartSize.ValueDetermination.Value = "CALC";
 

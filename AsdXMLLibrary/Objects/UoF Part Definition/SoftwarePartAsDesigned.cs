@@ -17,7 +17,7 @@ namespace AsdXMLLibrary.Objects.UoF_Part_Definition
         public Classification SoftwareType { get; set; }
 
         [XmlElement(ElementName="swSize")]
-        public Property SoftwarePartSize { get; set; }
+        public Property<BinaryUnitClassification> SoftwarePartSize { get; set; }
         
         #endregion
 

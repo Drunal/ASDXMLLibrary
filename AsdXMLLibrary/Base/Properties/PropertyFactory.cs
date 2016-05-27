@@ -11,9 +11,9 @@ namespace AsdXMLLibrary.Base.Properties
         /// <param name="value"></param>
         /// <param name="unit"></param>
         /// <returns></returns>
-        public static Property Create<ClassificationType>(double value, string unit)
+        public static Property<ClassificationType> Create<ClassificationType>(double value, string unit)
         {
-            return new Property(typeof(ClassificationType), value, unit);
+            return new Property<ClassificationType>(value, unit);
         }
 
         /// <summary>
@@ -24,9 +24,9 @@ namespace AsdXMLLibrary.Base.Properties
         /// <param name="upperLimit"></param>
         /// <param name="unit"></param>
         /// <returns></returns>
-        public static Property Create<ClassificationType>(double lowerLimit, double upperLimit, string unit)
+        public static Property<ClassificationType> Create<ClassificationType>(double lowerLimit, double upperLimit, string unit)
         {
-            return new Property(typeof(ClassificationType), lowerLimit, upperLimit, unit);
+            return new Property<ClassificationType>(lowerLimit, upperLimit, unit);
         }
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace AsdXMLLibrary.Base.Properties
         /// <param name="upperOffset"></param>
         /// <param name="unit"></param>
         /// <returns></returns>
-        public static Property Create<ClassificationType>(double nominalValue, double lowerOffset, double upperOffset, string unit)
+        public static Property<ClassificationType> Create<ClassificationType>(double nominalValue, double lowerOffset, double upperOffset, string unit)
         {
-            return new Property(typeof(ClassificationType), nominalValue, lowerOffset, upperOffset, unit);
+            return new Property<ClassificationType>(nominalValue, lowerOffset, upperOffset, unit);
         }
 
         /// <summary>
@@ -48,9 +48,9 @@ namespace AsdXMLLibrary.Base.Properties
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static Property Create(string text)
+        public static Property<ClassificationType> Create<ClassificationType>(string text)
         {
-            return new Property(text);
+            return new Property<ClassificationType>(text);
         }
     }
 }
