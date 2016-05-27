@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.asd-europe.org/s-series/s3000l"
+    targetNamespace="http://www.asd-europe.org/s-series/s3000l"
+    elementFormDefault="qualified">
+    
+    <xsd:include schemaLocation="Basics.xsd"/>
+    
+    <xsd:element name="SoftwarePartAsDesigned" type="softwarePartAsDesigned"/> 
+    
+    <xsd:complexType name="softwarePartAsDesigned">
+        <xsd:annotation>
+            <xsd:appinfo>SX001G:SoftwarePartAsDesigned</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <!--UML-Attributes-->
+            <xsd:element name="partId" type="identifier" maxOccurs="unbounded"/>
+            <xsd:element name="name" type="descriptor" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+            <!--UML-AttGroups-->
+            <!--<xsd:group ref="partAsDesignedControlledItemData"/>
+            <xsd:group ref="partAsDesignedDesignData"/>
+            <xsd:group ref="partAsDesignedSupportData"/>-->
+            <xsd:group ref="softwarePartAsDesignedDesignData"/>
+            <!--UML-CompAssocs-->
+           <!-- <xsd:element name="partsList" type="partAsDesignedPartsList" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+            <!-\-UML-EmbAssocs-\->
+            <xsd:element name="altPart" type="alternatePartAsDesignedRelationship" minOccurs="0" maxOccurs="unbounded" nillable="true"/>       
+            <!-\-UML-Interfaces-\->
+            <xsd:group ref="securityClassificationItem"/>
+            <xsd:group ref="lsaCandidate"/>
+            <xsd:group ref="organizationAssignmentItem"/>
+            <xsd:group ref="documentAssignmentItem"/> 
+            <xsd:group ref="remarkAssignmentItem"/>
+            <xsd:group ref="damageAnalysisItem"/>
+            <xsd:group ref="failureAnalysisItem"/>
+            <xsd:group ref="detectionMeanItem"/>-->
+        </xsd:sequence>
+        <xsd:attribute name="uid" use="optional">
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:ID">
+                    <xsd:pattern value="part[1-9][0-9]*"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="crud" type="crudCodeValues" default="I"/>
+    </xsd:complexType>
+    
+    <xsd:group name="softwarePartAsDesignedDesignData">
+        <xsd:annotation>
+            <xsd:appinfo>SX001G:SoftwarePartAsDesignedDesignData</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <!--UML-Attributes-->
+            <xsd:element name="swType" type="classification" minOccurs="0" nillable="true"/>
+            <xsd:element name="swSize" type="property" minOccurs="0" nillable="true"/>
+        </xsd:sequence>
+    </xsd:group>
+    
+</xsd:schema>

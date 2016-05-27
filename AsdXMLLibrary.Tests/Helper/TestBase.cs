@@ -25,7 +25,8 @@ namespace AsdXMLLibrary.Tests.Helper
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Basics.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Descriptor.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Identifier.xsd");
-            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Property.xsd");            
+            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Property.xsd");
+            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/SoftwarePartAsDesigned.xsd");
 
             // Fill the validValues with default values.
             ClassificationManager.Add(new LanguageClassification { "en", "de", "es" });

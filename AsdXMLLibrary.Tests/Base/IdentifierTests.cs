@@ -37,5 +37,26 @@ namespace AsdXMLLibrary.Tests.Base
                 () => ObjectStreamtoObject(expected.OrgId)
             );
         }
+
+        [TestMethod]
+        public void SerializeMultipleIdentifiers()
+        {
+            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMultipleIds;
+
+            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
+            result = ObjectStreamtoObject(expected);
+            result.ShouldDeepEqualwithDate(expected);
+        }
+
+        [TestMethod]
+        public void ShouldThrowOnMissingIdWithMultipleIdsPossibility()
+        {
+            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
+            expected.PartId.ID = string.Empty;
+            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
+            ExceptionAssert.Throws<XmlSchemaValidationException>(
+                () => ObjectStreamtoObject(expected)
+            );
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Base.Properties;
-using AsdXMLLibrary.Objects.UoF_Part_Definition;
+using AsdXMLLibrary.Objects;
 using AsdXMLLibrary.Tests.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

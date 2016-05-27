@@ -1,14 +1,36 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Objects.References;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects
 {
     public abstract class PartAsDesigned : ICanBeReferenced
     {
+        /// <summary>
+        /// provides access to the "main Id", this is the first entry in the PartIds list
+        /// </summary>
+        [XmlIgnore]
+        public Identifier<PartIdentifierClassification> PartId
+        {
+            get
+            {
+                if (PartIds.Count == 0)
+                    PartIds.Add(new Identifier<PartIdentifierClassification>());
+                return PartIds[0];
+            }
+            set 
+            {
+                if(PartIds.Count > 0)
+                    PartIds[0] = value;
+                else 
+                    PartIds.Add(value);
+            }
+        }
+
         [XmlElement(ElementName = "partId")]
-        public Identifier<PartIdentifierClassification> PartId { get; set; }
+        public List<Identifier<PartIdentifierClassification>> PartIds { get; set; }
 
         [XmlElement(ElementName = "name")]
         public Descriptor PartName { get; set; }
@@ -23,7 +45,12 @@ namespace AsdXMLLibrary.Objects
 
         public PartAsDesigned()
         {
-            PartId = new Identifier<PartIdentifierClassification>();
+            PartIds = new List<Identifier<PartIdentifierClassification>>();
+        }
+        public PartAsDesigned(string identifier)
+            : this()
+        {
+            PartId.ID = identifier;
         }
 
         public IAmReference GetReference()

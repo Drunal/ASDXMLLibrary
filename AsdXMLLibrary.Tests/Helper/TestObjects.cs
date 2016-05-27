@@ -1,5 +1,4 @@
 ﻿using AsdXMLLibrary.Objects;
-using AsdXMLLibrary.Objects.UoF_Part_Definition;
 using System;
 
 namespace AsdXMLLibrary.Tests.Helper
@@ -57,6 +56,17 @@ namespace AsdXMLLibrary.Tests.Helper
                 var sw = new SoftwarePartAsDesigned();
                 sw.PartId.ID = "PartNumber-1234";
                 sw.PartId.SetBy = OrganizationMinimum.Reference;
+                return sw;
+            }
+        }
+
+        public static SoftwarePartAsDesigned SoftwarePartMultipleIds
+        {
+            get
+            {
+                var sw = new SoftwarePartAsDesigned();
+                sw.PartId.ID = "Partnumber-1234";
+                sw.PartIds.Add(new AsdXMLLibrary.Base.Identifier<AsdXMLLibrary.Base.Classifications.PartIdentifierClassification>("Partnumber-9876"));
                 return sw;
             }
         }

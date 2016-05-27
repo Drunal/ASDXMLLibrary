@@ -28,8 +28,23 @@ namespace AsdXMLLibrary.Base
         #endregion
 
         public Identifier()
+           : this(string.Empty)
+        { }
+
+        public Identifier(string value)
+            : this(value, string.Empty)
+        { }
+
+        public Identifier(string value, string classification) 
+            : this(value, classification, null)
+        { }
+
+        public Identifier(string value, string classification, OrganizationReference setBy)
         {
-            Class = new Classification(typeof(IdentifierClassification));
+            this.ID = value;
+            this.Class = new Classification(typeof(IdentifierClassification),classification);
+            this.SetBy = setBy;
+
         }
     }
 }

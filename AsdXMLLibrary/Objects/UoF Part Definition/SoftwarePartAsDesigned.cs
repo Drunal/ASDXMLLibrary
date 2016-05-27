@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace AsdXMLLibrary.Objects.UoF_Part_Definition
+namespace AsdXMLLibrary.Objects
 {
     public class SoftwarePartAsDesigned : PartAsDesigned
     {
@@ -30,6 +30,7 @@ namespace AsdXMLLibrary.Objects.UoF_Part_Definition
         #endregion
 
         public SoftwarePartAsDesigned()
+            : base()
         {
             SoftwareType = new Classification(typeof(SoftwareTypeClassification));
             SoftwarePartSize = null;

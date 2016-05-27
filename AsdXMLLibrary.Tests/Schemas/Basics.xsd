@@ -34,10 +34,10 @@
         </xsd:annotation>
         <xsd:sequence>
             <xsd:element name="id" type="nonEmptyString"/> 
-            <!-- type changed from 'value:organizationIdentifierClassValues' to 'nonEmptyString'
+            <!-- type changed from 'value:organizationIdentifierClassValues' to 'classification'
                 to offset the necessarity to match the validValues file which is project dependent anyway
             -->
-            <xsd:element name="class" type="nonEmptyString" minOccurs="0" nillable="true"/> 
+            <xsd:element name="class" type="classification" minOccurs="0" nillable="true"/> 
             <xsd:element name="setBy" type="organizationReference" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -45,16 +45,16 @@
     <xsd:complexType name="property">
         <xsd:sequence>
             <xsd:element name="date" type="xsd:date" minOccurs="0" nillable="true"/>
-            <!-- type changed from 'value:valueDeterminationCodeValues' to 'nonEmptyString'
+            <!-- type changed from 'value:valueDeterminationCodeValues' to 'classification'
                 to offset the necessarity to match the validValues file which is project dependent anyway
             -->
-            <xsd:element name="vdtm" type="nonEmptyString" minOccurs="0" nillable="true"/>                    
+            <xsd:element name="vdtm" type="classification" minOccurs="0" nillable="true"/>                    
             <xsd:choice>
                 <xsd:sequence>
-                    <!-- type changed from 'value:valueDeterminationCodeValues' to 'nonEmptyString'
+                    <!-- type changed from 'value:valueDeterminationCodeValues' to 'classification'
                             to offset the necessarity to match the validValues file which is project dependent anyway
                     -->
-                    <xsd:element name="unit" type="nonEmptyString"/>                            
+                    <xsd:element name="unit" type="classification"/>                            
                     <xsd:choice>
                         <xsd:sequence>
                             <xsd:element name="value" type="xsd:decimal"/>                                    
@@ -84,10 +84,44 @@
         </xsd:sequence> 
     </xsd:complexType>
 
+    <xsd:simpleType name="crudCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="I">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:insertedElement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="D">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:deletedElement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="U">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:updatedElement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="R">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:replacedElement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="N">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:nonChangedElement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
     <xsd:simpleType name="nonEmptyString">  
         <xsd:restriction base="xsd:token">  
             <xsd:minLength value="1"/>
         </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="classification">
+        <xsd:restriction base="nonEmptyString"/>
     </xsd:simpleType>
     
 </xsd:schema>
