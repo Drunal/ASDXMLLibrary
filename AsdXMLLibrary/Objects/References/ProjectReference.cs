@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects.References
 {
-    public class ProjectReference
+    public class ProjectReference : IAmReference
     {
         [XmlElement(ElementName = "prjId")]
         public Identifier<ProjectIdentifierClassification> ProjectId { get; set; }

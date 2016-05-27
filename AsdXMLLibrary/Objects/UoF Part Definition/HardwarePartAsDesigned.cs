@@ -1,5 +1,6 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
+using AsdXMLLibrary.Objects.References;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace AsdXMLLibrary.Objects
         public bool? MagneticSensitive { get; set; }
         [XmlElement(ElementName = "rse")]
         public bool? RadiationSensitive { get; set; }
-
+                
         #region XML Handling Properties
         /// these properties control if the respective property is written to the xml or not
         [XmlIgnore]
@@ -52,6 +53,15 @@ namespace AsdXMLLibrary.Objects
         {
             HazardousClass = new Classification(typeof(HazardousClassClassification));
             FitmentRequirement = new Classification(typeof(FitmentRequirementClassification));
+        }
+
+
+        public PartReference Reference
+        {
+            get
+            {
+                return (PartReference)this.GetReference();
+            }
         }
     }
 }

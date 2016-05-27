@@ -1,6 +1,7 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Base.Properties;
+using AsdXMLLibrary.Objects.References;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,14 @@ namespace AsdXMLLibrary.Objects.UoF_Part_Definition
         {
             SoftwareType = new Classification(typeof(SoftwareTypeClassification));
             SoftwarePartSize = null;
+        }
+
+        public PartReference Reference
+        {
+            get
+            {
+                return (PartReference)this.GetReference();
+            }
         }
     }
 }

@@ -53,6 +53,8 @@
     <Compile Include="Base\Properties\PropertyType.cs" />
     <Compile Include="ContentManager.cs" />
     <Compile Include="Objects\Organization.cs" />
+    <Compile Include="Objects\References\IAmReference.cs" />
+    <Compile Include="Objects\References\ICanBeReferenced.cs" />
     <Compile Include="Objects\References\OrganizationReference.cs" />
     <Compile Include="Objects\References\PartReference.cs" />
     <Compile Include="Objects\UoF Part Definition\HardwarePartAsDesigned.cs" />

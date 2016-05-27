@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects.References
 {
-    public class PartReference
+    public class PartReference : IAmReference
     {
         [XmlElement(ElementName = "partId")]
         public Identifier<PartIdentifierClassification> PartId { get; set; }

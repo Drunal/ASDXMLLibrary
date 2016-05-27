@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects.References
 {
-    public class OrganizationReference
+    public class OrganizationReference : IAmReference
     {
         [XmlElement(ElementName = "orgId")]
         public Identifier<OrganizationIdentifierClassification> OrgId { get; set; }
