@@ -29,7 +29,7 @@ namespace AsdXMLLibrary.Tests.Helper
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/SoftwarePartAsDesigned.xsd");
 
             // Fill the validValues with default values.
-            ClassificationManager.Add(new LanguageClassification { "en", "de", "es" });
+            ClassificationManager.Add(new LanguageClassification { "EN", "DE", "ES" });
             ClassificationManager.Add(new PartIdentifierClassification { "PNO", "NSN", "OEM" });
             ClassificationManager.Add(new OrganizationIdentifierClassification { "CAGE" });
             ClassificationManager.Add(new ProjectIdentifierClassification { "PID", "MOI" });

@@ -37,7 +37,7 @@ namespace AsdXMLLibrary.Base.Classifications
 
         public static void FillDefaultValues()
         {
-            Add(new LanguageClassification { "en", "de", "es" });
+            Add(new LanguageClassification { "EN", "DE", "ES" });
             Add(new PartIdentifierClassification { "PNO", "NSN", "OEM" });
             Add(new OrganizationIdentifierClassification { "CAGE" });
             Add(new ProjectIdentifierClassification { "PID", "MOI" });

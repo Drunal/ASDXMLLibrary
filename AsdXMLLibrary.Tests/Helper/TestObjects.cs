@@ -28,7 +28,7 @@ namespace AsdXMLLibrary.Tests.Helper
             get
             {
                 var org = TestObjects.OrganizationMinimum;
-                org.Name.Language.Value = "en";
+                org.Name.Language.Value = "EN";
                 org.OrgId.Class.Value = "CAGE";
                 return org;
             }
@@ -67,6 +67,17 @@ namespace AsdXMLLibrary.Tests.Helper
                 var sw = new SoftwarePartAsDesigned();
                 sw.PartId.ID = "Partnumber-1234";
                 sw.PartIds.Add(new AsdXMLLibrary.Base.Identifier<AsdXMLLibrary.Base.Classifications.PartIdentifierClassification>("Partnumber-9876"));
+                return sw;
+            }
+        }
+
+        public static SoftwarePartAsDesigned SoftwarePartMultipleNames
+        {
+            get
+            {
+                var sw = TestObjects.SoftwarePartMinimum;
+                sw.PartName.Text = "PartName1";
+                sw.PartNames.Add(new AsdXMLLibrary.Base.Descriptor("Partname2", "EN"));
                 return sw;
             }
         }

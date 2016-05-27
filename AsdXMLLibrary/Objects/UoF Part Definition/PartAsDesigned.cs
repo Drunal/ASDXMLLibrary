@@ -32,8 +32,29 @@ namespace AsdXMLLibrary.Objects
         [XmlElement(ElementName = "partId")]
         public List<Identifier<PartIdentifierClassification>> PartIds { get; set; }
 
+        /// <summary>
+        /// provides access to the "main Name", this is the first entry in <see cref="PartNames"/>.
+        /// </summary>
+        [XmlIgnore]
+        public Descriptor PartName
+        {
+            get
+            {
+                if (PartNames.Count == 0)
+                    PartNames.Add(new Descriptor());
+                return PartNames[0];
+            }
+            set
+            {
+                if (PartNames.Count > 0)
+                    PartNames[0] = value;
+                else
+                    PartNames.Add(value);
+            }
+        }
+
         [XmlElement(ElementName = "name")]
-        public Descriptor PartName { get; set; }
+        public List<Descriptor> PartNames { get; set; }
 
         private PartReference _reference;
 
@@ -46,6 +67,7 @@ namespace AsdXMLLibrary.Objects
         public PartAsDesigned()
         {
             PartIds = new List<Identifier<PartIdentifierClassification>>();
+            PartNames = new List<Descriptor>();
         }
         public PartAsDesigned(string identifier)
             : this()

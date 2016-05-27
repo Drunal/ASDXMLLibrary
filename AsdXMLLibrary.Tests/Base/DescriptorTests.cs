@@ -38,5 +38,15 @@ namespace AsdXMLLibrary.Tests.Base
                 () => ObjectStreamtoObject(expected.Name)                
             );
         }
+
+        [TestMethod]
+        public void SerializeMultipleDescriptors()
+        {
+            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMultipleNames;
+
+            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
+            result = ObjectStreamtoObject(expected);
+            result.ShouldDeepEqualwithDate(expected);
+        }
     }
 }
