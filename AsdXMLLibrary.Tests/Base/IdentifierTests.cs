@@ -52,7 +52,7 @@ namespace AsdXMLLibrary.Tests.Base
         public void ShouldThrowOnMissingIdWithMultipleIdsPossibility()
         {
             SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.PartId.ID = string.Empty;
+            expected.PartIds.MainID.ID = string.Empty;
             SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
             ExceptionAssert.Throws<XmlSchemaValidationException>(
                 () => ObjectStreamtoObject(expected)
