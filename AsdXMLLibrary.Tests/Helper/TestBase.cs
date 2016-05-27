@@ -28,8 +28,27 @@ namespace AsdXMLLibrary.Tests.Helper
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Property.xsd");            
 
             // Fill the validValues with default values.
-            // TODO: change this to actual .Add() calls so that the testcaes are independent from the actual default values.
-            ClassificationManager.FillDefaultValues();
+            ClassificationManager.Add(new LanguageClassification { "en", "de", "es" });
+            ClassificationManager.Add(new PartIdentifierClassification { "PNO", "NSN", "OEM" });
+            ClassificationManager.Add(new OrganizationIdentifierClassification { "CAGE" });
+            ClassificationManager.Add(new ProjectIdentifierClassification { "PID", "MOI" });
+            ClassificationManager.Add(new ValueDeterminationClassification {
+                "ALC", "CALC", "CONTR", "DSG", "EMP", "EST", "MEAS", "PLAN", "REQ", "SET", "SPEC"
+            });
+            ClassificationManager.Add(new UnitClassification {
+                "BIT", "B", "GB", "KB", "MB", "OC", "PB", "TB"
+            });
+            ClassificationManager.Add(new BinaryUnitClassification {
+                "BIT", "B", "GB", "KB", "MB", "OC", "PB", "TB"
+            });
+            ClassificationManager.Add(new HazardousClassClassification());
+            ClassificationManager.Add(new FitmentRequirementClassification {
+                "MINOR", "MAJOR"
+            });
+            ClassificationManager.Add(new SoftwareTypeClassification { 
+                "D", "E", "L"
+            });
+            ClassificationManager.Add(new DummyClassification());
         }
 
         /// <summary>
