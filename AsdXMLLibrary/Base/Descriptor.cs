@@ -6,18 +6,18 @@ using System.Xml.Serialization;
 namespace AsdXMLLibrary.Base
 {
     [XmlRoot(ElementName="Descriptor")]
-    public class Descriptor
+    public class Descriptor : IHaveValue
     {
-        [XmlElement(ElementName = "descr", Order = 0)]
+        [XmlElement(ElementName = "descr")]
         public string Text { get; set; }
 
-        [XmlElement(ElementName = "lang", Order = 1)]
+        [XmlElement(ElementName = "lang")]
         public Classification Language { get; set; }
 
-        [XmlElement(ElementName = "date", Order = 2, DataType = "date")]
+        [XmlElement(ElementName = "date", DataType = "date")]
         public DateTime ProvidedDate { get; set; }
 
-        [XmlElement(ElementName = "providedBy", Order = 3)]
+        [XmlElement(ElementName = "providedBy")]
         public OrganizationReference ProvidedBy { get; set; }
 
         #region XML Handling Properties
@@ -51,5 +51,10 @@ namespace AsdXMLLibrary.Base
         }
 
         #endregion
+
+        public bool HasValue
+        {
+            get { return !string.IsNullOrEmpty(Text); }
+        }
     }
 }

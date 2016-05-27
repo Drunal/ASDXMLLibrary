@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
-    public class MultipleIdentifier<IdentifierClassification> : List<Identifier<IdentifierClassification>>
+    public class MultipleIdentifier<IdentifierClassification> : List<Identifier<IdentifierClassification>>, IHaveValue
     {
         [XmlIgnore]
         public Identifier<IdentifierClassification> MainID
@@ -32,5 +32,10 @@ namespace AsdXMLLibrary.Base
         public MultipleIdentifier()
             : base()
         { }
+
+        public bool HasValue
+        {
+            get { return this.Any(x => x.HasValue); }
+        }
     }
 }

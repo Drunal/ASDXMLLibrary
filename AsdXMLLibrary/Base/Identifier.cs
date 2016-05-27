@@ -7,7 +7,7 @@ using AsdXMLLibrary.Objects.References;
 namespace AsdXMLLibrary.Base
 {
     [XmlRoot(ElementName = "Identifier")]
-    public class Identifier<IdentifierClassification> 
+    public class Identifier<IdentifierClassification> : IHaveValue
     {
         [XmlElement(ElementName = "id")]
         public string ID { get; set; }
@@ -45,6 +45,11 @@ namespace AsdXMLLibrary.Base
             this.Class = new Classification(typeof(IdentifierClassification),classification);
             this.SetBy = setBy;
 
+        }
+
+        public bool HasValue
+        {
+            get { return !string.IsNullOrEmpty(ID); }
         }
     }
 }

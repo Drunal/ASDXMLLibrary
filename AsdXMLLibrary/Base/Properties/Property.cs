@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace AsdXMLLibrary.Base.Properties
 {
     [XmlRoot(ElementName="Property")]
-    public class Property<T>
+    public class Property<T> : IHaveValue
     {
         [XmlIgnore]
         public PropertyType Type { get; private set; }

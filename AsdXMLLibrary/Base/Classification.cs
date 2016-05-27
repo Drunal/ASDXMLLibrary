@@ -7,7 +7,7 @@ namespace AsdXMLLibrary.Base
     /// <summary>
     /// Holds the chosen value and knowledge about the valid Values for this particular value.
     /// </summary>
-    public class Classification
+    public class Classification : IHaveValue
     {
         private ClassificationBase validValues;
         private bool isDummy = false;
@@ -23,8 +23,6 @@ namespace AsdXMLLibrary.Base
                 chosenValue = value;
             }
         }
-        [XmlIgnore]
-        public bool HasValue { get { return !string.IsNullOrEmpty(chosenValue); } }
 
         #region Constructors
         public Classification()
@@ -44,5 +42,10 @@ namespace AsdXMLLibrary.Base
         }
 
         #endregion
+
+        public bool HasValue
+        {
+            get { return !string.IsNullOrEmpty(chosenValue); }
+        }
     }
 }

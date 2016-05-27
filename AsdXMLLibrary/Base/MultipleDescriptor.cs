@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
-    public class MultipleDescriptor : List<Descriptor>
+    public class MultipleDescriptor : List<Descriptor>, IHaveValue
     {
         [XmlIgnore]
         public Descriptor MainDescriptor
@@ -32,5 +32,10 @@ namespace AsdXMLLibrary.Base
         public MultipleDescriptor()
             : base()
         { }
+
+        public bool HasValue
+        {
+            get { return this.Any(x => x.HasValue); }
+        }
     }
 }
