@@ -4,6 +4,10 @@ namespace AsdXMLLibrary.Base.Classifications
     // used for serialization
     public class DummyClassification : ClassificationBase { }
 
+    #region MessageClassifications
+    public class MessageIdentifierClassification : ClassificationBase { }
+    #endregion
+
     public class LanguageClassification : ClassificationBase { }
     
     public class PartIdentifierClassification : ClassificationBase { }

@@ -55,6 +55,7 @@
     <Compile Include="Base\Properties\PropertyFactory.cs" />
     <Compile Include="Base\Properties\PropertyType.cs" />
     <Compile Include="ContentManager.cs" />
+    <Compile Include="Objects\Message\S3000LMessage.cs" />
     <Compile Include="Objects\UoF Product and Project\Organization.cs" />
     <Compile Include="Objects\References\IAmReference.cs" />
     <Compile Include="Objects\References\ICanBeReferenced.cs" />
@@ -86,6 +87,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
