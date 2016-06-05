@@ -11,6 +11,7 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects
 {
+    [XmlRoot(ElementName="swPart")]
     public class SoftwarePartAsDesigned : PartAsDesigned
     {
         #region Design Data

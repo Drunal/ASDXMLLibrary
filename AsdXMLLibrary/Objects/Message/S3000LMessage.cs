@@ -1,5 +1,6 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
+using AsdXMLLibrary.Objects.Message;
 using AsdXMLLibrary.Objects.References;
 using System;
 using System.Xml.Serialization;
@@ -23,7 +24,8 @@ namespace AsdXMLLibrary.Objects
         [XmlElement(ElementName = "msgReceive")]
         public OrganizationReference Receiver { get; set; }
 
-        //public MessageContent Content { get; set; }
+        [XmlElement(ElementName="msgContent")]
+        public S3000LMessageContent Content { get; set; }
 
         #region XMLSeriálize Properties
         [XmlIgnore]
@@ -40,7 +42,11 @@ namespace AsdXMLLibrary.Objects
 
         public S3000LMessage()
         {
+            this.Id = new Identifier<MessageIdentifierClassification>();
             this.Language = new Classification(typeof(LanguageClassification));
+            this.Sender = new OrganizationReference();
+            this.Receiver = new OrganizationReference();
+            this.Content = new S3000LMessageContent();
         }
     }
 }

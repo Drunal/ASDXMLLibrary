@@ -6,6 +6,8 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects
 {
+    [XmlInclude(typeof(SoftwarePartAsDesigned))]
+    [XmlInclude(typeof(HardwarePartAsDesigned))]
     public abstract class PartAsDesigned : ICanBeReferenced
     {
         [XmlElement(ElementName = "partId")]

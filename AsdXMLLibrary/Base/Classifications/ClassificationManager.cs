@@ -37,6 +37,8 @@ namespace AsdXMLLibrary.Base.Classifications
 
         public static void FillDefaultValues()
         {
+            Add(new MessageIdentifierClassification { "MSN", "MID" });
+            
             Add(new LanguageClassification { "EN", "DE", "ES" });
             Add(new PartIdentifierClassification { "PNO", "NSN", "OEM" });
             Add(new OrganizationIdentifierClassification { "CAGE" });
