@@ -11,8 +11,8 @@ namespace AsdXMLLibrary.Objects
     [XmlRoot(ElementName = "lsaDataSet")]
     public class S3000LMessage
     {
-        [XmlElement(ElementName="msgId")]
-        public Identifier<MessageIdentifierClassification> Id { get; set; }
+        [XmlElement(ElementName="msgId", IsNullable=true)]
+        public ProvidedIdentifier<MessageIdentifierClassification> Id { get; set; }
 
         [XmlElement(ElementName="msgDate",DataType="date")]
         public DateTime? CreationDate { get; set; }
@@ -20,34 +20,29 @@ namespace AsdXMLLibrary.Objects
         [XmlElement(ElementName="msgLang")]
         public Classification Language { get; set; }
 
-        [XmlElement(ElementName="msgSend")]
-        public OrganizationReference Sender { get; set; }
+        [XmlArray(ElementName="msgSend")]
+        [XmlArrayItem(ElementName = "orgRef")]
+        public List<OrganizationReference> Sender { get; set; }
 
-        [XmlElement(ElementName = "msgReceive")]
-        public OrganizationReference Receiver { get; set; }
+        [XmlArray(ElementName = "msgReceive")]
+        [XmlArrayItem(ElementName = "orgRef")]
+        public List<OrganizationReference> Receiver { get; set; }
 
         [XmlElement(ElementName="msgContent")]
         public S3000LMessageContentRoot Content { get; set; }
 
         #region XMLSeriálize Properties
         [XmlIgnore]
-        public bool IdSpecified { get { return Id.HasValue; } }
+        public bool LanguageSpecified { get { return Language.HasValue; } }
         [XmlIgnore]
         public bool CreationDateSpecified { get { return CreationDate.HasValue; } }
-        [XmlIgnore]
-        public bool LangaugeSpecified { get { return Language.HasValue; } }
-        [XmlIgnore]
-        public bool SenderSpecified { get { return Sender.HasValue; } }
-        [XmlIgnore]
-        public bool ReceiverSpecified { get { return Receiver.HasValue; } }
         #endregion
 
         public S3000LMessage()
         {
-            this.Id = new Identifier<MessageIdentifierClassification>();
             this.Language = new Classification(typeof(LanguageClassification));
-            this.Sender = new OrganizationReference();
-            this.Receiver = new OrganizationReference();
+            this.Sender = new List<OrganizationReference>();
+            this.Receiver = new List<OrganizationReference>();
             this.Content = new S3000LMessageContentRoot();
         }
     }

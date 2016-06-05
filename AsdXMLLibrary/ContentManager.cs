@@ -16,6 +16,7 @@ namespace AsdXMLLibrary
         static ContentManager()
         {
             AsdNamespaces.Add(string.Empty, "http://www.asd-europe.org/s-series/s3000l");
+            AsdNamespaces.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
         }
 
         public static void SerializeToFile<T>(T serializableObject, string filePath)
