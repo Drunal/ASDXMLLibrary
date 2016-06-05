@@ -8,15 +8,15 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
-    public class MultipleIdentifier<IdentifierClassification> : List<Identifier<IdentifierClassification>>, IHaveValue
+    public class MultipleIdentifier<IdentifierClassification> : List<ProvidedIdentifier<IdentifierClassification>>, IHaveValue
     {
         [XmlIgnore]
-        public Identifier<IdentifierClassification> MainID
+        public ProvidedIdentifier<IdentifierClassification> MainID
         {
             get
             {
                 if (this.Count == 0)
-                    this.Add(new Identifier<IdentifierClassification>());
+                    this.Add(new ProvidedIdentifier<IdentifierClassification>());
                 return this[0];
             }
             set

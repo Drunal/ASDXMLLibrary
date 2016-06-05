@@ -45,7 +45,7 @@ namespace AsdXMLLibrary.Tests.Base
 
             SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
             result = ObjectStreamtoObject(expected);
-            result.ShouldDeepEqualwithDate(expected);
+            result.PartIds.ShouldDeepEqualwithDate(expected.PartIds);
         }
 
         [TestMethod]

@@ -15,16 +15,9 @@ namespace AsdXMLLibrary.Base
         [XmlElement(ElementName = "class")]
         public Classification Class { get; set; }
 
-        [XmlElement(ElementName = "setBy")]
-        public OrganizationReference SetBy { get; set; }
-
         #region XML Handling Properties
-
         [XmlIgnore]
         public bool ClassSpecified { get { return Class.HasValue; } }
-        [XmlIgnore] 
-        public bool SetBySpecified { get { return SetBy != null; } }
-
         #endregion
 
         public Identifier()
@@ -36,15 +29,9 @@ namespace AsdXMLLibrary.Base
         { }
 
         public Identifier(string value, string classification) 
-            : this(value, classification, null)
-        { }
-
-        public Identifier(string value, string classification, OrganizationReference setBy)
         {
             this.ID = value;
-            this.Class = new Classification(typeof(IdentifierClassification),classification);
-            this.SetBy = setBy;
-
+            this.Class = new Classification(typeof(IdentifierClassification), classification);
         }
 
         public bool HasValue

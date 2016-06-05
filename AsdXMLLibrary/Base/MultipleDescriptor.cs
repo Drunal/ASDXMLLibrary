@@ -8,15 +8,15 @@ using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
-    public class MultipleDescriptor : List<Descriptor>, IHaveValue
+    public class MultipleDescriptor : List<ProvidedDescriptor>, IHaveValue
     {
         [XmlIgnore]
-        public Descriptor MainDescriptor
+        public ProvidedDescriptor MainDescriptor
         {
             get
             {
                 if (this.Count == 0)
-                    this.Add(new Descriptor());
+                    this.Add(new ProvidedDescriptor());
                 return this[0];
             }
             set

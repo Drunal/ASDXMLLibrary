@@ -23,28 +23,13 @@ namespace AsdXMLLibrary.Tests.Helper
         /// <summary>
         /// Create a MockOrganization with a localized Name and a classified ID
         /// </summary>
-        public static Organization OrganizationMedium
+        public static Organization OrganizationFull
         {
             get
             {
                 var org = TestObjects.OrganizationMinimum;
                 org.Name.Language.Value = "EN";
                 org.OrgId.Class.Value = "CAGE";
-                return org;
-            }
-        }
-
-        /// <summary>
-        /// Create a MockOrganization with a complete set of data!
-        /// </summary>
-        public static Organization OrganizationFull
-        {
-            get
-            {
-                var org = TestObjects.OrganizationMedium;
-                org.Name.ProvidedBy = TestObjects.OrganizationMinimum.Reference;
-                org.Name.ProvidedDate = DateTime.Now;
-                org.OrgId.SetBy = TestObjects.OrganizationMinimum.Reference;
                 return org;
             }
         }
@@ -66,7 +51,7 @@ namespace AsdXMLLibrary.Tests.Helper
             {
                 var sw = new SoftwarePartAsDesigned();
                 sw.PartIds.MainID.ID = "Partnumber-1234";
-                sw.PartIds.Add(new AsdXMLLibrary.Base.Identifier<AsdXMLLibrary.Base.Classifications.PartIdentifierClassification>("Partnumber-9876"));
+                sw.PartIds.Add(new AsdXMLLibrary.Base.ProvidedIdentifier<AsdXMLLibrary.Base.Classifications.PartIdentifierClassification>("Partnumber-9876"));
                 return sw;
             }
         }
@@ -77,7 +62,7 @@ namespace AsdXMLLibrary.Tests.Helper
             {
                 var sw = TestObjects.SoftwarePartMinimum;
                 sw.PartNames.MainDescriptor.Text = "PartName1";
-                sw.PartNames.Add(new AsdXMLLibrary.Base.Descriptor("Partname2", "EN"));
+                sw.PartNames.Add(new AsdXMLLibrary.Base.ProvidedDescriptor("Partname2", "EN"));
                 return sw;
             }
         }
