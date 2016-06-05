@@ -4,6 +4,8 @@
     targetNamespace="http://www.asd-europe.org/s-series/s3000l"
     elementFormDefault="qualified"> 
 
+    <xsd:include schemaLocation="S3000L/s3000l_1-1_lsa_dataset_without_assert.xsd"/>
+
     <xsd:complexType name="descriptor">
         <xsd:sequence>          
             <xsd:element name="descr" type="nonEmptyString"/>
@@ -14,20 +16,6 @@
         </xsd:sequence>
     </xsd:complexType>
 
-    <xsd:complexType name="organizationReference">
-        <xsd:sequence minOccurs="0">
-            <xsd:element name="orgId" type="identifier"/>
-        </xsd:sequence>
-        <!--<xsd:attribute name="uidRef" use="optional">
-            <xsd:simpleType>
-                <xsd:restriction base="uidRef">
-                    <xsd:pattern value="org[1-9][0-9]*"/>
-                </xsd:restriction>
-            </xsd:simpleType>
-        </xsd:attribute>-->
-        <!--<xsd:assert test="(@uidRef and not(orgId)) or (not(@uidRef) and orgId)"/>-->
-    </xsd:complexType>
-    
     <xsd:complexType name="identifier">
         <xsd:annotation>
             <xsd:appinfo>SX001G:organizationIdentifier</xsd:appinfo>
@@ -114,12 +102,6 @@
         </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:simpleType name="nonEmptyString">  
-        <xsd:restriction base="xsd:token">  
-            <xsd:minLength value="1"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    
     <xsd:simpleType name="classification">
         <xsd:restriction base="nonEmptyString"/>
     </xsd:simpleType>

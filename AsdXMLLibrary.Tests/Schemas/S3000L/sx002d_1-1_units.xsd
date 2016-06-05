@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="000-01" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.asd-europe.org/spec/validValues"
+    targetNamespace="http://www.asd-europe.org/spec/validValues">
+    
+    <xsd:simpleType name="unit">
+        <xsd:union memberTypes="currencyUnit countUnit eventRateUnit eventUnit lengthRateUnit lengthUnit relativeUnit softwareSizeUnit speedUnit temperatureUnit timeConsumptionUnit 
+            timeRateUnit timeUnit volumeUnit timeCycleUnit quantityUnit rateUnit"/>
+    </xsd:simpleType>
+    
+    <!-- All groups of units, including unions such as timeCycleUnit, must be included in the unit union memberTypes. 
+        Use and restriction of the propertyType unit UML attribute requires this -->
+    
+    <xsd:simpleType name="timeCycleUnit">
+        <xsd:union memberTypes="eventUnit lengthUnit timeUnit"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="rateUnit">
+        <xsd:union memberTypes="eventRateUnit lengthRateUnit timeRateUnit"/>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="quantityUnit">
+        <xsd:union memberTypes="countUnit lengthUnit massUnit relativeUnit volumeUnit"/>
+    </xsd:simpleType>
+    
+    <!-- other candidate unit groups: electricCurrentUnit, luminousIntensityUnit, areaUnit, engineeringUnit??, 
+    -->
+        
+    <xsd:simpleType name="currencyUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="USD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:unitedStatesDollar</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="KUSD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:thousandUSDollar</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="MUSD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:millionUSDollar</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="BUSD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:billionUSDollar</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="EUR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:euro</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="KEUR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:thousandEuro</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="MEUR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:millionEuro</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="BEUR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:billionEuro</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="SEK">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:swedenKrona</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="KSEK">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:thousandSwedenKrona</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="MSEK">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:millionSwedenKrona</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+            <xsd:enumeration value="BSEK">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:billionSwedenKrona</xsd:appinfo>
+                </xsd:annotation>  
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+        
+    <xsd:simpleType name="countUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="EA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:each</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="DZ">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:dozen</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="eventRateUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="/OH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perOperatingHour</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="/FH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perFlightHour</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="/C">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perCycle</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="/FC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perFlightCycle</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="/S">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perStart</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="/LA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perLaunch</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="/LD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perLanding</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="/DL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perDeckLanding</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="/OP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perOperation</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="/SO">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perSortie</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="/FI">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perFigure</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="/RD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perRound</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+        </xsd:restriction>        
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="eventUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="C">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:cycle</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="FC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:flightCycle</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="OH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:operatingHour</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="FH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:flightHour</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="S">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:start</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="LA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:launch</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="LD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:landing</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="DL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:deckLanding</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="OP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:operation</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="SO">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:sortie</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FI">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:figure</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+            <xsd:enumeration value="RD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:round</xsd:appinfo>
+                </xsd:annotation>      
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>    
+    
+    <xsd:simpleType name="lengthRateUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="/M">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perMetre</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="/CM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perCentiMetre</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="/KM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perKiloMetre</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="/MI">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perMile</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="/NM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perNauticalMile</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <!-- mile -->
+        </xsd:restriction>        
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="lengthUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="M">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:metre</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="CM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:centiMetre</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="KM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:kiloMetre</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="MI">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:mile</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="NM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:nauticalMile</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <!-- mile -->
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="massUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="KG">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:kiloGram</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="relativeUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="PCT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:percent</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="PM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perMille</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>    
+    
+    <xsd:simpleType name="softwareSizeUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="KB">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:kiloByte</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MB">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:megaByte</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GB">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:gigaByte</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <!-- byte, terraByte -->
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="speedUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="M/S">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:metresPerSecond</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KM/H">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:kilometresPerHour</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MPH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:milesPerHour</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:knot</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="temperatureUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="C">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:celcius</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="F">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:farenheit</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="timeConsumptionUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:manMinute</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:manHour</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:manWeek</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:manDay</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="timeRateUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="/SEC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perSecond</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="/MIN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perMinute</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="/HR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perHour</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="/DAY">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perDay</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="/MON">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perMonth</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="/YR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perYear</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="/WK">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:perWeek</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>        
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="timeUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="SEC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:second</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MIN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:minute</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:hour</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        <xsd:enumeration value="DAY">
+            <xsd:annotation>
+                <xsd:appinfo>SX001G:day</xsd:appinfo>
+            </xsd:annotation>
+        </xsd:enumeration>
+            <xsd:enumeration value="MON">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:month</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="YR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:year</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WK">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:week</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>        
+    </xsd:simpleType>
+
+    <xsd:simpleType name="volumeUnit">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="L">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:litre</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="CL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:centiLitre</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+            <xsd:enumeration value="ML">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:milliLitre</xsd:appinfo>
+                </xsd:annotation>               
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    
+
+
+</xsd:schema>

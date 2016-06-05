@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="000-01" vc:minVersion="1.1"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns="http://www.asd-europe.org/spec/validValues"
+    targetNamespace="http://www.asd-europe.org/spec/validValues"> 
+    
+    <xsd:simpleType name="informationCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- Enumerations based on S1000D Issue 4.2 -->
+            <xsd:enumeration value="920">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:removeAndInstall</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

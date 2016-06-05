@@ -28,6 +28,13 @@ namespace AsdXMLLibrary.Tests.Helper
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Property.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/SoftwarePartAsDesigned.xsd");
 
+            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/S3000L/s3000l_1-1_lsa_dataset_without_assert.xsd");
+            schemas.Add("http://www.asd-europe.org/spec/validValues", @"Schemas/S3000L/s3000l_1-1_valid_values.xsd");
+            schemas.Add("http://www.asd-europe.org/spec/validValues", @"Schemas/S3000L/sx002d_1-1_applic_cond_valid_values.xsd");
+            schemas.Add("http://www.asd-europe.org/spec/validValues", @"Schemas/S3000L/sx002d_1-1_units.xsd");
+            schemas.Add("http://www.asd-europe.org/spec/validValues", @"Schemas/S3000L/sx002d_1-1_valid_values.xsd");
+            schemas.Add("http://www.asd-europe.org/spec/validValues", @"Schemas/S3000L/s1000d_4-2_information_codes.xsd");
+       
             // Fill the validValues with default values.
             ClassificationManager.Add(new MessageIdentifierClassification { "MSN", "MID" });
             

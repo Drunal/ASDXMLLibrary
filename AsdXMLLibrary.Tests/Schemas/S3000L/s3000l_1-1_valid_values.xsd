@@ -1,0 +1,1632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="000-02" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.asd-europe.org/spec/validValues"
+    targetNamespace="http://www.asd-europe.org/spec/validValues"> 
+    
+    <!-- Issue: Integrate repairability, repairabilityStrategy and replaceability and replaceabilityStrategy valid values -->
+    <!-- Issue: Integrate hardwarePartEnvironmentalInUseClass and hardwarePartEnvironmentalPlannedDisposalClass attributes -->
+ 
+    <xsd:redefine schemaLocation="sx002d_1-1_valid_values.xsd"> 
+    </xsd:redefine>
+    <xsd:redefine schemaLocation="sx002d_1-1_units.xsd"> 
+    </xsd:redefine>
+    <xsd:redefine schemaLocation="sx002d_1-1_applic_cond_valid_values.xsd"> 
+    </xsd:redefine>
+    <xsd:redefine schemaLocation="s1000d_4-2_information_codes.xsd"> 
+    </xsd:redefine>
+    
+    <xsd:simpleType name="candidateItemAnalysisActivityIndicatorCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="S">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:selectedCandidateItemAnalysisActivity</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="R">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:rejectedCandidateItemAnalysisActivity</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="O">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notDecidedCandidateItemAnalysisActivity</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>      
+    
+    <xsd:simpleType name="candidateItemAnalysisActivityStatusCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="NS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notStartedAnalysisActivity</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="O">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:onGoingAnalysisActivity</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="C">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:completedAnalysisActivity</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>   
+    
+    
+    <xsd:simpleType name="changeRequestIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CRID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:changeRequestIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="circuitBreakerIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CBID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:circuitBreakerIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="circuitBreakerStateCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="O">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:openCircuitBreaker</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="C">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:closeCircuitBreaker</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VO">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:verifyOpenCircuitBreaker</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:verifyCloseCircuitBreaker</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="circuitBreakerTypeCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ELTRO">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:electronicCircuitBreaker</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ELMEC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:electroMechanicCircuitBreaker</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CLIP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:dummyCircuitBreaker</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>   
+    
+    <xsd:simpleType name="contractRelationshipTypeCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="SUBC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:subContract</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RELC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:relatedContract</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="damageFamilyCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="dataModuleCodeClassValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="DMC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:dataModuleCode</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="dataModuleIssueNumberClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="REV">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:revisionIdentification</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ISS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:issueNumber</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="detectionMeanTypeCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="PBIT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:powerOnBuiltInTest</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PBIT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:continuousBuiltInTest</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IBIT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:initiatedBuiltInTest</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GSE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:groundSupportEquipmentTest</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="documentAssignmentRoleCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="REF">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:documentReference</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DRW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:drawingReference</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DSG">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:designDocumentReference</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DIR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:directiveDocumentReference</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SCE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:sourceDocumentReference</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VER">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:verificationDocumentReference</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="documentIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="DOCID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:documentIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="documentIssueIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="REV">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:revisionIdentification</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ISS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:issueNumber</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="documentTypeCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="TR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:technicalReport</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="STD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:standardsDocument</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DRW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:drawingDocument</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="failureModeDetectionAbilityRatingCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="HIGH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:highLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MHIGH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:moderatelyHighLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MED">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:mediumLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MLOW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:moderatelyLowLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LOW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:lowLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>       
+    
+    <xsd:simpleType name="failureModeEffectLevelCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="NH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:nextHigherFailureModeEffect</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EI">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:endItemFailureModeEffect</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="failureModeIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="FMID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:failureModeIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="failureModeLocalizationAbilityRatingCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="HIGH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:highLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MHIGH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:moderatelyHighLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MED">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:mediumLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MLOW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:moderatelyLowLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LOW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:lowLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType> 
+    
+    
+    <xsd:simpleType name="functionalFailureEffectCriticalityCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S4000P Data Element Examples -->
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="hardwareElementRepairabilityStrategyCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="REP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:reapair</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DISC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:discard</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notApplicable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>  
+    
+    <xsd:simpleType name="hardwareElementReplaceabilityStrategyCodeValues">
+        <!-- Enumerations based on S3000L Issue 1.1 -->
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="LRU">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:lineReplaceable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SRU">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:shopReplaceable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notApplicable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="hardwareElementStructuralIndicatorCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="SSI">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:structuralSignificantItem</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SI">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:structuralItem</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:structuralDetail</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notApplicable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="hardwarePartEnvironmentalCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="HARM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:harmfulToEnvironment</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ACID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:acidification</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OZON">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:dangerousForOzoneLayer</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GREEN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:greenhouseEffect</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WASTE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:materialWaste</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BURN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:energyRegainingByBurning</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RECY">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:materialRecycling</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+        
+    <xsd:simpleType name="hardwarePartEnvironmentalAspectInUseClassCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="HARM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:harmfulToEnvironment</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ACID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:acidification</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OZON">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:dangerousForOzoneLayer</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GREEN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:greenhouseEffect</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WASTE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:materialWaste</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BURN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:energyRegainingByBurning</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RECY">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:materialRecycling</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="hardwarePartEnvironmentalAspectPlannedDisposalClassCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="HARM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:harmfulToEnvironment</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ACID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:acidification</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OZON">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:dangerousForOzoneLayer</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GREEN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:greenhouseEffect</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WASTE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:materialWaste</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BURN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:energyRegainingByBurning</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RECY">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:materialRecycling</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="hardwarePartFitmentRequirementCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="MINOR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:minorFittingRequirement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MAJOR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:majorFittingRequirement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="hardwarePartMaintenanceStartCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="START">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceStartAtProduction</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PROD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceStartAtProduction</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DELIV">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceStartAtDelivery</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ASSY">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceStartAtInstallationInAssembly</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ENDITEM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceStartAtInstallationInEndItem</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="hardwarePartRepairabilityStrategyCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="NREP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:nonRepairable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PREP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:partialRepairable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="REP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:repairable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="keyPerformanceIndicatorStatusCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="PREL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:preliminaryStatus</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ACCEPT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:acceptedStatus</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="REL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:releasedStatus</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>   
+        
+    <xsd:simpleType name="lsaCandidateIndicatorCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="F">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:fullLSACandidate</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="P">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:partialLSACandidate</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="N">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:nonLSACandidate</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="O">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:openLSACandidate</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="lsaFailureModeDistributionRatingCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="MHIGH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:moderatelyHighLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MED">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:mediumLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MLOW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:moderatelyLowLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LOW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:lowLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VLOW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:veryLowLikelihood</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="maintenanceLevelIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MLID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:omaintenanceLevelIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="maintenanceLocationIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MLID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceLocationIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="operatingLocationIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="OPLOCID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:operatingLocationIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="operatingLocationTypeIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="OLTID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:operatingLocationTypeIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="organizationAssignmentRoleCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AUTH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:authorizingOrganization</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DESG">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:designResponsibleOrganization</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PUBL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:publisherOrganization</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>    
+        
+    <xsd:simpleType name="partDemilitarizationClassCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="N/A">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:demilitarizationNotRequired</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TSC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:tradeSecurityControl</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="KEY">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:keyPointsDemilitarization</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MUT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:mutilationDemilitarization</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NAT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:nationalDemilitarization</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TBD">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:demilitarizationToBeFurnished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PRI">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:demilitarizationPriorToTransfer</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SEC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:securityClassifiedItem</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="partMaturityClassCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="NEW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:newDeveloped</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MOD-L">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:majorModificationOfExistingItem</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MOD-M">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:moderateModificationOfExistingItem</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="COTS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:COTSItem</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CFE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:customerItem</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OBS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:osoleteItem</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>    
+    
+    <xsd:simpleType name="partsListEntryIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="POS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:partsListEntryPosition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="physicalReplaceabilityCodeValues">
+        <!-- Enumerations based on SX001G Issue 1.0 -->
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="N">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:nonReplaceable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="R">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:replaceable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notApplicable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="physicalReplaceabilityStrategyCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="LRU">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:lineReplaceable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SRU">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:shopReplaceable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notApplicable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>  
+    
+    <xsd:simpleType name="productUsagePhaseCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="OPER">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:operation</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TOFF">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:takeOff</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FLIGHT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:flight</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MAINT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenance</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="STOR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:storage</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TRAN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:transportation</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="publicationModuleCodeClassValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="PMC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:publicationModuleCode</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>  
+    
+    <xsd:simpleType name="publicationModuleIssueNumberClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="REV">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:revisionIdentification</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ISS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:issueNumber</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="repairabilityStrategyCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="REP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:reapair</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DISC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:discard</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notApplicable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>   
+    
+    <xsd:simpleType name="replaceabilityStrategyCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="LRU">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:lineReplaceable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SRU">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:shopReplaceable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notApplicable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>  
+    
+    <xsd:simpleType name="resourceSpecificationIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="RSID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:resourceSpecificationIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>  
+    
+    <xsd:simpleType name="skillCodeClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="SC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:skillCode</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType> 
+    
+    <xsd:simpleType name="skillLevelNameCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="A">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:advancedSkillLevel</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="I">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:intermediateSkillLevel</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="B">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:basicSkillLevel</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>    
+    
+    <xsd:simpleType name="softwareTypeCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- Enumerations based on SX001G Issue 1.0 -->
+            <xsd:enumeration value="D">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:distributed</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="E">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:embedded</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="L">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:loadable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="specialEventGroupCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="EXT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:externalCauseSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NPH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:naturalPhenomenonSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MET">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:meteorologicalSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ANI">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:animalSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HUM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:humanImpactSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CBT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:combatSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MNU">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:materialManeuverSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="INT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:internalCauseSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DYS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:internalDysfunctionSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HET">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:extensiveHeatSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VIB">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:extensiveVibrationSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType> 
+    
+    <xsd:simpleType name="specialEventOccurrenceRatingCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="EUN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:extremelyUnlikelySpecialEven</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="REM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:remoteLikelihoodSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OCC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:occasionalSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PROB">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:reasonablyProbableSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FREQ">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:frequentSpecialEvent</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType> 
+        
+    <xsd:simpleType name="specialEventTitleCodeValues">
+        <xsd:restriction base="xsd:string">
+        </xsd:restriction>
+    </xsd:simpleType> 
+        
+    <xsd:simpleType name="substanceRiskFactorCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+        </xsd:restriction>        
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="substanceUsageCategoryCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="F">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:forbiddenSubstance</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:authorizedWithLimitationSubstance</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:authorizedSubstance</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>        
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="subtaskEndItemObjectiveStateCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="TC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:taskChecked</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="JC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:jacked</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="UJ">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:unjacked</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SY">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:safetyDeviceEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:elecricalPowerEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EEL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:elecricalPowerFromEngineEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AEL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:elecricalPowerFromAPUEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EEL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:externalElecricalPowerEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IEL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:internalElecricalPowerEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="HPE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:hydraulicPowerEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:airSupplyEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FU">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:fueled</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DF">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:defueled</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:waterSupplyEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:controlStatusEstablished</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>    
+    
+    <xsd:simpleType name="subtaskIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="SID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:subtaskIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="subtaskMaintenanceLocationCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="A">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceOnItemWhenInstalledOnProduct</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="B">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceOnItemOnMajorAssembly</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="C">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceOnBench</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="C">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceAnywhere</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="subtaskRoleCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ST">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:startupSubtask</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="COR">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:coreSubtask</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CON">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:coreNoRequiredConditionsSubtask</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:closeupSubtask</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="subtaskTimelineEventCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="START">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:subtaskStart</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="END">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:subtaskEnd</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="taskIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="TID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:taskIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="taskMaterialResourceCategoryCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="SPE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:supportEquipment</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SSPE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:safetyRelatedSupportEquipment</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SPA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:spare</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SPY">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:supply</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>        
+    
+    <xsd:simpleType name="taskOperabilityImpactCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="NEQM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:systemInoperableDuringEquipmentMaintenance</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OPEQM">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:systemOperableDuringEquipmentMaintenance</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PMISS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:partialMissionCapable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FMISS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:fullMissionCapable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NMISS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:notMissionCapable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:turnaround</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="taskPersonnelResourceRoleCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="MANA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:manAPersonnelResourceRole</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MANB">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:manBPersonnelResourceRole</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PERF">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:performerPersonnelResourceRole</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SUP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:supervisorPersonnelResourceRole</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="QA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:qualityAssurancePersonnelResourceRole</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>  
+        
+    <xsd:simpleType name="taskPersonnelSafetyCriticalityCodeValues">
+        <xsd:restriction base="xsd:string">
+        </xsd:restriction>
+    </xsd:simpleType>
+        
+    <xsd:simpleType name="taskProductIntegrityCriticalityCodeValues">
+        <xsd:restriction base="xsd:string">
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="taskRequirementAuthoritySourceTypeCodeValues">
+        <xsd:restriction base="xsd:string">
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="taskRequirementDecisionCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- S3000L Data Element Examples -->
+            <xsd:enumeration value="A">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:acceptedTaskRequirement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RJ">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:rejectedTaskRequirement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="D">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:deferredTaskRequirement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RZ">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:realizedTaskRequirement</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>   
+        
+    <xsd:simpleType name="taskRequirementIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="TRID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:taskRequirementIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="taskRequirementRevisionIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="REV">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:revisionIdentification</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ISS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:issueNumber</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="taskResourceRelationshipCategoryCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="USE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:uses</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="taskRevisionIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="REV">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:revisionIdentification</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ISS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:issueNumber</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="taskRevisionStatusCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="A">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:approved</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IW">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:inWork</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+       
+    <xsd:simpleType name="technologyBehaviourKnowledgeRatingCodeValues">
+        <xsd:restriction base="xsd:string">
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="technologySensitivityRatingCodeValues">
+        <xsd:restriction base="xsd:string">
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="tradeNameCodeValues">
+        <xsd:restriction base="xsd:string">
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="trainingMethodCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CLA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:classroomTraining</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CBL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:computerBasedLearning</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CTT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:testAndCertificationTraining</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OJT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:onTheJobTraining</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>     
+    
+    <xsd:simpleType name="warningCautionNoteIdentifierClassValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="WCNID">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:warningCautionNoteIdentifier</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    
+    <xsd:simpleType name="warningCautionNoteTypeCodeValues">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="W">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:warning</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="C">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:caution</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="N">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:note</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType> 
+          
+</xsd:schema>

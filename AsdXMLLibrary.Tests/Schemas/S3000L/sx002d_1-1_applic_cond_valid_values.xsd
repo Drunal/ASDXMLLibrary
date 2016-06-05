@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="000-01" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.asd-europe.org/spec/validValues"
+    xmlns:prim="http://www.asd-europe.org/dmewg/primitives"
+    targetNamespace="http://www.asd-europe.org/spec/validValues">
+        
+    <xsd:simpleType name="conditionTypeNameCodeValues">
+        <xsd:restriction base="xsd:string">
+            <!-- Enumerations based on SX001G Issue 1.0 -->
+            <!-- ConditionType ClassValues -->
+            <xsd:enumeration value="SB">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:serviceBulletinCondition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:ashoreOrAfloadCondition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OP">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:operationalEnvironmentCondition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MA">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:maintenanceEnvironmentCondition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <!-- ConditionType PropertyValues -->
+            <xsd:enumeration value="WS">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:windSpeedCondition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <!-- Each defined conditionClass that contains enumeration values must have a corresponding member in the conditionClassValue union  -->
+    
+    <xsd:simpleType name="conditionTypeClassValueCodeValues">
+        <xsd:union memberTypes="ashoreOrAfloadConditionClass maintenanceEnvironmentConditionClass operationalEnvironmentConditionClass serviceBulletinConditionClass"></xsd:union>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="ashoreOrAfloadConditionClass">
+        <!-- Enumerations based on SX001G Issue 1.0 -->
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ASH">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:ashoreCondition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AFL">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:afloatCondtion</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="maintenanceEnvironmentConditionClass">
+        <!-- Enumerations based on SX001G Issue 1.0 -->
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="DOC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:dockedCondition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IN">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:indoorCondtion</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OUT">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:outdoorCondtion</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="operationalEnvironmentConditionClass">
+        <!-- Enumerations based on SX001G Issue 1.0 -->
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ARC">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:arcticCondition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DES">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:desertCondtion</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="serviceBulletinConditionClass">
+        <!-- Enumerations based on SX001G Issue 1.0 -->
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="PRE">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:preServiceBulletinCondition</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="POST">
+                <xsd:annotation>
+                    <xsd:appinfo>SX001G:postServiceBulletinCondtion</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+        
+</xsd:schema>
+
