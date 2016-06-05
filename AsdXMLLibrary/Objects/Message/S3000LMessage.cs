@@ -3,10 +3,12 @@ using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Objects.Message;
 using AsdXMLLibrary.Objects.References;
 using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects
 {
+    [XmlRoot(ElementName = "lsaDataSet")]
     public class S3000LMessage
     {
         [XmlElement(ElementName="msgId")]
@@ -25,7 +27,7 @@ namespace AsdXMLLibrary.Objects
         public OrganizationReference Receiver { get; set; }
 
         [XmlElement(ElementName="msgContent")]
-        public S3000LMessageContent Content { get; set; }
+        public S3000LMessageContentRoot Content { get; set; }
 
         #region XMLSeriálize Properties
         [XmlIgnore]
@@ -46,7 +48,7 @@ namespace AsdXMLLibrary.Objects
             this.Language = new Classification(typeof(LanguageClassification));
             this.Sender = new OrganizationReference();
             this.Receiver = new OrganizationReference();
-            this.Content = new S3000LMessageContent();
+            this.Content = new S3000LMessageContentRoot();
         }
     }
 }

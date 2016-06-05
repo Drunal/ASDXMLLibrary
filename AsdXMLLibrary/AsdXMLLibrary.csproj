@@ -57,6 +57,8 @@
     <Compile Include="ContentManager.cs" />
     <Compile Include="Objects\Message\S3000LMessage.cs" />
     <Compile Include="Objects\Message\S3000LMessageContent.cs" />
+    <Compile Include="Objects\Message\S3000LMessageContentRoot.cs" />
+    <Compile Include="Objects\Message\S3000LSupportingContent.cs" />
     <Compile Include="Objects\UoF Product and Project\Organization.cs" />
     <Compile Include="Objects\References\IAmReference.cs" />
     <Compile Include="Objects\References\ICanBeReferenced.cs" />
