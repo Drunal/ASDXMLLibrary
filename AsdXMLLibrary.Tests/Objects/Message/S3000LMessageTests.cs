@@ -16,7 +16,7 @@ namespace AsdXMLLibrary.Tests.Objects.Message
 
             message.Content.SupportingItems.Organizations.Add(TestObjects.OrganizationFull);
 
-            ContentManager.SerializeToFile<S3000LMessage>(message, "message.xml");
+            manager.SerializeToFile<S3000LMessage>(message, "message.xml");
         }
     }
 }

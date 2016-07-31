@@ -40,7 +40,7 @@ namespace AsdXMLLibrary.Objects
 
         public S3000LMessage()
         {
-            this.Language = new Classification(typeof(LanguageClassification));
+            this.Language = new Classification(Constants.MessageLanguageElementName, typeof(LanguageClassification));
             this.Sender = new List<OrganizationReference>();
             this.Receiver = new List<OrganizationReference>();
             this.Content = new S3000LMessageContentRoot();

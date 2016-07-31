@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AsdXMLLibrary.Objects.References
 {
-    interface ICanBeReferenced
+    public interface ICanBeReferenced
     {
-        IAmReference GetReference();
+        //IAmReference GetReference();
     }
 }

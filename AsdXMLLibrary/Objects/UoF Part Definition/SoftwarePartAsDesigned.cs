@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects
@@ -31,18 +32,31 @@ namespace AsdXMLLibrary.Objects
         #endregion
 
         public SoftwarePartAsDesigned()
-            : base()
+            : base(Constants.SoftwarePartAsDesignedElementName)
         {
-            SoftwareType = new Classification(typeof(SoftwareTypeClassification));
-            SoftwarePartSize = null;
+            SoftwareType = new Classification(Constants.SoftwareTypeElementName, typeof(SoftwareTypeClassification));
+            SoftwarePartSize = new Property<BinaryUnitClassification>(Constants.SoftwarePartSizeElementName);
         }
 
-        public PartReference Reference
+        #region Serialize Functions
+        public override XElement GetXML(XNamespace ns, bool forceElement = false)
         {
-            get
-            {
-                return (PartReference)this.GetReference();
-            }
+            XElement swPart = base.GetXML(ns);
+            if (SoftwareTypeSpecified)
+                swPart.Add(SoftwareType.GetXML(ns));
+            if (SoftwarePartSizeSpecified)
+                swPart.Add(SoftwarePartSize.GetXML(ns));
+
+            return swPart;
         }
+
+        public override bool ReadfromXML(XElement element, XNamespace ns)
+        {
+            // this should read the base information
+            base.ReadfromXML(element, ns);
+            SoftwareType.ReadfromXML(element.Element(ns + Constants.SoftwareTypeElementName), ns);
+            return true;
+        }
+        #endregion
     }
 }

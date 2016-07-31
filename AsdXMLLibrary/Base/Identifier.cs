@@ -1,13 +1,10 @@
-﻿using AsdXMLLibrary.Objects;
-using AsdXMLLibrary.Base.Classifications;
-using AsdXMLLibrary.Base.Properties;
+﻿using System.Xml.Linq;
 using System.Xml.Serialization;
-using AsdXMLLibrary.Objects.References;
 
 namespace AsdXMLLibrary.Base
 {
     [XmlRoot(ElementName = "Identifier")]
-    public class Identifier<IdentifierClassification> : IHaveValue
+    public class Identifier<IdentifierClassification> : SerializeBase, IHaveValue
     {
         [XmlElement(ElementName = "id")]
         public string ID { get; set; }
@@ -20,23 +17,53 @@ namespace AsdXMLLibrary.Base
         public bool ClassSpecified { get { return Class.HasValue; } }
         #endregion
 
+        #region Constructors
         public Identifier()
-           : this(string.Empty)
+            : this(Constants.DefaultIdentifierElementName)
         { }
 
-        public Identifier(string value)
-            : this(value, string.Empty)
+        public Identifier(string elementName)
+           : this(elementName, string.Empty)
         { }
 
-        public Identifier(string value, string classification) 
+        public Identifier(string elementName, string value)
+            : this(elementName, value, string.Empty)
+        { }
+
+        public Identifier(string elementName, string value, string classification)
+            : base(elementName)
         {
             this.ID = value;
-            this.Class = new Classification(typeof(IdentifierClassification), classification);
+            this.Class = new Classification(Constants.ClassElementName, typeof(IdentifierClassification), classification);
         }
+        #endregion
 
         public bool HasValue
         {
             get { return !string.IsNullOrEmpty(ID); }
         }
+
+        #region Serialize Functions
+        public override XElement GetXML(XNamespace ns, bool forceElement = false)
+        {
+            XElement identifier = new XElement(ns + _elementName);
+            identifier.Add(new XElement(ns + Constants.IdentifierElementName, ID));
+            // class is optional
+            identifier.Add(Class.GetXML(ns));
+            return identifier;
+        }
+
+        public override bool ReadfromXML(XElement element, XNamespace ns)
+        {
+            if (element == null)
+                return false;
+
+            // this is a mandatory field
+            ID = element.Element(ns + Constants.IdentifierElementName).Value;
+            Class.ReadfromXML(element.Element(ns + Constants.ClassElementName), ns);
+            return true;
+        }
+
+        #endregion
     }
 }

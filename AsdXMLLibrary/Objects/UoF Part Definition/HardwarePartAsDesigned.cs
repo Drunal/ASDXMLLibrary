@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects
@@ -50,18 +51,32 @@ namespace AsdXMLLibrary.Objects
         #endregion
 
         public HardwarePartAsDesigned()
+            : base(Constants.HardwarePartAsDesignedElementName)
         {
-            HazardousClass = new Classification(typeof(HazardousClassClassification));
-            FitmentRequirement = new Classification(typeof(FitmentRequirementClassification));
+            HazardousClass = new Classification(Constants.HardwarePartHazardousClassElementName, typeof(HazardousClassClassification));
+            FitmentRequirement = new Classification(Constants.HardwarePartFitmentRequirementElementName, typeof(FitmentRequirementClassification));
         }
 
-
-        public PartReference Reference
+        #region Serialize Functions
+        public override XElement GetXML(XNamespace ns, bool forceElement = false)
         {
-            get
-            {
-                return (PartReference)this.GetReference();
-            }
+            XElement hwPart = base.GetXML(ns);
+            if (HazardousClassSpecified)
+                hwPart.Add(HazardousClass.GetXML(ns));
+            if (FitmentRequirementSpecified)
+                hwPart.Add(FitmentRequirement.GetXML(ns));
+
+            return hwPart;
         }
+
+        public override bool ReadfromXML(XElement element, XNamespace ns)
+        {
+            // this should read the base information
+            base.ReadfromXML(element, ns);
+            HazardousClass.ReadfromXML(element.Element(ns + Constants.SoftwareTypeElementName), ns);
+            FitmentRequirement.ReadfromXML(element.Element(ns + Constants.SoftwareTypeElementName), ns);
+            return true;
+        }
+        #endregion
     }
 }

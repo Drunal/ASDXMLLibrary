@@ -1,6 +1,5 @@
 ﻿using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Base.Properties;
-using AsdXMLLibrary.Objects;
 using AsdXMLLibrary.Tests.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -12,58 +11,67 @@ namespace AsdXMLLibrary.Tests.Base
     public class PropertyTests : TestBase
     {
 
+        [TestInitialize]
+        public void InitializeTest()
+        {
+            // make sure that the DummyClassification is properly filled
+            ClassificationManager.Add(new DummyClassification {
+                "TEST"
+            }, true);
+        }
+
         #region SingleValueProperty Tests
         [TestMethod]
         public void SerializeSingleValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(12.5,"BIT");
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateSingleValueProperty(12.5, "TEST");
+            Property<DummyClassification> result = new Property<DummyClassification>();
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
-            result.SoftwarePartSize.ShouldDeepEqualwithDate(expected.SoftwarePartSize);
+            result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
         }
 
         [TestMethod]
         public void SerializeCompleteSingleValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(12.5, "BIT");
-            expected.SoftwarePartSize.RecordingDate = DateTime.Now;
-            expected.SoftwarePartSize.ValueDetermination.Value = "CALC";
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateSingleValueProperty(12.5, "TEST");
+            expected.RecordingDate = DateTime.Now;
+            expected.ValueDetermination.Value = "CALC";
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
-            result.SoftwarePartSize.ShouldDeepEqualwithDate(expected.SoftwarePartSize);
+            Property<DummyClassification> result = new Property<DummyClassification>();
+            result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
         }
 
         [TestMethod]
         public void ShouldThrowOnMissingUnitForSingleValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(12.5,"BIT");
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateSingleValueProperty(12.5, "TEST");
             // remove Unit to create expection
-            expected.SoftwarePartSize.Unit.Value = null;
+            expected.Unit.Value = null;
             
             ExceptionAssert.Throws<XmlSchemaValidationException>(
-                () => ObjectStreamtoObject(expected.SoftwarePartSize)
+                () => ObjectStreamtoObjectNew(expected)
             );
         }
 
         [TestMethod]
         public void LastSingleValueProptySetShouldWin()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(2.5, 10, "BIT");
-            expected.SoftwarePartSize.Value = 12.5;
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateRangeProperty(2.5, 10, "TEST");
+            expected.Value = 12.5;
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
+            Property<DummyClassification> result = new Property<DummyClassification>();
+            result = ObjectStreamtoObjectNew(expected);
 
-            Assert.AreEqual(expected.SoftwarePartSize.Value, result.SoftwarePartSize.Value);
-            Assert.AreEqual(expected.SoftwarePartSize.Unit.Value, result.SoftwarePartSize.Unit.Value);
-            Assert.IsNull(result.SoftwarePartSize.LowerLimit);
-            Assert.IsNull(result.SoftwarePartSize.UpperLimit);
+            Assert.AreEqual(expected.Value, result.Value);
+            Assert.AreEqual(expected.Unit.Value, result.Unit.Value);
+            Assert.IsNull(result.LowerLimit);
+            Assert.IsNull(result.UpperLimit);
         }
         #endregion
 
@@ -71,57 +79,57 @@ namespace AsdXMLLibrary.Tests.Base
         [TestMethod]
         public void SerializeRangeValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(22.5, 22.5, "BIT");
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateRangeProperty(22.5, 22.5, "TEST");
+            Property<DummyClassification> result = new Property<DummyClassification>();
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
-            result.SoftwarePartSize.ShouldDeepEqualwithDate(expected.SoftwarePartSize);
+            result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
         }
 
         [TestMethod]
         public void SerializeCompleteRangeValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(22.5, 22.5, "BIT");
-            expected.SoftwarePartSize.RecordingDate = DateTime.Now;
-            expected.SoftwarePartSize.ValueDetermination.Value = "CALC";
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateRangeProperty(22.5, 22.5, "TEST");
+            expected.RecordingDate = DateTime.Now;
+            expected.ValueDetermination.Value = "CALC";
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
-            result.SoftwarePartSize.ShouldDeepEqualwithDate(expected.SoftwarePartSize);
+            Property<DummyClassification> result = new Property<DummyClassification>();
+            result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
         }
 
         [TestMethod]
         public void ShouldThrowOnMissingUnitForRangeValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(22.5, 22.5, "BIT");
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateRangeProperty(22.5, 22.5, "TEST");
             // remove Unit to create expection
-            expected.SoftwarePartSize.Unit.Value = null;
+            expected.Unit.Value = null;
 
             ExceptionAssert.Throws<XmlSchemaValidationException>(
-                () => ObjectStreamtoObject(expected.SoftwarePartSize)
+                () => ObjectStreamtoObjectNew(expected)
             );
         }
 
         [TestMethod]
         public void LastRangeValueProptySetShouldWin()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(2.5, 10, 4, "BIT");
-            expected.SoftwarePartSize.LowerLimit = 7.5;
-            expected.SoftwarePartSize.UpperLimit = 8.6;
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateToleranceValueProperty(2.5, 10, 4, "TEST");
+            expected.LowerLimit = 7.5;
+            expected.UpperLimit = 8.6;
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
+            Property<DummyClassification> result = new Property<DummyClassification>();
+            result = ObjectStreamtoObjectNew(expected);
 
-            Assert.AreEqual(expected.SoftwarePartSize.LowerLimit, result.SoftwarePartSize.LowerLimit);
-            Assert.AreEqual(expected.SoftwarePartSize.UpperLimit, result.SoftwarePartSize.UpperLimit);
-            Assert.AreEqual(expected.SoftwarePartSize.Unit.Value, result.SoftwarePartSize.Unit.Value);
-            Assert.IsNull(result.SoftwarePartSize.NominalValue);
-            Assert.IsNull(result.SoftwarePartSize.LowerOffset);
-            Assert.IsNull(result.SoftwarePartSize.UpperOffset);
+            Assert.AreEqual(expected.LowerLimit, result.LowerLimit);
+            Assert.AreEqual(expected.UpperLimit, result.UpperLimit);
+            Assert.AreEqual(expected.Unit.Value, result.Unit.Value);
+            Assert.IsNull(result.NominalValue);
+            Assert.IsNull(result.LowerOffset);
+            Assert.IsNull(result.UpperOffset);
         }
 
         #endregion
@@ -130,58 +138,58 @@ namespace AsdXMLLibrary.Tests.Base
         [TestMethod]
         public void SerializeToleranceValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(10.5, 2.4, 1.4, "BIT");
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateToleranceValueProperty(10.5, 2.4, 1.4, "TEST");
+            Property<DummyClassification> result = new Property<DummyClassification>();
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
-            result.SoftwarePartSize.ShouldDeepEqualwithDate(expected.SoftwarePartSize);
+            result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
         }
 
         [TestMethod]
         public void SerializeCompleteToleranceValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(10.5, 2.4, 1.4, "BIT");
-            expected.SoftwarePartSize.RecordingDate = DateTime.Now;
-            expected.SoftwarePartSize.ValueDetermination.Value = "CALC";
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateToleranceValueProperty(10.5, 2.4, 1.4, "TEST");
+            expected.RecordingDate = DateTime.Now;
+            expected.ValueDetermination.Value = "CALC";
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
-            result.SoftwarePartSize.ShouldDeepEqualwithDate(expected.SoftwarePartSize);
+            Property<DummyClassification> result = new Property<DummyClassification>();            
+            result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
         }
 
         [TestMethod]
         public void ShouldThrowOnMissingUnitForToleranceValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(10.5, 2.4, 1.4, "BIT");
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateToleranceValueProperty(10.5, 2.4, 1.4, "TEST");
             // remove Unit to create expection
-            expected.SoftwarePartSize.Unit.Value = null;
+            expected.Unit.Value = null;
 
             ExceptionAssert.Throws<XmlSchemaValidationException>(
-                () => ObjectStreamtoObject(expected.SoftwarePartSize)
+                () => ObjectStreamtoObjectNew(expected)
             );
         }
 
         [TestMethod]
         public void LastToleranceValueProptySetShouldWin()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>("text property");
-            expected.SoftwarePartSize.LowerOffset = 7.5;
-            expected.SoftwarePartSize.UpperOffset = 8.6;
-            expected.SoftwarePartSize.NominalValue = 8;
-            expected.SoftwarePartSize.Unit.Value = "BIT";
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateTextProperty("text property");
+            expected.LowerOffset = 7.5;
+            expected.UpperOffset = 8.6;
+            expected.NominalValue = 8;
+            expected.Unit.Value = "TEST";
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
+            Property<DummyClassification> result = new Property<DummyClassification>();  
+            result = ObjectStreamtoObjectNew(expected);
 
-            Assert.AreEqual(expected.SoftwarePartSize.NominalValue, result.SoftwarePartSize.NominalValue);
-            Assert.AreEqual(expected.SoftwarePartSize.LowerOffset, result.SoftwarePartSize.LowerOffset);
-            Assert.AreEqual(expected.SoftwarePartSize.UpperOffset, result.SoftwarePartSize.UpperOffset);
-            Assert.AreEqual(expected.SoftwarePartSize.Unit.Value, result.SoftwarePartSize.Unit.Value);
-            Assert.IsNull(result.SoftwarePartSize.Text);
+            Assert.AreEqual(expected.NominalValue, result.NominalValue);
+            Assert.AreEqual(expected.LowerOffset, result.LowerOffset);
+            Assert.AreEqual(expected.UpperOffset, result.UpperOffset);
+            Assert.AreEqual(expected.Unit.Value, result.Unit.Value);
+            Assert.IsNull(result.Text);
         }
         #endregion
 
@@ -189,39 +197,39 @@ namespace AsdXMLLibrary.Tests.Base
         [TestMethod]
         public void SerializeTextValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>("value");
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateTextProperty("value");
+            Property<DummyClassification> result = new Property<DummyClassification>();
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
-            result.SoftwarePartSize.ShouldDeepEqualwithDate(expected.SoftwarePartSize);
+            result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
         }
 
         [TestMethod]
         public void SerializeCompleteTextValueProperty()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>("value");
-            expected.SoftwarePartSize.RecordingDate = DateTime.Now;
-            expected.SoftwarePartSize.ValueDetermination.Value = "CALC";
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateTextProperty("value");
+            expected.RecordingDate = DateTime.Now;
+            expected.ValueDetermination.Value = "CALC";
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
-            result.SoftwarePartSize.ShouldDeepEqualwithDate(expected.SoftwarePartSize);
+            Property<DummyClassification> result = new Property<DummyClassification>();
+            result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
         }
 
         public void LastTextProptySetShouldWin()
         {
-            SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.SoftwarePartSize = PropertyFactory.Create<BinaryUnitClassification>(2.5, "BIT");
-            expected.SoftwarePartSize.Text = "text property";
+            Property<DummyClassification> expected = new Property<DummyClassification>();
+            expected.CreateSingleValueProperty(2.5, "TEST");
+            expected.Text = "text property";
 
-            SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result.SoftwarePartSize = ObjectStreamtoObject(expected.SoftwarePartSize);
+            Property<DummyClassification> result = new Property<DummyClassification>();
+            result = ObjectStreamtoObjectNew(expected);
 
-            Assert.AreEqual(expected.SoftwarePartSize.Text, result.SoftwarePartSize.Text);
-            Assert.IsNull(result.SoftwarePartSize.Value);
-            Assert.IsNull(result.SoftwarePartSize.Unit);
+            Assert.AreEqual(expected.Text, result.Text);
+            Assert.IsNull(result.Value);
+            Assert.IsNull(result.Unit);
         }
         #endregion
     }

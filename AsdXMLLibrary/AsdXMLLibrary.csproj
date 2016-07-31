@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Classifications\ClassificationManager.cs" />
+    <Compile Include="Base\Constants.cs" />
     <Compile Include="Base\DatedDescriptor.cs" />
     <Compile Include="Base\Descriptor.cs" />
+    <Compile Include="Base\SerializeBase.cs" />
     <Compile Include="Base\ProvidedDescriptor.cs" />
     <Compile Include="Base\Identifier.cs" />
     <Compile Include="Base\Classifications\ClassificationException.cs" />
@@ -54,9 +56,9 @@
     <Compile Include="Base\MultipleDescriptor.cs" />
     <Compile Include="Base\MultipleIdentifier.cs" />
     <Compile Include="Base\Properties\Property.cs" />
-    <Compile Include="Base\Properties\PropertyFactory.cs" />
     <Compile Include="Base\Properties\PropertyType.cs" />
     <Compile Include="Base\ProvidedIdentifier.cs" />
+    <Compile Include="Base\XmlExtensionMethods.cs" />
     <Compile Include="ContentManager.cs" />
     <Compile Include="Objects\Message\S3000LMessage.cs" />
     <Compile Include="Objects\Message\S3000LMessageContent.cs" />

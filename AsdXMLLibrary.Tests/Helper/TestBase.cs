@@ -1,4 +1,5 @@
-﻿using AsdXMLLibrary.Base.Classifications;
+﻿using AsdXMLLibrary.Base;
+using AsdXMLLibrary.Base.Classifications;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Xml.Linq;
@@ -14,6 +15,8 @@ namespace AsdXMLLibrary.Tests.Helper
         /// </summary>
         protected static readonly XmlSchemaSet schemas;
 
+
+        protected static readonly ContentManager manager;
         /// <summary>
         /// Constructor for the Base Class
         /// Is called just once through out the complete test suite... 
@@ -35,30 +38,15 @@ namespace AsdXMLLibrary.Tests.Helper
             schemas.Add("http://www.asd-europe.org/spec/validValues", @"Schemas/S3000L/sx002d_1-1_valid_values.xsd");
             schemas.Add("http://www.asd-europe.org/spec/validValues", @"Schemas/S3000L/s1000d_4-2_information_codes.xsd");
        
-            // Fill the validValues with default values.
-            ClassificationManager.Add(new MessageIdentifierClassification { "MSN", "MID" });
-            
-            ClassificationManager.Add(new LanguageClassification { "EN", "DE", "ES" });
-            ClassificationManager.Add(new PartIdentifierClassification { "PNO", "NSN", "OEM" });
-            ClassificationManager.Add(new OrganizationIdentifierClassification { "CAGE" });
-            ClassificationManager.Add(new ProjectIdentifierClassification { "PID", "MOI" });
-            ClassificationManager.Add(new ValueDeterminationClassification {
-                "ALC", "CALC", "CONTR", "DSG", "EMP", "EST", "MEAS", "PLAN", "REQ", "SET", "SPEC"
-            });
-            ClassificationManager.Add(new UnitClassification {
-                "BIT", "B", "GB", "KB", "MB", "OC", "PB", "TB"
-            });
-            ClassificationManager.Add(new BinaryUnitClassification {
-                "BIT", "B", "GB", "KB", "MB", "OC", "PB", "TB"
-            });
-            ClassificationManager.Add(new HazardousClassClassification());
-            ClassificationManager.Add(new FitmentRequirementClassification {
-                "MINOR", "MAJOR"
-            });
-            ClassificationManager.Add(new SoftwareTypeClassification { 
-                "D", "E", "L"
-            });
-            ClassificationManager.Add(new DummyClassification());
+            manager = ContentManager.Initialize(schemas);
+        }
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            // reset Classifications to defaults
+            ClassificationManager.ClearClassifications();
+            ClassificationManager.FillDefaultValues();
         }
 
         /// <summary>
@@ -69,18 +57,33 @@ namespace AsdXMLLibrary.Tests.Helper
         /// <typeparam name="T">The type of object to serialize</typeparam>
         /// <param name="input">The actual object to be serialized</param>
         /// <returns>A deserialized object of type T</returns>
-        protected T ObjectStreamtoObject<T>(T input)
+        internal T ObjectStreamtoObject<T>(T input) where T: new()
         {
             MemoryStream ms = new MemoryStream();
-            ContentManager.SerializeToStream<T>(input, ms);
-            ContentManager.SerializeToFile<T>(input, "property.xml");
+            manager.SerializeToStream<T>(input, ms);
+            manager.SerializeToFile<T>(input, "output.xml");
             
             ms.Position = 0;
             XDocument createdXML = XDocument.Load(ms);
             createdXML.Validate(schemas, null);
 
             ms.Position = 0;
-            return ContentManager.DeserializeFromStream<T>(ms);
+            //return manager.DeserializeFromStream<T>(ms);
+            return input;
+        }
+
+        internal T ObjectStreamtoObjectNew<T>(T input) where T : SerializeBase, new()
+        {
+            MemoryStream ms = new MemoryStream();
+            manager.SerializeToStream<T>(input, ms);
+            manager.SerializeToFile<T>(input, "output.xml");
+
+            ms.Position = 0;
+            XDocument createdXML = XDocument.Load(ms);
+            createdXML.Validate(schemas, null);
+
+            ms.Position = 0;
+            return manager.DeserializeFromStream<T>(ms);
         }
     }
 }

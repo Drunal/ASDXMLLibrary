@@ -10,6 +10,7 @@ namespace AsdXMLLibrary.Tests.Base
     {
 
         private readonly string TestValue = "value";
+        private readonly string TestElementName = "test";
 
         [TestInitialize]
         public void TestSetup()
@@ -22,7 +23,7 @@ namespace AsdXMLLibrary.Tests.Base
         public void SetExistingClassification()
         {
             ClassificationManager.Add(new TestClassification { TestValue });
-            var testClass = new Classification(typeof(TestClassification));
+            var testClass = new Classification(TestElementName, typeof(TestClassification));
             testClass.Value = TestValue;
             Assert.AreEqual(TestValue, testClass.Value);
         }
@@ -32,7 +33,7 @@ namespace AsdXMLLibrary.Tests.Base
         {
             Classification testClass = null;
             ExceptionAssert.Throws<ClassificationException>(
-                () => testClass = new Classification(typeof(TestClassification)),
+                () => testClass = new Classification(TestElementName, typeof(TestClassification)),
                 string.Format("Classification '{0}' is not initialized!", typeof(TestClassification).Name)
             );
         }
@@ -43,7 +44,7 @@ namespace AsdXMLLibrary.Tests.Base
             string invalidValue = "invalid";
 
             ClassificationManager.Add(new TestClassification { TestValue });
-            Classification testClass = new Classification(typeof(TestClassification));
+            Classification testClass = new Classification(TestElementName, typeof(TestClassification));
             ExceptionAssert.Throws<ClassificationException>(
                 () =>  testClass.Value = invalidValue,
                 string.Format("Value '{0}' is not a valid value for {1}!", invalidValue, typeof(TestClassification).Name)

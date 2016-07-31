@@ -1,7 +1,7 @@
 ﻿using AsdXMLLibrary.Objects;
 using AsdXMLLibrary.Tests.Helper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DeepEqual.Syntax;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Schema;
 
 namespace AsdXMLLibrary.Tests.Base

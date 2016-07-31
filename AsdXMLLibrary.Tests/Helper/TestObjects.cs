@@ -1,5 +1,4 @@
 ﻿using AsdXMLLibrary.Objects;
-using System;
 
 namespace AsdXMLLibrary.Tests.Helper
 {
@@ -40,7 +39,7 @@ namespace AsdXMLLibrary.Tests.Helper
             {
                 var sw = new SoftwarePartAsDesigned();
                 sw.PartIds.MainID.ID = "PartNumber-1234";
-                sw.PartIds.MainID.SetBy = OrganizationMinimum.Reference;
+                sw.PartIds.MainID.SetBy.SetTarget(OrganizationMinimum);
                 return sw;
             }
         }
