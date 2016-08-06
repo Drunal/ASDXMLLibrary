@@ -68,7 +68,7 @@ namespace AsdXMLLibrary.Tests.Base
             SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMultipleIds;
 
             SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result = ObjectStreamtoObject(expected);
+            result = ObjectStreamtoObject(expected, "swPart");
             result.PartIds.ShouldDeepEqualwithDate(expected.PartIds);
         }
 

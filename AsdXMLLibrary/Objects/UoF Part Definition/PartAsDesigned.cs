@@ -1,7 +1,6 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Objects.References;
-using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -37,12 +36,32 @@ namespace AsdXMLLibrary.Objects
         #region Serialize Functions
         public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            throw new System.NotImplementedException();
+            XElement part = new XElement(ns + elementName);
+            foreach (var id in PartIds)
+                part.Add(id.GetXML(Constants.PartAsDesignedPartIdElementName, ns));
+            foreach (var name in PartNames)
+                part.Add(name.GetXML(Constants.PartAsDesignedPartNameElementName, ns));
+
+            return part;
         }
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
-            throw new System.NotImplementedException();
+            foreach (XElement idElement in element.Elements(ns + Constants.PartAsDesignedPartIdElementName)) 
+            {
+                ProvidedIdentifier<PartIdentifierClassification> id = new ProvidedIdentifier<PartIdentifierClassification>();
+                id.ReadfromXML(idElement, ns);
+                PartIds.Add(id);
+            }
+                
+            foreach (XElement nameElement in element.Elements(ns + Constants.PartAsDesignedPartNameElementName))
+            {
+                ProvidedDescriptor descr = new ProvidedDescriptor(Constants.PartAsDesignedPartNameElementName);
+                descr.ReadfromXML(nameElement, ns);
+                PartNames.Add(descr);
+            }
+
+            return true;
         }
         #endregion
     }

@@ -4,7 +4,7 @@
     targetNamespace="http://www.asd-europe.org/s-series/s3000l"
     elementFormDefault="qualified">
     
-    <xsd:include schemaLocation="Basics.xsd"/>
+    <xsd:include schemaLocation="S3000L/s3000l_1-1_lsa_dataset_without_assert.xsd"/>
     
     <xsd:element name="swPart" type="softwarePartAsDesigned"/> 
     

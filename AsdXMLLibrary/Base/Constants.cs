@@ -40,6 +40,9 @@ namespace AsdXMLLibrary.Base
         #endregion
 
         #region Parts
+        public static readonly string PartAsDesignedPartIdElementName = "partId";
+        public static readonly string PartAsDesignedPartNameElementName = "name";
+
         public static readonly string HardwarePartAsDesignedElementName = "hwPart";
         public static readonly string HardwarePartHazardousClassElementName = "haz";
         public static readonly string HardwarePartFitmentRequirementElementName = "ftc";

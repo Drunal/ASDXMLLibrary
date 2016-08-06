@@ -100,7 +100,7 @@ namespace AsdXMLLibrary.Tests.Base
             SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMultipleNames;
 
             SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result = ObjectStreamtoObject(expected);
+            result = ObjectStreamtoObject(expected, "swPart");
             result.PartNames.ShouldDeepEqualwithDate(expected.PartNames);
         }
     }
