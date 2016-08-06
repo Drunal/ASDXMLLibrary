@@ -1,21 +1,12 @@
 ﻿using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
-    [XmlRoot(ElementName = "Identifier")]
     public class Identifier<IdentifierClassification> : SerializeBase, IHaveValue
     {
-        [XmlElement(ElementName = "id")]
         public string ID { get; set; }
 
-        [XmlElement(ElementName = "class")]
         public Classification Class { get; set; }
-
-        #region XML Handling Properties
-        [XmlIgnore]
-        public bool ClassSpecified { get { return Class.HasValue; } }
-        #endregion
 
         #region Constructors
         public Identifier()

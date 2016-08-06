@@ -2,30 +2,23 @@
 using System;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base.Properties
 {
-    [XmlRoot(ElementName="Property")]
     public class Property<T> : SerializeBase, IHaveValue
     {
-        [XmlIgnore]
         public PropertyType Type { get; private set; }
 
-        [XmlElement(ElementName = "date", DataType = "date")]
         public DateTime? RecordingDate { get; set; }
 
-        [XmlElement(ElementName="vdtm")]
         public Classification ValueDetermination { get; set; }
 
-        [XmlElement(ElementName = "unit")]
         public Classification Unit { get; set; }
 
         #region Property Values
         private double? _value;
         // TODO: I really don't like this solution to handle the choices!
         // but i'm tired and the generic approach caused problems with deserialization
-        [XmlElement(ElementName = "value")]
         public double? Value
         {
             get { return _value; }
@@ -37,7 +30,6 @@ namespace AsdXMLLibrary.Base.Properties
         }
 
         private double? _lowerLimit;
-        [XmlElement(ElementName = "lowVal")]
         public double? LowerLimit
         {
             get { return _lowerLimit; }
@@ -48,7 +40,6 @@ namespace AsdXMLLibrary.Base.Properties
             }
         }
         private double? _upperLimit;
-        [XmlElement(ElementName = "uppVal")]
         public double? UpperLimit
         {
             get { return _upperLimit; }
@@ -60,7 +51,6 @@ namespace AsdXMLLibrary.Base.Properties
         }
 
         private double? _nominalValue;
-        [XmlElement(ElementName = "nomVal")]
         public double? NominalValue
         {
             get { return _nominalValue; }
@@ -71,7 +61,6 @@ namespace AsdXMLLibrary.Base.Properties
             }
         }
         private double? _lowerOffset;
-        [XmlElement(ElementName = "lowOff")]
         public double? LowerOffset
         {
             get { return _lowerOffset; }
@@ -82,7 +71,6 @@ namespace AsdXMLLibrary.Base.Properties
             }
         }
         private double? _upperOffset;
-        [XmlElement(ElementName = "uppOff")]
         public double? UpperOffset
         {
             get { return _upperOffset; }
@@ -93,7 +81,6 @@ namespace AsdXMLLibrary.Base.Properties
             }
         }
         private string _text;
-        [XmlElement(ElementName = "txt")]
         public string Text
         {
             get { return _text; }
@@ -105,39 +92,14 @@ namespace AsdXMLLibrary.Base.Properties
         }
         #endregion
 
-        #region XML Handling Properties
-        // these properties control if the respective property is written to the xml or not
-        [XmlIgnore]
-        public bool RecordingDateSpecified { get { return RecordingDate.HasValue; } }
-        [XmlIgnore] 
-        public bool ValueDeterminationSpecified { get { return ValueDetermination.HasValue; } }
-        [XmlIgnore]
-        public bool UnitSpecified { get { return Type != PropertyType.TextProperty; } }
-        [XmlIgnore]
-        public bool ValueSpecified { get { return Value.HasValue && Type == PropertyType.SingleValueProperty; } }
-        // Lower and Upper have the same condition, because both should only be written if both are set
-        [XmlIgnore]
-        public bool LowerLimitSpecified { get { return LowerLimit.HasValue && UpperLimit.HasValue && Type == PropertyType.ValueRangeProperty; } }
-        [XmlIgnore]
-        public bool UpperLimitSpecified { get { return LowerLimit.HasValue && UpperLimit.HasValue && Type == PropertyType.ValueRangeProperty; } }
-        [XmlIgnore]
-        public bool NominalValueSpecified { get { return LowerOffset.HasValue && UpperOffset.HasValue && NominalValue.HasValue && Type == PropertyType.ValueWithTolerancesProperty; } }
-        [XmlIgnore]
-        public bool LowerOffsetSpecified { get { return LowerOffset.HasValue && UpperOffset.HasValue && NominalValue.HasValue && Type == PropertyType.ValueWithTolerancesProperty; } }
-        [XmlIgnore]
-        public bool UpperOffsetSpecified { get { return LowerOffset.HasValue && UpperOffset.HasValue && NominalValue.HasValue && Type == PropertyType.ValueWithTolerancesProperty; } }
-        [XmlIgnore]
-        public bool TextSpecified { get { return !string.IsNullOrEmpty(Text) && Type == PropertyType.TextProperty; } }
-        #endregion
-
         public bool HasValue
         {
             get
             {
-                return ValueSpecified ||
-                    LowerLimitSpecified || UpperLimitSpecified ||
-                    NominalValueSpecified || LowerOffsetSpecified || UpperOffsetSpecified ||
-                    TextSpecified;
+                return Value.HasValue ||
+                    (LowerLimit.HasValue && UpperLimit.HasValue) ||
+                    (NominalValue.HasValue && LowerOffset.HasValue && UpperOffset.HasValue) ||
+                    !string.IsNullOrEmpty(Text);
             }
         }
         public Property()
@@ -245,7 +207,7 @@ namespace AsdXMLLibrary.Base.Properties
             if (!HasValue) return null;
 
             XElement property = new XElement(ns + elementName);
-            if (RecordingDateSpecified)
+            if (RecordingDate.HasValue)
                 property.Add(new XElement(ns + Constants.DateElementName, RecordingDate.ToXmlDateString()));
             property.Add(ValueDetermination.GetXML(Constants.PropertyValueDeterminationElementName, ns));
 

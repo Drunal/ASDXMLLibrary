@@ -2,28 +2,17 @@
 using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Base.Properties;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects
 {
-    [XmlRoot(ElementName="swPart")]
     public class SoftwarePartAsDesigned : PartAsDesigned
     {
         #region Design Data
-        [XmlElement(ElementName = "swType")]
         public Classification SoftwareType { get; set; }
 
-        [XmlElement(ElementName="swSize")]
         public Property<BinaryUnitClassification> SoftwarePartSize { get; set; }
-        
         #endregion
 
-        #region XML Handling Properties
-        [XmlIgnore]
-        public bool SoftwareTypeSpecified { get { return SoftwareType.HasValue; } }
-        [XmlIgnore]
-        public bool SoftwarePartSizeSpecified { get { return SoftwarePartSize != null && SoftwarePartSize.HasValue; } }
-        #endregion
 
         public SoftwarePartAsDesigned()
         {
@@ -35,9 +24,9 @@ namespace AsdXMLLibrary.Objects
         public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement swPart = base.GetXML(elementName, ns);
-            if (SoftwareTypeSpecified)
+            if (SoftwareType.HasValue)
                 swPart.Add(SoftwareType.GetXML(Constants.SoftwareTypeElementName, ns));
-            if (SoftwarePartSizeSpecified)
+            if (SoftwarePartSize.HasValue)
                 swPart.Add(SoftwarePartSize.GetXML(Constants.SoftwarePartSizeElementName, ns));
 
             return swPart;

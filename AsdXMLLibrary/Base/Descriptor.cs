@@ -1,22 +1,12 @@
 ﻿using AsdXMLLibrary.Base.Classifications;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
-    [XmlRoot(ElementName = "Descriptor")]
     public class Descriptor : SerializeBase, IHaveValue
     {
-        [XmlElement(ElementName = "descr")]
         public string Text { get; set; }
-        [XmlElement(ElementName = "lang")]
         public Classification Language { get; set; }
-
-        #region XML Handling Properties
-        /// these properties control if the respective property is written to the xml or not
-        [XmlIgnore]
-        public bool LanguageSpecified { get { return Language.HasValue; } }
-        #endregion
 
         #region Constructors
         public Descriptor()

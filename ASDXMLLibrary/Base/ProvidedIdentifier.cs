@@ -1,17 +1,12 @@
 ﻿using AsdXMLLibrary.Objects;
 using AsdXMLLibrary.Objects.References;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
     public class ProvidedIdentifier<T> : Identifier<T>
     {
-        [XmlElement(ElementName = "setBy")]
         public OrganizationReference SetBy { get; set; }
-
-        [XmlIgnore]
-        public bool SetBySpecified { get { return SetBy != null; } }
 
         #region Constructor
         public ProvidedIdentifier()

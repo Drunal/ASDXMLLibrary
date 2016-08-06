@@ -1,17 +1,11 @@
 ﻿using AsdXMLLibrary.Objects.References;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
-    [XmlRoot(ElementName = "Descriptor")]
     public class ProvidedDescriptor : Descriptor
     {
-        [XmlElement(ElementName = "providedBy")]
         public OrganizationReference ProvidedBy { get; private set; }
-
-        [XmlIgnore]
-        public bool ProvidedBySpecified { get { return ProvidedBy.HasValue; } }
 
         #region Constructors
         public ProvidedDescriptor()

@@ -1,53 +1,25 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
-using AsdXMLLibrary.Objects.References;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects
 {
     public class HardwarePartAsDesigned : PartAsDesigned
     {
         #region Design Data
-        [XmlElement(ElementName = "haz")]
         public Classification HazardousClass { get; set; }
         // Authorized Life
-        [XmlElement(ElementName = "ftc")]
         public Classification FitmentRequirement { get; set; }
-        [XmlElement(ElementName = "emi")]
+        //[XmlElement(ElementName = "emi")]
         public bool? ElectromagneticIncompatible { get; set; }
-        [XmlElement(ElementName = "ess")]
+        //[XmlElement(ElementName = "ess")]
         public bool? ElectrostaticSensitive { get; set; }
-        [XmlElement(ElementName = "ems")]
+        //[XmlElement(ElementName = "ems")]
         public bool? ElectromagnecticSensitive { get; set; }
-        [XmlElement(ElementName = "mse")]
+        //[XmlElement(ElementName = "mse")]
         public bool? MagneticSensitive { get; set; }
-        [XmlElement(ElementName = "rse")]
+        //[XmlElement(ElementName = "rse")]
         public bool? RadiationSensitive { get; set; }
-                
-        #region XML Handling Properties
-        /// these properties control if the respective property is written to the xml or not
-        [XmlIgnore]
-        public bool HazardousClassSpecified { get { return HazardousClass.HasValue; } }
-        [XmlIgnore]
-        public bool FitmentRequirementSpecified { get { return FitmentRequirement.HasValue; } }
-        [XmlIgnore]
-        public bool ElectromagneticIncompatibleSpecified { get { return ElectromagneticIncompatible.HasValue; } }
-        [XmlIgnore]
-        public bool ElectrostaticSensitiveSpecified { get { return ElectrostaticSensitive.HasValue; } }
-        [XmlIgnore]
-        public bool ElectromagnecticSensitiveSpecified { get { return ElectromagnecticSensitive.HasValue; } }
-        [XmlIgnore]
-        public bool MagneticSensitiveSpecified { get { return MagneticSensitive.HasValue; } }
-        [XmlIgnore]
-        public bool RadiationSensitiveSpecified { get { return RadiationSensitive.HasValue; } }
-        #endregion
-
         #endregion
 
         public HardwarePartAsDesigned()
@@ -61,9 +33,9 @@ namespace AsdXMLLibrary.Objects
         public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement hwPart = base.GetXML(elementName, ns);
-            if (HazardousClassSpecified)
+            if (HazardousClass.HasValue)
                 hwPart.Add(HazardousClass.GetXML(Constants.HardwarePartHazardousClassElementName, ns));
-            if (FitmentRequirementSpecified)
+            if (FitmentRequirement.HasValue)
                 hwPart.Add(FitmentRequirement.GetXML(Constants.HardwarePartFitmentRequirementElementName, ns));
 
             return hwPart;
@@ -73,8 +45,8 @@ namespace AsdXMLLibrary.Objects
         {
             // this should read the base information
             base.ReadfromXML(element, ns);
-            HazardousClass.ReadfromXML(element.Element(ns + Constants.SoftwareTypeElementName), ns);
-            FitmentRequirement.ReadfromXML(element.Element(ns + Constants.SoftwareTypeElementName), ns);
+            HazardousClass.ReadfromXML(element.Element(ns + Constants.HardwarePartHazardousClassElementName), ns);
+            FitmentRequirement.ReadfromXML(element.Element(ns + Constants.HardwarePartFitmentRequirementElementName), ns);
             return true;
         }
         #endregion

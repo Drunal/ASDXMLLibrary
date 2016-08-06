@@ -1,13 +1,11 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Objects.References
 {
     public class OrganizationReference : SerializeBase, IAmReference, IHaveValue
     {
-        [XmlElement(ElementName = "orgId")]
         public Identifier<OrganizationIdentifierClassification> OrgId { get; set; }
 
         public OrganizationReference()

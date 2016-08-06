@@ -1,7 +1,6 @@
 ﻿using AsdXMLLibrary.Base.Classifications;
 using System;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace AsdXMLLibrary.Base
 {
@@ -15,7 +14,6 @@ namespace AsdXMLLibrary.Base
 
         private string chosenValue;
 
-        [XmlText]
         public string Value { get { return chosenValue; }
             set
             {
