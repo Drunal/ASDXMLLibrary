@@ -1,14 +1,18 @@
-﻿using AsdXMLLibrary.Objects;
+﻿using AsdXMLLibrary.Base;
+using AsdXMLLibrary.Base.Classifications;
+using AsdXMLLibrary.Objects;
 using AsdXMLLibrary.Tests.Helper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DeepEqual.Syntax;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Schema;
 
 namespace AsdXMLLibrary.Tests.Base
 {
     [TestClass]
-    public class IdentifierTests : TestBase
+    public class IdentifierTests : SerializeTestBase
     {
+        protected override string TestRootElementName { get { return "Identifier"; } }
+
         [TestMethod]
         public void SerializeCompleteIdentifier()
         {
@@ -28,6 +32,26 @@ namespace AsdXMLLibrary.Tests.Base
         }
 
         [TestMethod]
+        public void SerializeMinimalProvidedIdentifier()
+        {
+            ProvidedIdentifier<DummyClassification> expected = new ProvidedIdentifier<DummyClassification>("12345");
+            ProvidedIdentifier<DummyClassification> result = ObjectStreamtoObject(expected);
+            result.ShouldDeepEqualwithDate(expected);
+        }
+
+        [TestMethod]
+        public void SerializeCompleteProvidedIdentifier()
+        {
+            // add classification to avoid an unwanted exception, while creating the testobject
+            ClassificationManager.Add(new DummyClassification { 
+                "TEST"
+            }, true);
+            ProvidedIdentifier<DummyClassification> expected = new ProvidedIdentifier<DummyClassification>("12345", "TEST", TestObjects.OrganizationMinimum);
+            ProvidedIdentifier<DummyClassification> result = ObjectStreamtoObject(expected);
+            result.ShouldDeepEqualwithDate(expected);
+        }
+
+        [TestMethod]
         public void ShouldThrowOnMissingId()
         {
             Organization expected = TestObjects.OrganizationMinimum;
@@ -44,7 +68,7 @@ namespace AsdXMLLibrary.Tests.Base
             SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMultipleIds;
 
             SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
-            result = ObjectStreamtoObject(expected);
+            result = ObjectStreamtoObject(expected, "swPart");
             result.PartIds.ShouldDeepEqualwithDate(expected.PartIds);
         }
 
@@ -52,7 +76,7 @@ namespace AsdXMLLibrary.Tests.Base
         public void ShouldThrowOnMissingIdWithMultipleIdsPossibility()
         {
             SoftwarePartAsDesigned expected = TestObjects.SoftwarePartMinimum;
-            expected.PartIds.MainID.ID = string.Empty;
+            expected.PartIds.Primary.ID = string.Empty;
             SoftwarePartAsDesigned result = new SoftwarePartAsDesigned();
             ExceptionAssert.Throws<XmlSchemaValidationException>(
                 () => ObjectStreamtoObject(expected)

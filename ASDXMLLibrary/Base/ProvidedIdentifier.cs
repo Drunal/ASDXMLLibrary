@@ -1,37 +1,61 @@
-﻿using AsdXMLLibrary.Objects.References;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using AsdXMLLibrary.Objects;
+using AsdXMLLibrary.Objects.References;
+using System.Xml.Linq;
 
 namespace AsdXMLLibrary.Base
 {
     public class ProvidedIdentifier<T> : Identifier<T>
     {
-        [XmlElement(ElementName = "setBy")]
         public OrganizationReference SetBy { get; set; }
 
-        [XmlIgnore]
-        public bool SetBySpecified { get { return SetBy != null; } }
-
+        #region Constructor
         public ProvidedIdentifier()
-            : base()
-        { }
+        { 
+            Initialize();
+        }
 
         public ProvidedIdentifier(string value)
             : base(value)
-        { }
+        {
+            Initialize();
+        }
 
         public ProvidedIdentifier(string value, string classification)
-            : this(value, classification, null)
-        { }
-
-        public ProvidedIdentifier(string value, string classification, OrganizationReference setBy)
             : base(value, classification)
         {
-            this.SetBy = setBy;
+            Initialize();
         }
+
+        public ProvidedIdentifier(string value, string classification, Organization setBy)
+            : base(value, classification)
+        {
+            Initialize();
+            this.SetBy.SetTarget(setBy);
+        }
+
+        #endregion
+
+        public void Initialize() 
+        {
+            SetBy = new OrganizationReference();
+        }
+
+        #region Serialize Functions
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
+        {
+            XElement idenetifier = base.CreateXML(elementName, ns);
+            idenetifier.Add(SetBy.CreateXML(Constants.SetByElementName, ns));
+
+            return idenetifier;
+        }
+
+        public override bool ReadfromXML(XElement element, XNamespace ns)
+        {
+            // this should read id and class
+            base.ReadfromXML(element, ns);
+            SetBy.ReadfromXML(element.Element(ns + Constants.SetByElementName), ns);
+            return true;
+        }
+        #endregion
     }
 }

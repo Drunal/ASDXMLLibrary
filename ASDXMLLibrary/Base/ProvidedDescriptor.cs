@@ -1,31 +1,52 @@
 ﻿using AsdXMLLibrary.Objects.References;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace AsdXMLLibrary.Base
 {
     public class ProvidedDescriptor : Descriptor
     {
-        [XmlElement(ElementName = "providedBy")]
-        public OrganizationReference ProvidedBy { get; set; }
+        public OrganizationReference ProvidedBy { get; private set; }
 
-        [XmlIgnore]
-        public bool ProvidedBySpecified { get { return ProvidedBy != null; } }
-
+        #region Constructors
         public ProvidedDescriptor()
-            : base()
-        { }
+        {
+            Initialize();
+        }
 
         public ProvidedDescriptor(string text)
             : base(text)
-        { }
+        {
+            Initialize();
+        }
 
         public ProvidedDescriptor(string text, string language)
             : base(text, language)
-        { }
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            ProvidedBy = new OrganizationReference();
+        }
+        #endregion
+
+        #region Serialize Functions
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
+        {
+            XElement descriptor = base.CreateXML(elementName, ns);
+            descriptor.Add(ProvidedBy.CreateXML(Constants.ProvidedByElementName, ns));
+
+            return descriptor;
+        }
+
+        public override bool ReadfromXML(XElement element, XNamespace ns)
+        {
+            // this should read name and language
+            base.ReadfromXML(element, ns);
+            ProvidedBy.ReadfromXML(element.Element(ns + Constants.ProvidedByElementName), ns);
+            return true;
+        }
+        #endregion
     }
 }

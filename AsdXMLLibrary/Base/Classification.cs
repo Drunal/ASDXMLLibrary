@@ -1,20 +1,19 @@
 ﻿using AsdXMLLibrary.Base.Classifications;
 using System;
-using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace AsdXMLLibrary.Base
 {
     /// <summary>
     /// Holds the chosen value and knowledge about the valid Values for this particular value.
     /// </summary>
-    public class Classification : IHaveValue
+    public class Classification : SerializeBase, IHaveValue
     {
         private ClassificationBase validValues;
         private bool isDummy = false;
 
         private string chosenValue;
 
-        [XmlText]
         public string Value { get { return chosenValue; }
             set
             {
@@ -27,7 +26,7 @@ namespace AsdXMLLibrary.Base
         #region Constructors
         public Classification()
             : this(typeof(DummyClassification))
-        {
+        { 
             isDummy = true;
         }
 
@@ -47,5 +46,32 @@ namespace AsdXMLLibrary.Base
         {
             get { return !string.IsNullOrEmpty(chosenValue); }
         }
+
+        #region Serialize Funcctions
+        /// <summary>
+        /// Creates an XElement for this classification. 
+        /// If no value is present, 'null' is returned. 
+        /// Unless <paramref name="forceElement"/> is set to <c>True</c>.
+        /// In this case the XElement is created and returned with no content. 
+        /// </summary>
+        /// <param name="ns">The namespace the element should be in.</param>
+        /// <param name="forceElement">Define if the element must be created regardless of available content.</param>
+        /// <returns></returns>
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement=false)
+        {
+            return HasValue ? new XElement(ns + elementName, chosenValue) : null;
+        }
+
+        public override bool ReadfromXML(XElement element, XNamespace ns)
+        {
+            if (element == null)
+                return false; // so there was no element for language, meh
+
+            chosenValue = element.Value;
+
+            return true;
+        }
+
+        #endregion
     }
 }

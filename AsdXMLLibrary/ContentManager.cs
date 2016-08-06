@@ -1,38 +1,40 @@
-﻿using AsdXMLLibrary.Base.Properties;
-using System;
-using System.Collections.Generic;
+﻿using AsdXMLLibrary.Base;
 using System.IO;
-using System.Reflection;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Linq;
+using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace AsdXMLLibrary
 {
-    public static class ContentManager
+    public class ContentManager
     {
-        private static XmlSerializerNamespaces AsdNamespaces = new XmlSerializerNamespaces();
+        private XmlSchemaSet _schemas;
 
-        static ContentManager()
+        public static ContentManager Initialize(XmlSchemaSet schemas)
         {
-            AsdNamespaces.Add(string.Empty, "http://www.asd-europe.org/s-series/s3000l");
-            AsdNamespaces.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            return new ContentManager(schemas);
         }
 
-        public static void SerializeToFile<T>(T serializableObject, string filePath)
+        public ContentManager(XmlSchemaSet schemas)
+        {
+            _schemas = schemas;
+        }
+
+        public void SerializeToFile<T>(T serializableObject, string filePath, string rootElementName) where T: SerializeBase
         {
             using (var writer = new FileStream(filePath, FileMode.Create))
-                SerializeToStream<T>(serializableObject, writer);
+                SerializeToStream<T>(serializableObject, writer, rootElementName);
         }
 
-        public static void SerializeToStream<T>(T serializableObject, Stream stream)
+        public void SerializeToStream<T>(T serializableObject, Stream stream, string rootElementName) where T : SerializeBase
         {
             // TODO: move default namespace to parameter to handle s3000l/s2000m files
-            var serializer = new XmlSerializer(typeof(T), "http://www.asd-europe.org/s-series/s3000l");
-            serializer.Serialize(stream, serializableObject, AsdNamespaces);
+
+            XNamespace ns = "http://www.asd-europe.org/s-series/s3000l";
+            new XDocument((serializableObject as SerializeBase).CreateXML(rootElementName, ns)).Save(stream);
+
         }
 
-        public static T DeserializeFromFile<T>(string filePath)
+        public T DeserializeFromFile<T>(string filePath) where T : SerializeBase, new()
         {
             T result = default(T);
 
@@ -41,13 +43,23 @@ namespace AsdXMLLibrary
             return result;
         }
 
-        public static T DeserializeFromStream<T>(Stream stream)
+        public T DeserializeFromStream<T>(Stream stream) where T : SerializeBase, new()
         {
             // TODO: move default namespace to parameter to handle s3000l/s2000m files
-            var serializer = new XmlSerializer(typeof(T), "http://www.asd-europe.org/s-series/s3000l");
-            return (T)serializer.Deserialize(stream);
-        }
 
-        
+            XNamespace ns = "http://www.asd-europe.org/s-series/s3000l";
+            XDocument createdXML = XDocument.Load(stream);
+
+            // execute a schema validation prior to deserializing
+            // this way we can ensure that the file is schema compliant and we don't need to validate the schema implicitly at every ReadfromXML method.
+            createdXML.Validate(_schemas, null);
+
+            T result = new T();
+            result.ReadfromXML(createdXML.Root, ns);
+
+
+            return result;
+
+        }
     }
 }

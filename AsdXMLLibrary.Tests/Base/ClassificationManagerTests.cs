@@ -8,7 +8,6 @@ namespace AsdXMLLibrary.Tests.Base
     [TestClass]
     public class ClassificationManagerTests : TestBase
     {
-
         private readonly string TestValue = "value";
 
         [TestInitialize]

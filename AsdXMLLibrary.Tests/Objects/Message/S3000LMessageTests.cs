@@ -5,18 +5,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AsdXMLLibrary.Tests.Objects.Message
 {
     [TestClass]
-    public class S3000LMessageTests : TestBase
+    public class S3000LMessageTests : SerializeTestBase
     {
+        protected override string TestRootElementName { get { return "lsaDataSet"; } }
+
         [TestMethod]
         public void SimpleMessageTest()
         {
             S3000LMessage message = new S3000LMessage();
-            message.Content.ContentItems.Parts.Add(TestObjects.SoftwarePartMinimum);
-            message.Content.ContentItems.Parts.Add(new HardwarePartAsDesigned());
+            message.ContentItems.Parts.Add(TestObjects.SoftwarePartMinimum);
+            message.ContentItems.Parts.Add(new HardwarePartAsDesigned());
 
-            message.Content.SupportingItems.Organizations.Add(TestObjects.OrganizationFull);
+            message.SupportingItems.Organizations.Add(TestObjects.OrganizationFull);
 
-            ContentManager.SerializeToFile<S3000LMessage>(message, "message.xml");
+            manager.SerializeToFile<S3000LMessage>(message, "message.xml", TestRootElementName);
         }
     }
 }
