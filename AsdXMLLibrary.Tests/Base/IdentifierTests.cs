@@ -1,4 +1,6 @@
-﻿using AsdXMLLibrary.Objects;
+﻿using AsdXMLLibrary.Base;
+using AsdXMLLibrary.Base.Classifications;
+using AsdXMLLibrary.Objects;
 using AsdXMLLibrary.Tests.Helper;
 using DeepEqual.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -27,6 +29,26 @@ namespace AsdXMLLibrary.Tests.Base
             Organization result = new Organization();
             result.OrgId = ObjectStreamtoObject(expected.OrgId);
             result.OrgId.ShouldDeepEqual(expected.OrgId);
+        }
+
+        [TestMethod]
+        public void SerializeMinimalProvidedIdentifier()
+        {
+            ProvidedIdentifier<DummyClassification> expected = new ProvidedIdentifier<DummyClassification>("12345");
+            ProvidedIdentifier<DummyClassification> result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
+        }
+
+        [TestMethod]
+        public void SerializeCompleteProvidedIdentifier()
+        {
+            // add classification to avoid an unwanted exception, while creating the testobject
+            ClassificationManager.Add(new DummyClassification { 
+                "TEST"
+            }, true);
+            ProvidedIdentifier<DummyClassification> expected = new ProvidedIdentifier<DummyClassification>("12345", "TEST", TestObjects.OrganizationMinimum);
+            ProvidedIdentifier<DummyClassification> result = ObjectStreamtoObjectNew(expected);
+            result.ShouldDeepEqualwithDate(expected);
         }
 
         [TestMethod]
