@@ -8,7 +8,7 @@ using System.Xml.Schema;
 namespace AsdXMLLibrary.Tests.Base
 {
     [TestClass]
-    public class DescriptorTests : TestBase
+    public class DescriptorTests : SerializeTestBase
     {
         protected override string TestRootElementName { get { return "Descriptor"; } }
 

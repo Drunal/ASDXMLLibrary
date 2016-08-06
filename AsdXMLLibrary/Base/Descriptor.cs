@@ -20,24 +20,17 @@ namespace AsdXMLLibrary.Base
 
         #region Constructors
         public Descriptor()
-            : this(Constants.DefaultDescriptorElementName)
-        { 
-            // TODO: write to logger, that we are using the default name, which is probably not intended.
-        }
-
-        public Descriptor(string elementName)
-            : this(elementName, string.Empty)
+            : this(string.Empty)
         { }
 
-        public Descriptor(string elementName, string text)
-            : this(elementName, text, string.Empty)
+        public Descriptor(string text)
+            : this(text, string.Empty)
         { }
 
-        public Descriptor(string elementName, string text, string language)
-            :base (elementName)
+        public Descriptor(string text, string language)
         {
             Text = text;
-            Language = new Classification(Constants.LanguageElementName, typeof(LanguageClassification));
+            Language = new Classification(typeof(LanguageClassification));
             Language.Value = language;
         }
 

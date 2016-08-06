@@ -53,8 +53,8 @@ namespace AsdXMLLibrary.Objects
         public HardwarePartAsDesigned()
             : base(Constants.HardwarePartAsDesignedElementName)
         {
-            HazardousClass = new Classification(Constants.HardwarePartHazardousClassElementName, typeof(HazardousClassClassification));
-            FitmentRequirement = new Classification(Constants.HardwarePartFitmentRequirementElementName, typeof(FitmentRequirementClassification));
+            HazardousClass = new Classification(typeof(HazardousClassClassification));
+            FitmentRequirement = new Classification(typeof(FitmentRequirementClassification));
         }
 
         #region Serialize Functions

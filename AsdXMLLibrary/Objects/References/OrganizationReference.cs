@@ -11,15 +11,9 @@ namespace AsdXMLLibrary.Objects.References
         public Identifier<OrganizationIdentifierClassification> OrgId { get; set; }
 
         public OrganizationReference()
-            : this(Constants.SetByElementName)
+            : base()
         {
-            // TODO: write to logger, that we used the default name
-        }
-
-        public OrganizationReference(string elementName)
-            : base(elementName)
-        {
-            OrgId = new Identifier<OrganizationIdentifierClassification>(Constants.OrganizationIdElementName);
+            OrgId = new Identifier<OrganizationIdentifierClassification>();
         }
 
         public bool HasValue

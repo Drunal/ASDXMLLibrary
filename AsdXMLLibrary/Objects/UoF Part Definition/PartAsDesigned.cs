@@ -23,14 +23,13 @@ namespace AsdXMLLibrary.Objects
         public bool PartNameSpecified { get { return PartNames != null && PartNames.Count > 0; } }
         #endregion
 
-        public PartAsDesigned(string elementName)
-            : base(elementName)
+        public PartAsDesigned()
         {
             PartIds = new MultipleIdentifier<PartIdentifierClassification>();
             PartNames = new MultipleDescriptor();
         }
-        public PartAsDesigned(string elementName, string identifier)
-            : this(elementName)
+        public PartAsDesigned(string identifier)
+            : this()
         {
             PartIds.MainID.ID = identifier;
         }

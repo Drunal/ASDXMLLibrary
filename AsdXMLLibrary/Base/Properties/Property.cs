@@ -141,16 +141,9 @@ namespace AsdXMLLibrary.Base.Properties
             }
         }
         public Property()
-            : this(Constants.DefaultPropertyElementName)
-        { 
-            // TODO: write to log that we used the default name
-        }
-
-        public Property(string elementName)
-            : base(elementName)
         {
-            ValueDetermination = new Classification(Constants.PropertyValueDeterminationElementName, typeof(ValueDeterminationClassification));
-            Unit = new Classification(Constants.PropertyUnitElementName, typeof(T));
+            ValueDetermination = new Classification(typeof(ValueDeterminationClassification));
+            Unit = new Classification(typeof(T));
         }
 
         #region SingleValue Creation
@@ -226,14 +219,14 @@ namespace AsdXMLLibrary.Base.Properties
         {
             SetOptionalAttributes(recordingDate, determinationType);
             Text = text;
-            Unit = new Classification(Constants.PropertyUnitElementName, typeof(T));
+            Unit = new Classification(typeof(T));
         }
 
         #endregion
 
         private void SetOptionalAttributes(DateTime? recordingDate, string determinationType)
         {
-            ValueDetermination = new Classification(Constants.PropertyValueDeterminationElementName, typeof(ValueDeterminationClassification));
+            ValueDetermination = new Classification(typeof(ValueDeterminationClassification));
             ValueDetermination.Value = determinationType;
             RecordingDate = recordingDate;
             
@@ -241,7 +234,7 @@ namespace AsdXMLLibrary.Base.Properties
 
         private void SetUnit(string unit)
         {
-            Unit = new Classification(Constants.PropertyUnitElementName, typeof(T));
+            Unit = new Classification(typeof(T));
             Unit.Value = unit;
         }
 

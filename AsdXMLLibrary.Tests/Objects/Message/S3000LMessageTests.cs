@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AsdXMLLibrary.Tests.Objects.Message
 {
     [TestClass]
-    public class S3000LMessageTests : TestBase
+    public class S3000LMessageTests : SerializeTestBase
     {
         protected override string TestRootElementName { get { return "lsaDataSet"; } }
 

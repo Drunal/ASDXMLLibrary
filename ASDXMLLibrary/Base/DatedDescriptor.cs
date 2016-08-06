@@ -22,32 +22,25 @@ namespace AsdXMLLibrary.Base
 
         #region Constructor
         public DatedDescriptor()
-            : base()
         {
             Initialize();
         }
 
-        public DatedDescriptor(string elementName)
-            : base(elementName)
+        public DatedDescriptor(string text)
+            : base(text)
         {
             Initialize();
         }
 
-        public DatedDescriptor(string elementName, string text)
-            : base(elementName, text)
-        {
-            Initialize();
-        }
-
-        public DatedDescriptor(string elementName, string text, string language)
-            : base(elementName, text, language)
+        public DatedDescriptor(string text, string language)
+            : base(text, language)
         {
             Initialize();
         }
         
         private void Initialize()
         {
-            ProvidedBy = new OrganizationReference(Constants.ProvidedByElementName);
+            ProvidedBy = new OrganizationReference();
         }
         #endregion
         

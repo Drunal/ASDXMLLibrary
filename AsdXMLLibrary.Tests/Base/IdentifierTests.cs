@@ -7,7 +7,7 @@ using System.Xml.Schema;
 namespace AsdXMLLibrary.Tests.Base
 {
     [TestClass]
-    public class IdentifierTests : TestBase
+    public class IdentifierTests : SerializeTestBase
     {
         protected override string TestRootElementName { get { return "Identifier"; } }
 

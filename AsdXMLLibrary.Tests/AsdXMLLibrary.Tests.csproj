@@ -63,6 +63,7 @@
     <Compile Include="Helper\DateComparison.cs" />
     <Compile Include="Helper\DeepEqualExtension.cs" />
     <Compile Include="Helper\ExceptionAssert.cs" />
+    <Compile Include="Helper\SerializeTestBase.cs" />
     <Compile Include="Helper\TestBase.cs" />
     <Compile Include="Helper\TestObjects.cs" />
     <Compile Include="Base\IdentifierTests.cs" />

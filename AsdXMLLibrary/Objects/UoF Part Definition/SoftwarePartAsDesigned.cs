@@ -34,8 +34,8 @@ namespace AsdXMLLibrary.Objects
         public SoftwarePartAsDesigned()
             : base(Constants.SoftwarePartAsDesignedElementName)
         {
-            SoftwareType = new Classification(Constants.SoftwareTypeElementName, typeof(SoftwareTypeClassification));
-            SoftwarePartSize = new Property<BinaryUnitClassification>(Constants.SoftwarePartSizeElementName);
+            SoftwareType = new Classification(typeof(SoftwareTypeClassification));
+            SoftwarePartSize = new Property<BinaryUnitClassification>();
         }
 
         #region Serialize Functions

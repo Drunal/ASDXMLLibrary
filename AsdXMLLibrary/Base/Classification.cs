@@ -27,18 +27,16 @@ namespace AsdXMLLibrary.Base
 
         #region Constructors
         public Classification()
-            : this(Constants.DefaultClassificationElementName, typeof(DummyClassification))
+            : this(typeof(DummyClassification))
         { 
-            // TODO: write to logger, that we used the default elementName and a dummy Classification
             isDummy = true;
         }
 
-        public Classification(string elementName, Type classificationType)
-            : this(elementName, classificationType, null)
+        public Classification(Type classificationType)
+            : this(classificationType, null)
         { }
 
-        public Classification(string elementName, Type classificationType, string value)
-            : base(elementName)
+        public Classification(Type classificationType, string value)
         {
             validValues = ClassificationManager.Get(classificationType);
             Value = value;

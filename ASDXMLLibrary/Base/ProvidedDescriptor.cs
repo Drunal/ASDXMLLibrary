@@ -15,32 +15,25 @@ namespace AsdXMLLibrary.Base
 
         #region Constructors
         public ProvidedDescriptor()
-            : base()
         {
             Initialize();
         }
 
-        public ProvidedDescriptor(string elementName)
-            : base(elementName)
+        public ProvidedDescriptor(string text)
+            : base(text)
         {
             Initialize();
         }
 
-        public ProvidedDescriptor(string elementName, string text)
-            : base(elementName, text)
-        {
-            Initialize();
-        }
-
-        public ProvidedDescriptor(string elementName, string text, string language)
-            : base(elementName, text, language)
+        public ProvidedDescriptor(string text, string language)
+            : base(text, language)
         {
             Initialize();
         }
 
         private void Initialize()
         {
-            ProvidedBy = new OrganizationReference(Constants.ProvidedByElementName);
+            ProvidedBy = new OrganizationReference();
         }
         #endregion
 

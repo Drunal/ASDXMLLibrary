@@ -19,22 +19,17 @@ namespace AsdXMLLibrary.Base
 
         #region Constructors
         public Identifier()
-            : this(Constants.DefaultIdentifierElementName)
+           : this(string.Empty)
         { }
 
-        public Identifier(string elementName)
-           : this(elementName, string.Empty)
+        public Identifier(string value)
+            : this(value, string.Empty)
         { }
 
-        public Identifier(string elementName, string value)
-            : this(elementName, value, string.Empty)
-        { }
-
-        public Identifier(string elementName, string value, string classification)
-            : base(elementName)
+        public Identifier(string value, string classification)
         {
             this.ID = value;
-            this.Class = new Classification(Constants.ClassElementName, typeof(IdentifierClassification), classification);
+            this.Class = new Classification(typeof(IdentifierClassification), classification);
         }
         #endregion
 

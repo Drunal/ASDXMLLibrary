@@ -4,14 +4,6 @@ namespace AsdXMLLibrary.Base
 {
     public abstract class SerializeBase
     {
-        protected readonly string _elementName;
-
-        public SerializeBase(string elementName)
-        {
-            this._elementName = elementName;
-        }
-
-
         public abstract XElement GetXML(string elementName, XNamespace ns, bool forceElement=false);
 
         /// <summary>
