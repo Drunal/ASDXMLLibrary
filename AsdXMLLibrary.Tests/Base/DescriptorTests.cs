@@ -18,7 +18,7 @@ namespace AsdXMLLibrary.Tests.Base
             Organization expected = TestObjects.OrganizationMinimum;
             Organization result = new Organization();
 
-            result.Name = ObjectStreamtoObjectNew(expected.Name);
+            result.Name = ObjectStreamtoObject(expected.Name);
             result.Name.ShouldDeepEqualwithDate(expected.Name);
         }
 
@@ -27,7 +27,7 @@ namespace AsdXMLLibrary.Tests.Base
         {
             Organization expected = TestObjects.OrganizationFull;
             Organization result = new Organization();
-            result.Name = ObjectStreamtoObjectNew(expected.Name);
+            result.Name = ObjectStreamtoObject(expected.Name);
             result.Name.ShouldDeepEqualwithDate(expected.Name);
         }
 
@@ -39,7 +39,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Text = "datedDescriptorText";
             expected.ProvidedDate = DateTime.Now;
 
-            DatedDescriptor result = ObjectStreamtoObjectNew(expected);
+            DatedDescriptor result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -53,7 +53,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.ProvidedDate = DateTime.Now;
             expected.ProvidedBy.SetTarget(TestObjects.OrganizationMinimum);
             
-            DatedDescriptor result = ObjectStreamtoObjectNew(expected);
+            DatedDescriptor result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -64,7 +64,7 @@ namespace AsdXMLLibrary.Tests.Base
             ProvidedDescriptor expected = new ProvidedDescriptor();
             expected.Text = "providedDescriptorText";
 
-            ProvidedDescriptor result = ObjectStreamtoObjectNew(expected);
+            ProvidedDescriptor result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -77,7 +77,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Language.Value = "EN";
             expected.ProvidedBy.SetTarget(TestObjects.OrganizationMinimum);
 
-            ProvidedDescriptor result = ObjectStreamtoObjectNew(expected);
+            ProvidedDescriptor result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
        
@@ -90,7 +90,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Name.Text = string.Empty;
             Organization result = new Organization();
             ExceptionAssert.Throws<XmlSchemaValidationException>(
-                () => ObjectStreamtoObjectNew(expected.Name)                
+                () => ObjectStreamtoObject(expected.Name)                
             );
         }
 

@@ -29,7 +29,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.CreateSingleValueProperty(12.5, "TEST");
             Property<DummyClassification> result = new Property<DummyClassification>();
 
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -42,7 +42,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.ValueDetermination.Value = "CALC";
 
             Property<DummyClassification> result = new Property<DummyClassification>();
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -55,7 +55,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Unit.Value = null;
             
             ExceptionAssert.Throws<XmlSchemaValidationException>(
-                () => ObjectStreamtoObjectNew(expected)
+                () => ObjectStreamtoObject(expected)
             );
         }
 
@@ -67,7 +67,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Value = 12.5;
 
             Property<DummyClassification> result = new Property<DummyClassification>();
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
 
             Assert.AreEqual(expected.Value, result.Value);
             Assert.AreEqual(expected.Unit.Value, result.Unit.Value);
@@ -84,7 +84,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.CreateRangeProperty(22.5, 22.5, "TEST");
             Property<DummyClassification> result = new Property<DummyClassification>();
 
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -97,7 +97,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.ValueDetermination.Value = "CALC";
 
             Property<DummyClassification> result = new Property<DummyClassification>();
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -110,7 +110,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Unit.Value = null;
 
             ExceptionAssert.Throws<XmlSchemaValidationException>(
-                () => ObjectStreamtoObjectNew(expected)
+                () => ObjectStreamtoObject(expected)
             );
         }
 
@@ -123,7 +123,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.UpperLimit = 8.6;
 
             Property<DummyClassification> result = new Property<DummyClassification>();
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
 
             Assert.AreEqual(expected.LowerLimit, result.LowerLimit);
             Assert.AreEqual(expected.UpperLimit, result.UpperLimit);
@@ -143,7 +143,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.CreateToleranceValueProperty(10.5, 2.4, 1.4, "TEST");
             Property<DummyClassification> result = new Property<DummyClassification>();
 
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -156,7 +156,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.ValueDetermination.Value = "CALC";
 
             Property<DummyClassification> result = new Property<DummyClassification>();            
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -169,7 +169,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Unit.Value = null;
 
             ExceptionAssert.Throws<XmlSchemaValidationException>(
-                () => ObjectStreamtoObjectNew(expected)
+                () => ObjectStreamtoObject(expected)
             );
         }
 
@@ -184,7 +184,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Unit.Value = "TEST";
 
             Property<DummyClassification> result = new Property<DummyClassification>();  
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
 
             Assert.AreEqual(expected.NominalValue, result.NominalValue);
             Assert.AreEqual(expected.LowerOffset, result.LowerOffset);
@@ -202,7 +202,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.CreateTextProperty("value");
             Property<DummyClassification> result = new Property<DummyClassification>();
 
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -215,7 +215,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.ValueDetermination.Value = "CALC";
 
             Property<DummyClassification> result = new Property<DummyClassification>();
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -226,7 +226,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Text = "text property";
 
             Property<DummyClassification> result = new Property<DummyClassification>();
-            result = ObjectStreamtoObjectNew(expected);
+            result = ObjectStreamtoObject(expected);
 
             Assert.AreEqual(expected.Text, result.Text);
             Assert.IsNull(result.Value);

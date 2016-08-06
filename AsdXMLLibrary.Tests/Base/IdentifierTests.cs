@@ -35,7 +35,7 @@ namespace AsdXMLLibrary.Tests.Base
         public void SerializeMinimalProvidedIdentifier()
         {
             ProvidedIdentifier<DummyClassification> expected = new ProvidedIdentifier<DummyClassification>("12345");
-            ProvidedIdentifier<DummyClassification> result = ObjectStreamtoObjectNew(expected);
+            ProvidedIdentifier<DummyClassification> result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
@@ -47,7 +47,7 @@ namespace AsdXMLLibrary.Tests.Base
                 "TEST"
             }, true);
             ProvidedIdentifier<DummyClassification> expected = new ProvidedIdentifier<DummyClassification>("12345", "TEST", TestObjects.OrganizationMinimum);
-            ProvidedIdentifier<DummyClassification> result = ObjectStreamtoObjectNew(expected);
+            ProvidedIdentifier<DummyClassification> result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
         }
 
