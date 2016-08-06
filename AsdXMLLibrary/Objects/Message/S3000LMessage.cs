@@ -34,21 +34,21 @@ namespace AsdXMLLibrary.Objects
         }
 
         #region Serialize Methods
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement message = new XElement(ns + elementName);
-            message.Add(Id.GetXML(Constants.MessageIdElementName, ns));
+            message.Add(Id.CreateXML(Constants.MessageIdElementName, ns));
             if (CreationDate.HasValue)
                 message.Add(new XElement(ns + Constants.MessageDateElementName, CreationDate.ToXmlDateString()));
-            message.Add(Language.GetXML(Constants.MessageLanguageElementName, ns));
+            message.Add(Language.CreateXML(Constants.MessageLanguageElementName, ns));
             // TODO: we probably need a container around this
             foreach (var sender in Sender)
-                message.Add(sender.GetXML(Constants.ReferenceOrganizationElementName, ns));
+                message.Add(sender.CreateXML(Constants.ReferenceOrganizationElementName, ns));
             foreach (var receiver in Receiver)
-                message.Add(receiver.GetXML(Constants.ReferenceOrganizationElementName, ns));
+                message.Add(receiver.CreateXML(Constants.ReferenceOrganizationElementName, ns));
            
             XElement messageContent = new XElement(ns + Constants.MessageContentElementName);
-            messageContent.Add(ContentItems.GetXML(Constants.MessageContentItemsElementName, ns));
+            messageContent.Add(ContentItems.CreateXML(Constants.MessageContentItemsElementName, ns));
             //messageContent.Add(SupportingItems.GetXML(Constants.MessageContentSupportingItemsElementName, ns));
 
             message.Add(messageContent);

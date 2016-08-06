@@ -30,12 +30,12 @@ namespace AsdXMLLibrary.Base
         }
 
         #region Serialize Functions
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement identifier = new XElement(ns + elementName);
             identifier.Add(new XElement(ns + Constants.IdentifierElementName, ID));
             // class is optional
-            identifier.Add(Class.GetXML(Constants.ClassElementName, ns));
+            identifier.Add(Class.CreateXML(Constants.ClassElementName, ns));
             return identifier;
         }
 

@@ -30,13 +30,13 @@ namespace AsdXMLLibrary.Objects
         }
 
         #region Serialize Functions
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement hwPart = base.GetXML(elementName, ns);
+            XElement hwPart = base.CreateXML(elementName, ns);
             if (HazardousClass.HasValue)
-                hwPart.Add(HazardousClass.GetXML(Constants.HardwarePartHazardousClassElementName, ns));
+                hwPart.Add(HazardousClass.CreateXML(Constants.HardwarePartHazardousClassElementName, ns));
             if (FitmentRequirement.HasValue)
-                hwPart.Add(FitmentRequirement.GetXML(Constants.HardwarePartFitmentRequirementElementName, ns));
+                hwPart.Add(FitmentRequirement.CreateXML(Constants.HardwarePartFitmentRequirementElementName, ns));
 
             return hwPart;
         }

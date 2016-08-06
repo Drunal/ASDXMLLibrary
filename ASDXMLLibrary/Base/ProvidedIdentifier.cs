@@ -41,10 +41,10 @@ namespace AsdXMLLibrary.Base
         }
 
         #region Serialize Functions
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement idenetifier = base.GetXML(elementName, ns);
-            idenetifier.Add(SetBy.GetXML(Constants.SetByElementName, ns));
+            XElement idenetifier = base.CreateXML(elementName, ns);
+            idenetifier.Add(SetBy.CreateXML(Constants.SetByElementName, ns));
 
             return idenetifier;
         }

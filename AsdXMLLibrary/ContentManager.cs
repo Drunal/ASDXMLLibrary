@@ -30,7 +30,7 @@ namespace AsdXMLLibrary
             // TODO: move default namespace to parameter to handle s3000l/s2000m files
 
             XNamespace ns = "http://www.asd-europe.org/s-series/s3000l";
-            new XDocument((serializableObject as SerializeBase).GetXML(rootElementName, ns)).Save(stream);
+            new XDocument((serializableObject as SerializeBase).CreateXML(rootElementName, ns)).Save(stream);
 
         }
 

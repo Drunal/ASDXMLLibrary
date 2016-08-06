@@ -36,13 +36,13 @@ namespace AsdXMLLibrary.Base
         #endregion
         
         #region ISerialize
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement descriptor = base.GetXML(elementName, ns);
+            XElement descriptor = base.CreateXML(elementName, ns);
             if (ProvidedDate.HasValue)
                 descriptor.Add(new XElement(ns + Constants.DateElementName, ProvidedDate.ToXmlDateString()));
             // providedBy.GetXML returns 'null' if no value
-            descriptor.Add(ProvidedBy.GetXML(Constants.ProvidedByElementName, ns));
+            descriptor.Add(ProvidedBy.CreateXML(Constants.ProvidedByElementName, ns));
 
             return descriptor;
         }

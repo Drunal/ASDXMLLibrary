@@ -23,13 +23,13 @@ namespace AsdXMLLibrary.Objects
         }
 
         #region Serialize Functions
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement part = new XElement(ns + elementName);
             foreach (var id in PartIds)
-                part.Add(id.GetXML(Constants.PartAsDesignedPartIdElementName, ns));
+                part.Add(id.CreateXML(Constants.PartAsDesignedPartIdElementName, ns));
             foreach (var name in PartNames)
-                part.Add(name.GetXML(Constants.PartAsDesignedPartNameElementName, ns));
+                part.Add(name.CreateXML(Constants.PartAsDesignedPartNameElementName, ns));
 
             return part;
         }

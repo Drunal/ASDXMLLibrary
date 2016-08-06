@@ -4,7 +4,16 @@ namespace AsdXMLLibrary.Base
 {
     public abstract class SerializeBase
     {
-        public abstract XElement GetXML(string elementName, XNamespace ns, bool forceElement=false);
+        /// <summary>
+        /// Should return an XElement with the given name, in the given namespace.
+        /// Will return 'null' if there is no content available.
+        /// Creation of the element can be forced with <paramref name="forceElement"/>
+        /// </summary>
+        /// <param name="elementName">the local name of the wanted element</param>
+        /// <param name="ns">the namespace to create the element (and its children) in</param>
+        /// <param name="forceElement">a flag to enforce the creation of the element, even if there is not meaningful content</param>
+        /// <returns>an XElement object or 'null'.</returns>
+        public abstract XElement CreateXML(string elementName, XNamespace ns, bool forceElement=false);
 
         /// <summary>
         /// Reads data from the passed XElement element. 

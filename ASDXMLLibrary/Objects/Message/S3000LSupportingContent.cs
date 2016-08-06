@@ -15,7 +15,7 @@ namespace AsdXMLLibrary.Objects.Message
             Organizations = new List<Organization>();
         }
 
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             throw new NotImplementedException();
         }

@@ -36,9 +36,9 @@ namespace AsdXMLLibrary.Objects.References
 
         #region ISerialize Members
 
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            return HasValue ? new XElement(ns + elementName, OrgId.GetXML(Constants.OrganizationIdElementName, ns)) : null;
+            return HasValue ? new XElement(ns + elementName, OrgId.CreateXML(Constants.OrganizationIdElementName, ns)) : null;
         }
 
         public override bool ReadfromXML(XElement element, XNamespace ns)

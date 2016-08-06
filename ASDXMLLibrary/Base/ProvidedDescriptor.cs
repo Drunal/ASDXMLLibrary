@@ -32,10 +32,10 @@ namespace AsdXMLLibrary.Base
         #endregion
 
         #region Serialize Functions
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement descriptor = base.GetXML(elementName, ns);
-            descriptor.Add(ProvidedBy.GetXML(Constants.ProvidedByElementName, ns));
+            XElement descriptor = base.CreateXML(elementName, ns);
+            descriptor.Add(ProvidedBy.CreateXML(Constants.ProvidedByElementName, ns));
 
             return descriptor;
         }

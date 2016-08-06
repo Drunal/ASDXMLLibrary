@@ -32,11 +32,11 @@ namespace AsdXMLLibrary.Base
         }
 
         #region Serialize
-        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement descriptor = new XElement(ns + elementName);
             descriptor.Add(new XElement(ns + Constants.DescriptorTextElementName, Text));
-            descriptor.Add(Language.GetXML(Constants.LanguageElementName, ns));
+            descriptor.Add(Language.CreateXML(Constants.LanguageElementName, ns));
 
             return descriptor;
         }
