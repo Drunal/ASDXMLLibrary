@@ -7,19 +7,19 @@ namespace AsdXMLLibrary.Objects
 {
     public abstract class PartAsDesigned : SerializeBase, ICanBeReferenced
     {
-        public MultipleIdentifier<PartIdentifierClassification> PartIds { get; set; }
+        public MultipleValues<ProvidedIdentifier<PartIdentifierClassification>> PartIds { get; set; }
 
-        public MultipleDescriptor PartNames { get; set; }
+        public MultipleValues<ProvidedDescriptor> PartNames { get; set; }
 
         public PartAsDesigned()
         {
-            PartIds = new MultipleIdentifier<PartIdentifierClassification>();
-            PartNames = new MultipleDescriptor();
+            PartIds = new MultipleValues<ProvidedIdentifier<PartIdentifierClassification>>();
+            PartNames = new MultipleValues<ProvidedDescriptor>();
         }
         public PartAsDesigned(string identifier)
             : this()
         {
-            PartIds.MainID.ID = identifier;
+            PartIds.Primary.ID = identifier;
         }
 
         #region Serialize Functions

@@ -53,8 +53,7 @@
     <Compile Include="Base\Classifications\ClassificationException.cs" />
     <Compile Include="Base\Classifications\ClassificationBase.cs" />
     <Compile Include="Base\IHaveValue.cs" />
-    <Compile Include="Base\MultipleDescriptor.cs" />
-    <Compile Include="Base\MultipleIdentifier.cs" />
+    <Compile Include="Base\MultipleValues.cs" />
     <Compile Include="Base\Properties\Property.cs" />
     <Compile Include="Base\Properties\PropertyType.cs" />
     <Compile Include="Base\ProvidedIdentifier.cs" />

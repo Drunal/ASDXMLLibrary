@@ -3,14 +3,15 @@ using System.Linq;
 
 namespace AsdXMLLibrary.Base
 {
-    public class MultipleDescriptor : List<ProvidedDescriptor>, IHaveValue
+    public class MultipleValues<T> : List<T>, IHaveValue
+         where T : SerializeBase, IHaveValue, new()
     {
-        public ProvidedDescriptor MainDescriptor
+        public T Primary
         {
             get
             {
                 if (this.Count == 0)
-                    this.Add(new ProvidedDescriptor());
+                    this.Add(new T());
                 return this[0];
             }
             set
@@ -19,14 +20,18 @@ namespace AsdXMLLibrary.Base
                     this[0] = value;
                 else
                     this.Add(value);
-
+                
             }
         }
 
-        public MultipleDescriptor()
+        #region Constructors
+
+        public MultipleValues()
         {
+
         }
-            
+
+        #endregion
 
         public bool HasValue
         {

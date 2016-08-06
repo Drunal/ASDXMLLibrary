@@ -38,8 +38,8 @@ namespace AsdXMLLibrary.Tests.Helper
             get
             {
                 var sw = new SoftwarePartAsDesigned();
-                sw.PartIds.MainID.ID = "PartNumber-1234";
-                sw.PartIds.MainID.SetBy.SetTarget(OrganizationMinimum);
+                sw.PartIds.Primary.ID = "PartNumber-1234";
+                sw.PartIds.Primary.SetBy.SetTarget(OrganizationMinimum);
                 return sw;
             }
         }
@@ -49,7 +49,7 @@ namespace AsdXMLLibrary.Tests.Helper
             get
             {
                 var sw = new SoftwarePartAsDesigned();
-                sw.PartIds.MainID.ID = "Partnumber-1234";
+                sw.PartIds.Primary.ID = "Partnumber-1234";
                 sw.PartIds.Add(new AsdXMLLibrary.Base.ProvidedIdentifier<AsdXMLLibrary.Base.Classifications.PartIdentifierClassification>("Partnumber-9876"));
                 return sw;
             }
@@ -60,7 +60,7 @@ namespace AsdXMLLibrary.Tests.Helper
             get
             {
                 var sw = TestObjects.SoftwarePartMinimum;
-                sw.PartNames.MainDescriptor.Text = "PartName1";
+                sw.PartNames.Primary.Text = "PartName1";
                 sw.PartNames.Add(new AsdXMLLibrary.Base.ProvidedDescriptor("Partname2", "EN"));
                 return sw;
             }

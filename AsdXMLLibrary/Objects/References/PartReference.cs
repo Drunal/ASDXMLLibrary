@@ -20,8 +20,8 @@ namespace AsdXMLLibrary.Objects.References
             if (part != null)
             {
                 // do a copy of the actual values, otherwise we'd destroy our setting for _elementName in the current context
-                PartId.ID = part.PartIds.MainID.ID;
-                PartId.Class.Value = part.PartIds.MainID.Class.Value;
+                PartId.ID = part.PartIds.Primary.ID;
+                PartId.Class.Value = part.PartIds.Primary.Class.Value;
             }
         }
 
