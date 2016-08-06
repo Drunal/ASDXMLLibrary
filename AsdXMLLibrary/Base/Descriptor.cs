@@ -49,11 +49,11 @@ namespace AsdXMLLibrary.Base
         }
 
         #region Serialize
-        public override XElement GetXML(XNamespace ns, bool forceElement = false)
+        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement descriptor = new XElement(ns + _elementName);
+            XElement descriptor = new XElement(ns + elementName);
             descriptor.Add(new XElement(ns + Constants.DescriptorTextElementName, Text));
-            descriptor.Add(Language.GetXML(ns));
+            descriptor.Add(Language.GetXML(Constants.LanguageElementName, ns));
 
             return descriptor;
         }

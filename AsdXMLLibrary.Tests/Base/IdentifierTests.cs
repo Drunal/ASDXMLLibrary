@@ -9,6 +9,8 @@ namespace AsdXMLLibrary.Tests.Base
     [TestClass]
     public class IdentifierTests : TestBase
     {
+        protected override string TestRootElementName { get { return "Identifier"; } }
+
         [TestMethod]
         public void SerializeCompleteIdentifier()
         {

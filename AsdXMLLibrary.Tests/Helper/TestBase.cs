@@ -8,8 +8,10 @@ using System.Xml.Schema;
 namespace AsdXMLLibrary.Tests.Helper
 {
     [TestClass]
-    public class TestBase
+    public abstract class TestBase
     {
+        protected abstract string TestRootElementName { get;}
+
         /// <summary>
         /// The set of schemas needed for validation
         /// </summary>
@@ -60,8 +62,8 @@ namespace AsdXMLLibrary.Tests.Helper
         internal T ObjectStreamtoObject<T>(T input) where T: new()
         {
             MemoryStream ms = new MemoryStream();
-            manager.SerializeToStream<T>(input, ms);
-            manager.SerializeToFile<T>(input, "output.xml");
+            manager.SerializeToStream<T>(input, ms, TestRootElementName);
+            manager.SerializeToFile<T>(input, "output.xml", TestRootElementName);
             
             ms.Position = 0;
             XDocument createdXML = XDocument.Load(ms);
@@ -75,8 +77,8 @@ namespace AsdXMLLibrary.Tests.Helper
         internal T ObjectStreamtoObjectNew<T>(T input) where T : SerializeBase, new()
         {
             MemoryStream ms = new MemoryStream();
-            manager.SerializeToStream<T>(input, ms);
-            manager.SerializeToFile<T>(input, "output.xml");
+            manager.SerializeToStream<T>(input, ms, TestRootElementName);
+            manager.SerializeToFile<T>(input, "output.xml", TestRootElementName);
 
             ms.Position = 0;
             XDocument createdXML = XDocument.Load(ms);

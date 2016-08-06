@@ -45,10 +45,10 @@ namespace AsdXMLLibrary.Base
         #endregion
 
         #region Serialize Functions
-        public override XElement GetXML(XNamespace ns, bool forceElement = false)
+        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement descriptor = base.GetXML(ns);
-            descriptor.Add(ProvidedBy.GetXML(ns));
+            XElement descriptor = base.GetXML(elementName, ns);
+            descriptor.Add(ProvidedBy.GetXML(Constants.ProvidedByElementName, ns));
 
             return descriptor;
         }

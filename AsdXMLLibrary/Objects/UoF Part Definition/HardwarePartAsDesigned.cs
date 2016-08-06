@@ -58,13 +58,13 @@ namespace AsdXMLLibrary.Objects
         }
 
         #region Serialize Functions
-        public override XElement GetXML(XNamespace ns, bool forceElement = false)
+        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement hwPart = base.GetXML(ns);
+            XElement hwPart = base.GetXML(elementName, ns);
             if (HazardousClassSpecified)
-                hwPart.Add(HazardousClass.GetXML(ns));
+                hwPart.Add(HazardousClass.GetXML(Constants.HardwarePartHazardousClassElementName, ns));
             if (FitmentRequirementSpecified)
-                hwPart.Add(FitmentRequirement.GetXML(ns));
+                hwPart.Add(FitmentRequirement.GetXML(Constants.HardwarePartFitmentRequirementElementName, ns));
 
             return hwPart;
         }

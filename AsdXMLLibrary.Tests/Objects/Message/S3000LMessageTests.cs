@@ -7,6 +7,8 @@ namespace AsdXMLLibrary.Tests.Objects.Message
     [TestClass]
     public class S3000LMessageTests : TestBase
     {
+        protected override string TestRootElementName { get { return "lsaDataSet"; } }
+
         [TestMethod]
         public void SimpleMessageTest()
         {
@@ -16,7 +18,7 @@ namespace AsdXMLLibrary.Tests.Objects.Message
 
             message.Content.SupportingItems.Organizations.Add(TestObjects.OrganizationFull);
 
-            manager.SerializeToFile<S3000LMessage>(message, "message.xml");
+            manager.SerializeToFile<S3000LMessage>(message, "message.xml", TestRootElementName);
         }
     }
 }

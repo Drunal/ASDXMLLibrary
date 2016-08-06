@@ -8,6 +8,7 @@ namespace AsdXMLLibrary.Tests.Base
     [TestClass]
     public class ClassificationManagerTests : TestBase
     {
+        protected override string TestRootElementName { get { return "dummyTest"; } }
 
         private readonly string TestValue = "value";
         private readonly string TestElementName = "test";

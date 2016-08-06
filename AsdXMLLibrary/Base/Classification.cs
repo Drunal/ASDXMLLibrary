@@ -61,9 +61,9 @@ namespace AsdXMLLibrary.Base
         /// <param name="ns">The namespace the element should be in.</param>
         /// <param name="forceElement">Define if the element must be created regardless of available content.</param>
         /// <returns></returns>
-        public override XElement GetXML(XNamespace ns, bool forceElement=false)
+        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement=false)
         {
-            return HasValue ? new XElement(ns + _elementName, chosenValue) : null;
+            return HasValue ? new XElement(ns + elementName, chosenValue) : null;
         }
 
         public override bool ReadfromXML(XElement element, XNamespace ns)

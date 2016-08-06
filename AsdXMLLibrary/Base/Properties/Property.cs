@@ -247,17 +247,17 @@ namespace AsdXMLLibrary.Base.Properties
 
 
         #region Serialize Functions
-        public override XElement GetXML(XNamespace ns, bool forceElement = false)
+        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             if (!HasValue) return null;
 
-            XElement property = new XElement(ns + _elementName);
+            XElement property = new XElement(ns + elementName);
             if (RecordingDateSpecified)
                 property.Add(new XElement(ns + Constants.DateElementName, RecordingDate.ToXmlDateString()));
-            property.Add(ValueDetermination.GetXML(ns));
+            property.Add(ValueDetermination.GetXML(Constants.PropertyValueDeterminationElementName, ns));
 
             if (Type != PropertyType.TextProperty)
-                property.Add(Unit.GetXML(ns,true)); // force the element, even if the value is not set.
+                property.Add(Unit.GetXML(Constants.PropertyUnitElementName, ns, true)); // force the element, even if the value is not set.
 
             switch (Type)
             {

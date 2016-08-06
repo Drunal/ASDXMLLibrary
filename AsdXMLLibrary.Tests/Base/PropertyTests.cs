@@ -10,7 +10,8 @@ namespace AsdXMLLibrary.Tests.Base
     [TestClass]
     public class PropertyTests : TestBase
     {
-
+        protected override string TestRootElementName { get { return "Property"; } }
+        
         [TestInitialize]
         public void InitializeTest()
         {

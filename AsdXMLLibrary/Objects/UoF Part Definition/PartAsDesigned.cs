@@ -36,7 +36,7 @@ namespace AsdXMLLibrary.Objects
         }
 
         #region Serialize Functions
-        public override XElement GetXML(XNamespace ns, bool forceElement = false)
+        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             throw new System.NotImplementedException();
         }

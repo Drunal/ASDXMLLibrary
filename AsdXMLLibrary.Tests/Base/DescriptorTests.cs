@@ -10,6 +10,8 @@ namespace AsdXMLLibrary.Tests.Base
     [TestClass]
     public class DescriptorTests : TestBase
     {
+        protected override string TestRootElementName { get { return "Descriptor"; } }
+
         [TestMethod]
         public void SerializeMinimalDescriptor()
         {

@@ -52,13 +52,13 @@ namespace AsdXMLLibrary.Base
         #endregion
         
         #region ISerialize
-        public override XElement GetXML(XNamespace ns, bool forceElement = false)
+        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement descriptor = base.GetXML(ns);
+            XElement descriptor = base.GetXML(elementName, ns);
             if (ProvidedDateSpecified)
                 descriptor.Add(new XElement(ns + Constants.DateElementName, ProvidedDate.ToXmlDateString()));
             // providedBy.GetXML returns 'null' if no value
-            descriptor.Add(ProvidedBy.GetXML(ns));
+            descriptor.Add(ProvidedBy.GetXML(Constants.ProvidedByElementName, ns));
 
             return descriptor;
         }

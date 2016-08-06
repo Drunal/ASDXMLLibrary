@@ -29,13 +29,13 @@ namespace AsdXMLLibrary
             namespaces.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
         }
 
-        public void SerializeToFile<T>(T serializableObject, string filePath) //where T:ISerialize
+        public void SerializeToFile<T>(T serializableObject, string filePath, string rootElementName) //where T:ISerialize
         {
             using (var writer = new FileStream(filePath, FileMode.Create))
-                SerializeToStream<T>(serializableObject, writer);
+                SerializeToStream<T>(serializableObject, writer, rootElementName);
         }
 
-        public void SerializeToStream<T>(T serializableObject, Stream stream) //where T : ISerialize
+        public void SerializeToStream<T>(T serializableObject, Stream stream, string rootElementName) //where T : ISerialize
         {
             // TODO: move default namespace to parameter to handle s3000l/s2000m files
             if (false)
@@ -46,7 +46,7 @@ namespace AsdXMLLibrary
             else
             {
                 XNamespace ns = "http://www.asd-europe.org/s-series/s3000l";
-                new XDocument((serializableObject as SerializeBase).GetXML(ns)).Save(stream);
+                new XDocument((serializableObject as SerializeBase).GetXML(rootElementName, ns)).Save(stream);
             }
         }
 

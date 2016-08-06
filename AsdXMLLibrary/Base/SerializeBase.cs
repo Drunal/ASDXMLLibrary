@@ -12,7 +12,7 @@ namespace AsdXMLLibrary.Base
         }
 
 
-        public abstract XElement GetXML(XNamespace ns, bool forceElement=false);
+        public abstract XElement GetXML(string elementName, XNamespace ns, bool forceElement=false);
 
         /// <summary>
         /// Reads data from the passed XElement element. 
