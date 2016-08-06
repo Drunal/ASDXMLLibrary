@@ -19,13 +19,13 @@ namespace AsdXMLLibrary
             _schemas = schemas;
         }
 
-        public void SerializeToFile<T>(T serializableObject, string filePath, string rootElementName) //where T:ISerialize
+        public void SerializeToFile<T>(T serializableObject, string filePath, string rootElementName) where T: SerializeBase
         {
             using (var writer = new FileStream(filePath, FileMode.Create))
                 SerializeToStream<T>(serializableObject, writer, rootElementName);
         }
 
-        public void SerializeToStream<T>(T serializableObject, Stream stream, string rootElementName) //where T : ISerialize
+        public void SerializeToStream<T>(T serializableObject, Stream stream, string rootElementName) where T : SerializeBase
         {
             // TODO: move default namespace to parameter to handle s3000l/s2000m files
 

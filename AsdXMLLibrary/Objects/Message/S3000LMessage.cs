@@ -3,47 +3,63 @@ using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Objects.Message;
 using AsdXMLLibrary.Objects.References;
 using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace AsdXMLLibrary.Objects
 {
-    [XmlRoot(ElementName = "lsaDataSet")]
-    public class S3000LMessage
+    public class S3000LMessage : SerializeBase
     {
-        [XmlElement(ElementName="msgId", IsNullable=true)]
         public ProvidedIdentifier<MessageIdentifierClassification> Id { get; set; }
 
-        [XmlElement(ElementName="msgDate",DataType="date")]
         public DateTime? CreationDate { get; set; }
 
-        [XmlElement(ElementName="msgLang")]
         public Classification Language { get; set; }
 
-        [XmlArray(ElementName="msgSend")]
-        [XmlArrayItem(ElementName = "orgRef")]
-        public List<OrganizationReference> Sender { get; set; }
+        public MultipleValues<OrganizationReference> Sender { get; set; }
 
-        [XmlArray(ElementName = "msgReceive")]
-        [XmlArrayItem(ElementName = "orgRef")]
-        public List<OrganizationReference> Receiver { get; set; }
+        public MultipleValues<OrganizationReference> Receiver { get; set; }
 
-        [XmlElement(ElementName="msgContent")]
-        public S3000LMessageContentRoot Content { get; set; }
+        public S3000LMessageContent ContentItems { get; set; }
 
-        #region XMLSeriálize Properties
-        [XmlIgnore]
-        public bool LanguageSpecified { get { return Language.HasValue; } }
-        [XmlIgnore]
-        public bool CreationDateSpecified { get { return CreationDate.HasValue; } }
-        #endregion
+        public S3000LSupportingContent SupportingItems { get; set; }
 
         public S3000LMessage()
         {
+            this.Id = new ProvidedIdentifier<MessageIdentifierClassification>();
             this.Language = new Classification(typeof(LanguageClassification));
-            this.Sender = new List<OrganizationReference>();
-            this.Receiver = new List<OrganizationReference>();
-            this.Content = new S3000LMessageContentRoot();
+            this.Sender = new MultipleValues<OrganizationReference>();
+            this.Receiver = new MultipleValues<OrganizationReference>();
+            this.ContentItems = new S3000LMessageContent();
+            this.SupportingItems = new S3000LSupportingContent();
         }
+
+        #region Serialize Methods
+        public override XElement GetXML(string elementName, XNamespace ns, bool forceElement = false)
+        {
+            XElement message = new XElement(ns + elementName);
+            message.Add(Id.GetXML(Constants.MessageIdElementName, ns));
+            if (CreationDate.HasValue)
+                message.Add(new XElement(ns + Constants.MessageDateElementName, CreationDate.ToXmlDateString()));
+            message.Add(Language.GetXML(Constants.MessageLanguageElementName, ns));
+            // TODO: we probably need a container around this
+            foreach (var sender in Sender)
+                message.Add(sender.GetXML(Constants.ReferenceOrganizationElementName, ns));
+            foreach (var receiver in Receiver)
+                message.Add(receiver.GetXML(Constants.ReferenceOrganizationElementName, ns));
+           
+            XElement messageContent = new XElement(ns + Constants.MessageContentElementName);
+            messageContent.Add(ContentItems.GetXML(Constants.MessageContentItemsElementName, ns));
+            //messageContent.Add(SupportingItems.GetXML(Constants.MessageContentSupportingItemsElementName, ns));
+
+            message.Add(messageContent);
+
+            return message;
+        }
+
+        public override bool ReadfromXML(XElement element, XNamespace ns)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

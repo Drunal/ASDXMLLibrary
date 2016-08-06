@@ -23,7 +23,28 @@ namespace AsdXMLLibrary.Base
         #endregion
 
         #region Message
+        public static readonly string MessageIdElementName = "msgId";
+        public static readonly string MessageDateElementName = "msgDate";
         public static readonly string MessageLanguageElementName = "msgLang";
+        public static readonly string MessageStatusElementName = "msgStatus";
+        public static readonly string MessageSenderElementName = "msgSend";
+        public static readonly string MessageReceiverElementName = "msgReceive";
+        public static readonly string MessageContentElementName = "msgContent";
+
+        public static readonly string MessageContentItemsElementName = "messageContentItems";
+        public static readonly string MessageContentProductsElementName = "products";
+        public static readonly string MessageContentBreakdownElementsElementName = "breakdownElements";
+        public static readonly string MessageContentPartsElementName = "parts";
+        public static readonly string MessageContentTaskRequirementsElementName = "taskRequirements";
+        public static readonly string MessageContentTasksElementName = "tasks";
+        
+        public static readonly string MessageContentSupportingItemsElementName = "supportingContentItems";
+
+
+        #endregion
+
+        #region References
+        public static readonly string ReferenceOrganizationElementName = "orgRef";
         #endregion
 
         #region Properties

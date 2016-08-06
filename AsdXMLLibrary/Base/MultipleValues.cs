@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace AsdXMLLibrary.Base
 {
-    public class MultipleValues<T> : List<T>, IHaveValue
-         where T : SerializeBase, IHaveValue, new()
+    public class MultipleValues<T> : List<T>
+         where T : SerializeBase, new()
     {
         public T Primary
         {
@@ -32,10 +31,5 @@ namespace AsdXMLLibrary.Base
         }
 
         #endregion
-
-        public bool HasValue
-        {
-            get { return this.Any(x => x.HasValue); }
-        }
     }
 }

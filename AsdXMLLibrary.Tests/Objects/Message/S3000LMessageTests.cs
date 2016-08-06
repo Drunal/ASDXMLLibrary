@@ -13,10 +13,10 @@ namespace AsdXMLLibrary.Tests.Objects.Message
         public void SimpleMessageTest()
         {
             S3000LMessage message = new S3000LMessage();
-            message.Content.ContentItems.Parts.Add(TestObjects.SoftwarePartMinimum);
-            message.Content.ContentItems.Parts.Add(new HardwarePartAsDesigned());
+            message.ContentItems.Parts.Add(TestObjects.SoftwarePartMinimum);
+            message.ContentItems.Parts.Add(new HardwarePartAsDesigned());
 
-            message.Content.SupportingItems.Organizations.Add(TestObjects.OrganizationFull);
+            message.SupportingItems.Organizations.Add(TestObjects.OrganizationFull);
 
             manager.SerializeToFile<S3000LMessage>(message, "message.xml", TestRootElementName);
         }
