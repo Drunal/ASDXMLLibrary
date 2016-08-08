@@ -1,5 +1,4 @@
 ﻿using AsdXMLLibrary.Base;
-using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
@@ -17,12 +16,17 @@ namespace AsdXMLLibrary.Objects.Message
 
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            throw new NotImplementedException();
+            XElement supportItems = new XElement(ns + elementName);
+
+            return supportItems;
         }
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
-            throw new NotImplementedException();
+            if (element == null)
+                return false;
+
+            return true;
         }
     }
 }

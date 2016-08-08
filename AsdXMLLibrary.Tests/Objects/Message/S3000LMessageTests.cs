@@ -1,4 +1,5 @@
 ﻿using AsdXMLLibrary.Objects;
+using AsdXMLLibrary.Objects.References;
 using AsdXMLLibrary.Tests.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,15 +11,21 @@ namespace AsdXMLLibrary.Tests.Objects.Message
         protected override string TestRootElementName { get { return "lsaDataSet"; } }
 
         [TestMethod]
-        public void SimpleMessageTest()
+        public void MessageBasicsTest()
         {
-            S3000LMessage message = new S3000LMessage();
-            message.ContentItems.Parts.Add(TestObjects.SoftwarePartMinimum);
-            message.ContentItems.Parts.Add(new HardwarePartAsDesigned());
+            S3000LMessage expected = new S3000LMessage();
+            expected.Id.ID = "0001";
+            OrganizationReference orgRef = new OrganizationReference();
+            orgRef.SetTarget(TestObjects.OrganizationMinimum);
+            expected.Sender.Add(orgRef);
+            expected.Receiver.Add(orgRef);
+            expected.ContentItems.Parts.Add(TestObjects.SoftwarePartMultipleNames);
 
-            message.SupportingItems.Organizations.Add(TestObjects.OrganizationFull);
 
-            manager.SerializeToFile<S3000LMessage>(message, "message.xml", TestRootElementName);
-        }
+            S3000LMessage result = new S3000LMessage();
+            
+            result = ObjectStreamtoObject(expected);
+            result.ShouldDeepEqualwithDate(expected);
+        } 
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AsdXMLLibrary.Base;
-using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
@@ -26,6 +25,7 @@ namespace AsdXMLLibrary.Objects.Message
             Tasks = new List<string>();
         }
 
+        #region Serialize Methods
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement contentItems = new XElement(ns + elementName);
@@ -57,7 +57,59 @@ namespace AsdXMLLibrary.Objects.Message
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
-            throw new NotImplementedException();
+            if (element == null)
+                return false;
+
+            //ReadProducts(element.Element(ns + Constants.MessageContentProductsElementName), ns);
+            //ReadBreakdownElements(element.Element(ns + Constants.MessageContentBreakdownElementsElementName), ns);
+            ReadParts(element.Element(ns + Constants.MessageContentPartsElementName), ns);
+            //ReadTaskRequirements(element.Element(ns + Constants.MessageContentTaskRequirementsElementName), ns);
+            //ReadTasks(element.Element(ns + Constants.MessageContentTasksElementName), ns);
+            
+
+            return true;
         }
+
+        private void ReadProducts(XElement container, XNamespace ns)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void ReadBreakdownElements(XElement container, XNamespace ns)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void ReadParts(XElement container, XNamespace ns)
+        {
+            Parts.Clear();
+            foreach (var partEle in container.Elements())
+            {
+                if (partEle.Name == ns + Constants.SoftwarePartAsDesignedElementName)
+                {
+                    SoftwarePartAsDesigned swPart = new SoftwarePartAsDesigned();
+                    swPart.ReadfromXML(partEle, ns);
+                    Parts.Add(swPart);
+                }
+
+                if (partEle.Name == ns + Constants.HardwarePartAsDesignedElementName)
+                {
+                    HardwarePartAsDesigned hwPart = new HardwarePartAsDesigned();
+                    hwPart.ReadfromXML(partEle, ns);
+                    Parts.Add(hwPart);
+                }
+            }
+        }
+
+        private void ReadTaskRequirements(XElement container, XNamespace ns)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void ReadTasks(XElement container, XNamespace ns)
+        {
+            throw new System.NotImplementedException();
+        }
+        #endregion
     }
 }

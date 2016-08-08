@@ -3,6 +3,7 @@ using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Objects.Message;
 using AsdXMLLibrary.Objects.References;
 using System;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace AsdXMLLibrary.Objects
@@ -42,14 +43,19 @@ namespace AsdXMLLibrary.Objects
                 message.Add(new XElement(ns + Constants.MessageDateElementName, CreationDate.ToXmlDateString()));
             message.Add(Language.CreateXML(Constants.MessageLanguageElementName, ns));
             // TODO: we probably need a container around this
+            XElement senderList = new XElement(ns + Constants.MessageSenderElementName);
             foreach (var sender in Sender)
-                message.Add(sender.CreateXML(Constants.ReferenceOrganizationElementName, ns));
+                senderList.Add(sender.CreateXML(Constants.ReferenceOrganizationElementName, ns));
+            XElement receiverList = new XElement(ns + Constants.MessageReceiverElementName);
             foreach (var receiver in Receiver)
-                message.Add(receiver.CreateXML(Constants.ReferenceOrganizationElementName, ns));
-           
+                receiverList.Add(receiver.CreateXML(Constants.ReferenceOrganizationElementName, ns));
+
+            message.Add(senderList);
+            message.Add(receiverList);
+
             XElement messageContent = new XElement(ns + Constants.MessageContentElementName);
             messageContent.Add(ContentItems.CreateXML(Constants.MessageContentItemsElementName, ns));
-            //messageContent.Add(SupportingItems.GetXML(Constants.MessageContentSupportingItemsElementName, ns));
+            messageContent.Add(SupportingItems.CreateXML(Constants.MessageContentSupportingItemsElementName, ns));
 
             message.Add(messageContent);
 
@@ -58,7 +64,35 @@ namespace AsdXMLLibrary.Objects
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
-            throw new NotImplementedException();
+            if (element == null)
+                return false;
+
+            Id.ReadfromXML(element.Element(ns + Constants.MessageIdElementName), ns);
+            XElement date = element.Element(ns + Constants.MessageDateElementName);
+            if (date != null)
+                CreationDate = XmlConvert.ToDateTime(date.Value, XmlDateTimeSerializationMode.Local);
+            Language.ReadfromXML(element.Element(ns + Constants.MessageLanguageElementName), ns);
+
+            Sender.Clear();
+            foreach (XElement senderElement in element.Element(ns + Constants.MessageSenderElementName).Elements(ns + Constants.ReferenceOrganizationElementName))
+            {
+                OrganizationReference orgRef = new OrganizationReference();
+                orgRef.ReadfromXML(senderElement, ns);
+                Sender.Add(orgRef);
+            }
+
+            Receiver.Clear();
+            foreach (XElement receiverElement in element.Element(ns + Constants.MessageReceiverElementName).Elements(ns + Constants.ReferenceOrganizationElementName))
+            {
+                OrganizationReference orgRef = new OrganizationReference();
+                orgRef.ReadfromXML(receiverElement, ns);
+                Receiver.Add(orgRef);
+            }
+
+            ContentItems.ReadfromXML(element.Element(ns + Constants.MessageContentElementName).Element(ns + Constants.MessageContentItemsElementName), ns);
+            SupportingItems.ReadfromXML(element.Element(ns + Constants.MessageContentElementName).Element(ns + Constants.MessageContentSupportingItemsElementName), ns);
+
+            return true;
         }
         #endregion
     }
