@@ -14,25 +14,16 @@ namespace AsdXMLLibrary.Objects.References
             OrgId = new Identifier<OrganizationIdentifierClassification>();
         }
 
+        public OrganizationReference(Organization org)
+            : this()
+        {
+            OrgId = org.OrgId;
+        }
+
         public bool HasValue
         {
             get { return OrgId != null && OrgId.HasValue; }
         }
-
-        #region IAmReference Members
-
-        public void SetTarget(ICanBeReferenced target)
-        {
-            Organization org = (Organization)target;
-            if (org != null)
-            {
-                // do a copy of the actual values, otherwise we'd destroy our setting for _elementName in the current context
-                OrgId.ID = org.OrgId.ID;
-                OrgId.Class.Value = org.OrgId.Class.Value;
-            }
-        }
-
-        #endregion
 
         #region ISerialize Members
 

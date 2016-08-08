@@ -51,7 +51,7 @@ namespace AsdXMLLibrary.Tests.Base
             expected.Text = "datedDescriptorText";
             expected.Language.Value = "EN";
             expected.ProvidedDate = DateTime.Now;
-            expected.ProvidedBy.SetTarget(TestObjects.OrganizationMinimum);
+            expected.ProvidedBy = TestObjects.OrganizationMinimum.GetReference();
             
             DatedDescriptor result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
@@ -75,7 +75,7 @@ namespace AsdXMLLibrary.Tests.Base
             ProvidedDescriptor expected = new ProvidedDescriptor();
             expected.Text = "providedDescriptorText";
             expected.Language.Value = "EN";
-            expected.ProvidedBy.SetTarget(TestObjects.OrganizationMinimum);
+            expected.ProvidedBy = TestObjects.OrganizationMinimum.GetReference();
 
             ProvidedDescriptor result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);

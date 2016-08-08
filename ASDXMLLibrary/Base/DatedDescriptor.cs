@@ -9,7 +9,7 @@ namespace AsdXMLLibrary.Base
     {
         public DateTime? ProvidedDate { get; set; }
 
-        public OrganizationReference ProvidedBy { get; private set; }
+        public OrganizationReference ProvidedBy { get; set; }
 
         #region Constructor
         public DatedDescriptor()

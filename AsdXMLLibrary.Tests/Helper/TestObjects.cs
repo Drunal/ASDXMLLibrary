@@ -39,7 +39,7 @@ namespace AsdXMLLibrary.Tests.Helper
             {
                 var sw = new SoftwarePartAsDesigned();
                 sw.PartIds.Primary.ID = "PartNumber-1234";
-                sw.PartIds.Primary.SetBy.SetTarget(OrganizationMinimum);
+                sw.PartIds.Primary.SetBy = OrganizationMinimum.GetReference();
                 return sw;
             }
         }

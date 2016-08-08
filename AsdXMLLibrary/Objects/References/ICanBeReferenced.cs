@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace AsdXMLLibrary.Objects.References
 {
-    public interface ICanBeReferenced
+    public interface ICanBeReferenced<out T> 
+        where T : IAmReference
     {
-        //IAmReference GetReference();
+        T GetReference();
     }
 }

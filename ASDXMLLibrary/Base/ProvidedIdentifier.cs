@@ -30,7 +30,7 @@ namespace AsdXMLLibrary.Base
             : base(value, classification)
         {
             Initialize();
-            this.SetBy.SetTarget(setBy);
+            this.SetBy = new OrganizationReference(setBy);
         }
 
         #endregion

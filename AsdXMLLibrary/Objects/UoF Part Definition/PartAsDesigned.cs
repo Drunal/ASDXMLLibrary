@@ -5,11 +5,13 @@ using System.Xml.Linq;
 
 namespace AsdXMLLibrary.Objects
 {
-    public abstract class PartAsDesigned : SerializeBase, ICanBeReferenced
+    public abstract class PartAsDesigned : SerializeBase, ICanBeReferenced<PartReference>
     {
         public MultipleValues<ProvidedIdentifier<PartIdentifierClassification>> PartIds { get; set; }
 
         public MultipleValues<ProvidedDescriptor> PartNames { get; set; }
+
+        private PartReference _reference = null;
 
         public PartAsDesigned()
         {
@@ -20,6 +22,16 @@ namespace AsdXMLLibrary.Objects
             : this()
         {
             PartIds.Primary.ID = identifier;
+        }
+
+        public PartReference GetReference()
+        {
+            if (_reference == null)
+            {
+                // TODO: if this is a reference, it would be good to update the _reference when the Primary changes, right?
+                _reference = new PartReference(this);
+            }
+            return _reference;
         }
 
         #region Serialize Functions
@@ -53,5 +65,7 @@ namespace AsdXMLLibrary.Objects
             return true;
         }
         #endregion
+
+        
     }
 }

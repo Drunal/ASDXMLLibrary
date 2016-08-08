@@ -5,7 +5,7 @@ namespace AsdXMLLibrary.Base
 {
     public class ProvidedDescriptor : Descriptor
     {
-        public OrganizationReference ProvidedBy { get; private set; }
+        public OrganizationReference ProvidedBy { get; set; }
 
         #region Constructors
         public ProvidedDescriptor()
