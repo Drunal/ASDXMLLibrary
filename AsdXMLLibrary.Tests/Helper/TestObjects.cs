@@ -5,7 +5,7 @@ namespace AsdXMLLibrary.Tests.Helper
     public static class TestObjects
     {
         /// <summary>
-        /// creates a MockOrganization with Name and ID
+        /// creates a NEW MockOrganization with Name and ID
         /// </summary>
         /// <returns>an Organization with Name and ID</returns>
         public static Organization OrganizationMinimum
@@ -20,7 +20,7 @@ namespace AsdXMLLibrary.Tests.Helper
         }
 
         /// <summary>
-        /// Create a MockOrganization with a localized Name and a classified ID
+        /// Create a NEW MockOrganization with a localized Name and a classified ID
         /// </summary>
         public static Organization OrganizationFull
         {
@@ -33,6 +33,9 @@ namespace AsdXMLLibrary.Tests.Helper
             }
         }
 
+        /// <summary>
+        /// Create a NEW Mock SoftwarePart As Designed with PartID set by a <see cref="OrganizationMinimum"/>
+        /// </summary>
         public static SoftwarePartAsDesigned SoftwarePartMinimum
         {
             get
@@ -44,6 +47,9 @@ namespace AsdXMLLibrary.Tests.Helper
             }
         }
 
+        /// <summary>
+        /// Creates a NEW Mock SoftwarePart as Designed with two PartIds - set by noone.
+        /// </summary>
         public static SoftwarePartAsDesigned SoftwarePartMultipleIds
         {
             get
@@ -55,6 +61,9 @@ namespace AsdXMLLibrary.Tests.Helper
             }
         }
 
+        /// <summary>
+        /// Create a NEW Mock Software as Designed with two PartNames
+        /// </summary>
         public static SoftwarePartAsDesigned SoftwarePartMultipleNames
         {
             get
