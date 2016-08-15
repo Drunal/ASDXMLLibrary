@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Classifications\ClassificationManager.cs" />
+    <Compile Include="Base\Classifications\DatedClassification.cs" />
     <Compile Include="Base\Constants.cs" />
     <Compile Include="Base\DatedDescriptor.cs" />
     <Compile Include="Base\Descriptor.cs" />

@@ -17,6 +17,7 @@ namespace AsdXMLLibrary.Base
         public static readonly string ProvidedByElementName = "providedBy";
         public static readonly string SetByElementName = "setBy";
         public static readonly string ClassElementName = "class";
+        public static readonly string CodeElementName = "code";
         public static readonly string IdentifierElementName = "id";
         public static readonly string NameElementName = "name";
         public static readonly string OrganizationIdElementName = "orgId";

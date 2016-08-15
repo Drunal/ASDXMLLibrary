@@ -72,6 +72,16 @@
         </xsd:sequence> 
     </xsd:complexType>
 
+    <xsd:complexType name="datedClassification">
+        <xsd:sequence>
+            <xsd:element name="code" type="classification"/>   
+            <!--xsd:group ref="applicabilityAssignmentItem"/>
+            <xsd:group ref="documentAssignmentItem"/>
+            <xsd:group ref="remarkAssignmentItem"/-->
+            <xsd:element name="date" type="xsd:date" minOccurs="0" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
     <xsd:simpleType name="crudCodeValues">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="I">
@@ -105,5 +115,7 @@
     <xsd:simpleType name="classification">
         <xsd:restriction base="nonEmptyString"/>
     </xsd:simpleType>
+    
+    
     
 </xsd:schema>

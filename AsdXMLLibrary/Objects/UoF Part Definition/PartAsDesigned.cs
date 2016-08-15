@@ -12,9 +12,9 @@ namespace AsdXMLLibrary.Objects
         public MultipleValues<ProvidedIdentifier<PartIdentifierClassification>> PartIds { get; set; }
         public MultipleValues<ProvidedDescriptor> PartNames { get; set; }
 
-        public Classification DemilitarizationClass { get; set; }
+        public DatedClassification DemilitarizationClass { get; set; }
         public DatedDescriptor SpecialHandlingRequirement { get; set; }
-        public Classification MaturityClass { get; set; }
+        public DatedClassification MaturityClass { get; set; }
         public DatedDescriptor ObsolescenceRiskAssessment { get; set; }
         
 
@@ -24,9 +24,9 @@ namespace AsdXMLLibrary.Objects
             PartIds = new MultipleValues<ProvidedIdentifier<PartIdentifierClassification>>();
             PartNames = new MultipleValues<ProvidedDescriptor>();
 
-            DemilitarizationClass = new Classification(typeof(DemilitarizationClassification));
+            DemilitarizationClass = new DatedClassification(typeof(DemilitarizationClassification));
             SpecialHandlingRequirement = new DatedDescriptor();
-            MaturityClass = new Classification(typeof(MaturityClassification));
+            MaturityClass = new DatedClassification(typeof(MaturityClassification));
             ObsolescenceRiskAssessment = new DatedDescriptor();
         }
         public PartAsDesigned(string identifier)

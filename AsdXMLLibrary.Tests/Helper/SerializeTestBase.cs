@@ -24,6 +24,7 @@ namespace AsdXMLLibrary.Tests.Helper
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Descriptor.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Identifier.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Property.xsd");
+            schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/Classification.xsd");
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/SoftwarePartAsDesigned.xsd");
 
             schemas.Add("http://www.asd-europe.org/s-series/s3000l", @"Schemas/S3000L/s3000l_1-1_lsa_dataset_without_assert.xsd");

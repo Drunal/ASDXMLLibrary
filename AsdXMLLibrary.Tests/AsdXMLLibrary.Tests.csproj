@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Base\ClassificationManagerTests.cs" />
+    <Compile Include="Base\ClassificationTests.cs" />
     <Compile Include="Base\DescriptorTests.cs" />
     <Compile Include="Base\PropertyTests.cs" />
     <Compile Include="Helper\DateTimeExtensions.cs" />
@@ -92,6 +93,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Schemas\Property.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Schemas\Classification.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
