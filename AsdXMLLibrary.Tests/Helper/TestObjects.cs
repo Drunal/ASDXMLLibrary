@@ -1,9 +1,21 @@
 ﻿using AsdXMLLibrary.Objects;
+using System;
 
 namespace AsdXMLLibrary.Tests.Helper
 {
     public static class TestObjects
     {
+        
+        public static S3000LMessage BasicMessage
+        {
+            get
+            {
+                var msg = new S3000LMessage();
+                msg.Id.ID = "0001";
+                return msg;
+            }
+        }
+        
         /// <summary>
         /// creates a NEW MockOrganization with Name and ID
         /// </summary>
@@ -71,6 +83,26 @@ namespace AsdXMLLibrary.Tests.Helper
                 var sw = TestObjects.SoftwarePartMinimum;
                 sw.PartNames.Primary.Text = "PartName1";
                 sw.PartNames.Add(new AsdXMLLibrary.Base.ProvidedDescriptor("Partname2", "EN"));
+                return sw;
+            }
+        }
+
+        public static SoftwarePartAsDesigned SoftwarePartComplete
+        {
+            get
+            {
+                var sw = TestObjects.SoftwarePartMinimum;
+                sw.PartNames.Primary.Text = "Partname";
+                sw.PartNames.Primary.Language.Value = "EN";
+
+                sw.MaturityClass.Value = "COTS";
+                sw.MaturityClass.ProvidedDate = DateTime.Now;
+                sw.ObsolescenceRiskAssessment.Text = "obsolescenceRiskAssessment";
+                sw.DemilitarizationClass.Value = "NAT";
+                sw.SpecialHandlingRequirement.Text = "specialhandlingrequirement";
+                sw.SoftwarePartSize.CreateRangeProperty(12.5, 17.5, "KB");
+                sw.SoftwareType.Value = "L";
+
                 return sw;
             }
         }

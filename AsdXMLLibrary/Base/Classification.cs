@@ -65,7 +65,7 @@ namespace AsdXMLLibrary.Base
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
             if (element == null)
-                return false; // so there was no element for language, meh
+                return false;
 
             chosenValue = element.Value;
 

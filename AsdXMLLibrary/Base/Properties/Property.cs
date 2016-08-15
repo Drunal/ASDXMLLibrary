@@ -240,6 +240,8 @@ namespace AsdXMLLibrary.Base.Properties
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
+            if (element == null)
+                return false;
             XElement date = element.Element(ns + Constants.DateElementName);
             if (date != null)
                 RecordingDate = XmlConvert.ToDateTime(date.Value, XmlDateTimeSerializationMode.Local);

@@ -10,14 +10,14 @@ namespace AsdXMLLibrary.Objects
         #region Design Data
         public Classification SoftwareType { get; set; }
 
-        public Property<BinaryUnitClassification> SoftwarePartSize { get; set; }
+        public Property<SoftwareSizeUnit> SoftwarePartSize { get; set; }
         #endregion
 
 
         public SoftwarePartAsDesigned()
         {
             SoftwareType = new Classification(typeof(SoftwareTypeClassification));
-            SoftwarePartSize = new Property<BinaryUnitClassification>();
+            SoftwarePartSize = new Property<SoftwareSizeUnit>();
         }
 
         #region Serialize Functions
@@ -25,7 +25,7 @@ namespace AsdXMLLibrary.Objects
         {
             XElement swPart = base.CreateXML(elementName, ns);
             if (SoftwareType.HasValue)
-                swPart.Add(SoftwareType.CreateXML(Constants.SoftwareTypeElementName, ns));
+                swPart.Add(SoftwareType.CreateXMLWithAdditionalLevel(Constants.SoftwareTypeElementName, Constants.CodeElementName, ns));
             if (SoftwarePartSize.HasValue)
                 swPart.Add(SoftwarePartSize.CreateXML(Constants.SoftwarePartSizeElementName, ns));
 
@@ -36,7 +36,8 @@ namespace AsdXMLLibrary.Objects
         {
             // this should read the base information
             base.ReadfromXML(element, ns);
-            SoftwareType.ReadfromXML(element.Element(ns + Constants.SoftwareTypeElementName), ns);
+            SoftwareType.ReadfromXMLWithAdditionalLevel(element.Element(ns + Constants.SoftwareTypeElementName), Constants.CodeElementName, ns);
+            SoftwarePartSize.ReadfromXML(element.Element(ns + Constants.SoftwarePartSizeElementName), ns);
             return true;
         }
         #endregion

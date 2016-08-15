@@ -16,8 +16,7 @@ namespace AsdXMLLibrary.Base.Classifications
     
     public class ValueDeterminationClassification : ClassificationBase { }
     
-    public class UnitClassification : ClassificationBase { }
-    public class BinaryUnitClassification : ClassificationBase { }
+    public class SoftwareSizeUnit : ClassificationBase { }
 
     #region PartAsDesigned
     public class DemilitarizationClassification : ClassificationBase { }

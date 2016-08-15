@@ -46,11 +46,8 @@ namespace AsdXMLLibrary.Base.Classifications
             Add(new ValueDeterminationClassification {
                 "ALC", "CALC", "CONTR", "DSG", "EMP", "EST", "MEAS", "PLAN", "REQ", "SET", "SPEC"
             });
-            Add(new UnitClassification {
-                "BIT", "B", "GB", "KB", "MB", "OC", "PB", "TB"
-            });
-            Add(new BinaryUnitClassification {
-                "BIT", "B", "GB", "KB", "MB", "OC", "PB", "TB"
+            Add(new SoftwareSizeUnit {
+                "KB", "MB", "GB"
             });
             Add(new HazardousClassClassification());
             Add(new FitmentRequirementClassification {
