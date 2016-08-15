@@ -63,6 +63,11 @@ namespace AsdXMLLibrary.Base
         #region Parts
         public static readonly string PartAsDesignedPartIdElementName = "partId";
         public static readonly string PartAsDesignedPartNameElementName = "name";
+        public static readonly string PartSpecialHandlingRequirementElementName = "phstReq";
+        public static readonly string PartMaturityClassElementName = "maturity";
+        public static readonly string PartObsolescenceRiskAssessmentElementName = "obsRisk";
+        public static readonly string PartDemilitarizationClassElementName = "dec";
+
 
         public static readonly string HardwarePartAsDesignedElementName = "hwPart";
         public static readonly string HardwarePartHazardousClassElementName = "haz";

@@ -59,6 +59,14 @@ namespace AsdXMLLibrary.Base.Classifications
             Add(new SoftwareTypeClassification { 
                 "D", "E", "L"
             });
+
+            Add(new DemilitarizationClassification {
+                "N/A", "TSC", "KEY", "MUT", "NAT", "IBD", "PRI", "SEC"
+            });
+            Add(new MaturityClassification { 
+                "NEW", "MOD-L", "MOD-M", "COTS", "CFE", "OBS"
+            });
+
             Add(new DummyClassification());
         }
 

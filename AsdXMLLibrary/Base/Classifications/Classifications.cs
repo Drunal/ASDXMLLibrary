@@ -19,6 +19,11 @@ namespace AsdXMLLibrary.Base.Classifications
     public class UnitClassification : ClassificationBase { }
     public class BinaryUnitClassification : ClassificationBase { }
 
+    #region PartAsDesigned
+    public class DemilitarizationClassification : ClassificationBase { }
+    public class MaturityClassification : ClassificationBase { }
+    #endregion
+
     #region HardwarePartAsDesignedDesignData
     public class HazardousClassClassification : ClassificationBase { }
     public class FitmentRequirementClassification : ClassificationBase { }
