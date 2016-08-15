@@ -35,6 +35,8 @@ namespace AsdXMLLibrary.Base
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement descriptor = base.CreateXML(elementName, ns);
+            if (descriptor == null)
+                return null; // no need/possibilty to add something if the base didn't create anything.
             descriptor.Add(ProvidedBy.CreateXML(Constants.ProvidedByElementName, ns));
 
             return descriptor;
@@ -43,7 +45,8 @@ namespace AsdXMLLibrary.Base
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
             // this should read name and language
-            base.ReadfromXML(element, ns);
+            if (!base.ReadfromXML(element, ns))
+                return false; // return here, because the base wasn't able to read its data
             ProvidedBy.ReadfromXML(element.Element(ns + Constants.ProvidedByElementName), ns);
             return true;
         }

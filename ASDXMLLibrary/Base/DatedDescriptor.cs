@@ -39,6 +39,9 @@ namespace AsdXMLLibrary.Base
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement descriptor = base.CreateXML(elementName, ns);
+            if (descriptor == null) // if there is no base, why create the rest?
+                return descriptor;
+
             if (ProvidedDate.HasValue)
                 descriptor.Add(new XElement(ns + Constants.DateElementName, ProvidedDate.ToXmlDateString()));
             // providedBy.GetXML returns 'null' if no value
@@ -50,7 +53,8 @@ namespace AsdXMLLibrary.Base
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
             // this should read name and language
-            base.ReadfromXML(element, ns);
+            if (!base.ReadfromXML(element, ns))
+                return false; // return here, if the base couldn't read its data probably.
             // date is optional
             XElement date = element.Element(ns + Constants.DateElementName);
             if (date != null)
