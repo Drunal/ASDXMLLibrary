@@ -36,7 +36,8 @@ namespace AsdXMLLibrary.Objects
         #region Serialize Functions
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement hwPart = base.CreateXML(elementName, ns);
+            XElement hwPart = base.CreateXML(elementName, ns, forceElement);
+            if (hwPart == null) return null;
             // actually, this should be added _after_ the partNames but before the other base stuff
             // so we need to find the insert location from the base.
             XElement insertLocation = hwPart.Elements(ns + Constants.PartAsDesignedPartNameElementName, ns + Constants.PartAsDesignedPartIdElementName).LastOrDefault();

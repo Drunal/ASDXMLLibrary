@@ -43,7 +43,7 @@ namespace AsdXMLLibrary.Base
         #region Serialize Functions
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement identifier = base.CreateXML(elementName, ns);
+            XElement identifier = base.CreateXML(elementName, ns, forceElement);
             if (identifier == null)
                 return null; // no need to add anythin if the base did not create anything
             identifier.Add(SetBy.CreateXML(Constants.SetByElementName, ns));

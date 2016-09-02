@@ -38,9 +38,9 @@ namespace AsdXMLLibrary.Base
         #region ISerialize
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement descriptor = base.CreateXML(elementName, ns);
+            XElement descriptor = base.CreateXML(elementName, ns, forceElement);
             if (descriptor == null) // if there is no base, why create the rest?
-                return descriptor;
+                return null;
 
             if (ProvidedDate.HasValue)
                 descriptor.Add(new XElement(ns + Constants.DateElementName, ProvidedDate.ToXmlDateString()));
