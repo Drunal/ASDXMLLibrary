@@ -23,7 +23,8 @@ namespace AsdXMLLibrary.Objects
         #region Serialize Functions
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement swPart = base.CreateXML(elementName, ns);
+            XElement swPart = base.CreateXML(elementName, ns, forceElement);
+            if (swPart == null) return null;
             if (SoftwareType.HasValue)
                 swPart.Add(SoftwareType.CreateXML(Constants.SoftwareTypeElementName, ns));
             if (SoftwarePartSize.HasValue)
@@ -34,6 +35,7 @@ namespace AsdXMLLibrary.Objects
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
+            if (element == null) return false;
             // this should read the base information
             base.ReadfromXML(element, ns);
             SoftwareType.ReadfromXML(element.Element(ns + Constants.SoftwareTypeElementName), ns);

@@ -43,7 +43,7 @@ namespace AsdXMLLibrary.Base
         #region Serialize Functions
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement identifier = base.CreateXML(elementName, ns);
+            XElement identifier = base.CreateXML(elementName, ns, forceElement);
             if (identifier == null)
                 return null; // no need to add anythin if the base did not create anything
             identifier.Add(SetBy.CreateXML(Constants.SetByElementName, ns));
@@ -53,6 +53,7 @@ namespace AsdXMLLibrary.Base
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
+            if (element == null) return false;
             // this should read id and class
             if (!base.ReadfromXML(element, ns))
                 return false; // no need to read anything if the base didn't read anything

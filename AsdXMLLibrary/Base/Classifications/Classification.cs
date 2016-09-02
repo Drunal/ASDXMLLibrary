@@ -59,7 +59,7 @@ namespace AsdXMLLibrary.Base
         /// <returns></returns>
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement=false)
         {
-            return HasValue ? new XElement(ns + elementName, chosenValue) : null;
+            return HasValue || forceElement ? new XElement(ns + elementName, chosenValue) : null;
         }
 
         public override bool ReadfromXML(XElement element, XNamespace ns)

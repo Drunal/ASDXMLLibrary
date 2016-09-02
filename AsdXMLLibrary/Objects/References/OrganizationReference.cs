@@ -29,7 +29,7 @@ namespace AsdXMLLibrary.Objects.References
 
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            return HasValue ? new XElement(ns + elementName, OrgId.CreateXML(Constants.OrganizationIdElementName, ns)) : null;
+            return HasValue || forceElement ? new XElement(ns + elementName, OrgId.CreateXML(Constants.OrganizationIdElementName, ns)) : null;
         }
 
         public override bool ReadfromXML(XElement element, XNamespace ns)

@@ -34,7 +34,7 @@ namespace AsdXMLLibrary.Base
         #region Serialize Functions
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement descriptor = base.CreateXML(elementName, ns);
+            XElement descriptor = base.CreateXML(elementName, ns, forceElement);
             if (descriptor == null)
                 return null; // no need/possibilty to add something if the base didn't create anything.
             descriptor.Add(ProvidedBy.CreateXML(Constants.ProvidedByElementName, ns));
@@ -44,6 +44,7 @@ namespace AsdXMLLibrary.Base
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
+            if (element == null) return false;
             // this should read name and language
             if (!base.ReadfromXML(element, ns))
                 return false; // return here, because the base wasn't able to read its data

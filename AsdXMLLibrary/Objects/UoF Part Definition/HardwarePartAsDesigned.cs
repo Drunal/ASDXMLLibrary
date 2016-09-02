@@ -9,7 +9,7 @@ namespace AsdXMLLibrary.Objects
     public class HardwarePartAsDesigned : PartAsDesigned
     {
         #region Design Data
-        public string AuthorizedLife { get; set; }
+        public AuthorizedLifeProperty AuthorizedLife { get; set; }
 
         public CodedClassification HazardousClass { get; set; }
         // Authorized Life
@@ -28,6 +28,7 @@ namespace AsdXMLLibrary.Objects
 
         public HardwarePartAsDesigned()
         {
+            AuthorizedLife = new AuthorizedLifeProperty();
             HazardousClass = new CodedClassification(typeof(HazardousClassClassification));
             FitmentRequirement = new CodedClassification(typeof(FitmentRequirementClassification));
         }
@@ -35,7 +36,8 @@ namespace AsdXMLLibrary.Objects
         #region Serialize Functions
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement hwPart = base.CreateXML(elementName, ns);
+            XElement hwPart = base.CreateXML(elementName, ns, forceElement);
+            if (hwPart == null) return null;
             // actually, this should be added _after_ the partNames but before the other base stuff
             // so we need to find the insert location from the base.
             XElement insertLocation = hwPart.Elements(ns + Constants.PartAsDesignedPartNameElementName, ns + Constants.PartAsDesignedPartIdElementName).LastOrDefault();
@@ -58,7 +60,8 @@ namespace AsdXMLLibrary.Objects
 
             if (FitmentRequirement.HasValue)
                 insertLocation.AddAfterSelf(FitmentRequirement.CreateXML(Constants.HardwarePartFitmentRequirementElementName, ns));
-            // insert AUL
+            if (AuthorizedLife.HasValue)
+                insertLocation.AddAfterSelf(AuthorizedLife.CreateXML(Constants.HardwarePartOperationalAuthorizedLife, ns));
             if (HazardousClass.HasValue)
                 insertLocation.AddAfterSelf(HazardousClass.CreateXML(Constants.HardwarePartHazardousClassElementName, ns));
 
@@ -67,10 +70,12 @@ namespace AsdXMLLibrary.Objects
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
+            if (element == null) return false;
             // this should read the base information
             base.ReadfromXML(element, ns);
             HazardousClass.ReadfromXML(element.Element(ns + Constants.HardwarePartHazardousClassElementName), ns);
             FitmentRequirement.ReadfromXML(element.Element(ns + Constants.HardwarePartFitmentRequirementElementName), ns);
+            AuthorizedLife.ReadfromXML(element.Element(ns + Constants.HardwarePartOperationalAuthorizedLife), ns);
 
             XElement tmp = element.Element(ns + Constants.HardwarePartElectromagneticIncompatible);
             if (tmp != null)

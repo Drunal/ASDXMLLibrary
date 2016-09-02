@@ -26,6 +26,7 @@ namespace AsdXMLLibrary.Base.Classifications
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement classification = base.CreateXML(elementName, ns, forceElement);
+            if (classification == null) return null;
             if (ProvidedDate.HasValue)
                 classification.Add(new XElement(ns + Constants.DateElementName, ProvidedDate.ToXmlDateString()));
 

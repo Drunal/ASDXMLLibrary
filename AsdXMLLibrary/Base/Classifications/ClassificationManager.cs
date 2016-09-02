@@ -49,6 +49,15 @@ namespace AsdXMLLibrary.Base.Classifications
             Add(new SoftwareSizeUnit {
                 "KB", "MB", "GB"
             });
+            Add(new EventUnit {
+                "C", "FC", "OH", "FH", "S", "LA", "LD", "DL", "OP", "SO", "FI", "RD"
+            });
+            Add(new LengthUnit {
+                "M2", "CM", "KM", "MI", "NM"
+            });
+            Add(new TimeUnit {
+                "SEC", "MIN", "HR", "DAY", "MON", "YR", "WK"
+            });
             Add(new HazardousClassClassification()
             {
                 "HAZ"
@@ -67,6 +76,12 @@ namespace AsdXMLLibrary.Base.Classifications
                 "NEW", "MOD-L", "MOD-M", "COTS", "CFE", "OBS"
             });
 
+            TimeCycleUnit tcu = new TimeCycleUnit();
+            tcu.AddRange(Get(typeof(EventUnit)));
+            tcu.AddRange(Get(typeof(LengthUnit)));
+            tcu.AddRange(Get(typeof(TimeUnit)));
+            Add(tcu);
+            
             Add(new DummyClassification());
         }
 

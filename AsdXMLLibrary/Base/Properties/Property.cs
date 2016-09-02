@@ -204,7 +204,7 @@ namespace AsdXMLLibrary.Base.Properties
         #region Serialize Functions
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            if (!HasValue) return null;
+            if (!HasValue && !forceElement) return null;
 
             XElement property = new XElement(ns + elementName);
             if (RecordingDate.HasValue)
