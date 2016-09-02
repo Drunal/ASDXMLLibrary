@@ -133,7 +133,13 @@ namespace AsdXMLLibrary.Tests.Helper
                 hw.SpecialHandlingRequirement.Text = "specialhandlingrequirement";
 
                 //Authorized Life
-                //hw.AuthorizedLife = 
+
+                var value = hw.AuthorizedLife.AddValue();
+                value.CreateRangeProperty(12.5, 17.5, "DAY");
+                value = hw.AuthorizedLife.AddValue();
+                value.CreateTextProperty("something funny");
+                hw.AuthorizedLife.LifeAuthorizingOrganization = OrganizationMinimum.GetReference();
+
                 hw.HazardousClass.Value = "HAZ";
                 hw.FitmentRequirement.Value = "MINOR";
                 hw.ElectromagneticIncompatible = true;

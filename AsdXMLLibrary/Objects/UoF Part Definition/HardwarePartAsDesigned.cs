@@ -9,7 +9,7 @@ namespace AsdXMLLibrary.Objects
     public class HardwarePartAsDesigned : PartAsDesigned
     {
         #region Design Data
-        public string AuthorizedLife { get; set; }
+        public AuthorizedLifeProperty AuthorizedLife { get; set; }
 
         public CodedClassification HazardousClass { get; set; }
         // Authorized Life
@@ -28,6 +28,7 @@ namespace AsdXMLLibrary.Objects
 
         public HardwarePartAsDesigned()
         {
+            AuthorizedLife = new AuthorizedLifeProperty();
             HazardousClass = new CodedClassification(typeof(HazardousClassClassification));
             FitmentRequirement = new CodedClassification(typeof(FitmentRequirementClassification));
         }
@@ -58,7 +59,8 @@ namespace AsdXMLLibrary.Objects
 
             if (FitmentRequirement.HasValue)
                 insertLocation.AddAfterSelf(FitmentRequirement.CreateXML(Constants.HardwarePartFitmentRequirementElementName, ns));
-            // insert AUL
+            if (AuthorizedLife.HasValue)
+                insertLocation.AddAfterSelf(AuthorizedLife.CreateXML(Constants.HardwarePartOperationalAuthorizedLife, ns));
             if (HazardousClass.HasValue)
                 insertLocation.AddAfterSelf(HazardousClass.CreateXML(Constants.HardwarePartHazardousClassElementName, ns));
 
@@ -71,6 +73,7 @@ namespace AsdXMLLibrary.Objects
             base.ReadfromXML(element, ns);
             HazardousClass.ReadfromXML(element.Element(ns + Constants.HardwarePartHazardousClassElementName), ns);
             FitmentRequirement.ReadfromXML(element.Element(ns + Constants.HardwarePartFitmentRequirementElementName), ns);
+            AuthorizedLife.ReadfromXML(element.Element(ns + Constants.HardwarePartOperationalAuthorizedLife), ns);
 
             XElement tmp = element.Element(ns + Constants.HardwarePartElectromagneticIncompatible);
             if (tmp != null)
