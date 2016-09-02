@@ -55,14 +55,16 @@ namespace AsdXMLLibrary.Objects
             foreach (var name in PartNames)
                 part.Add(name.CreateXML(Constants.PartAsDesignedPartNameElementName, ns));
 
-            // for some stupid reason the elements of the derived class need to go in here!
-            
+            // for some reason the elements of the hwPart class need to go in here!
+                        
             part.Add(DemilitarizationClass.CreateXML(Constants.PartDemilitarizationClassElementName, ns));
             if(SpecialHandlingRequirement.HasValue)
                 part.Add(SpecialHandlingRequirement.CreateXML(Constants.PartSpecialHandlingRequirementElementName, ns));
             part.Add(MaturityClass.CreateXML(Constants.PartMaturityClassElementName, ns));
             if(ObsolescenceRiskAssessment.HasValue)
                 part.Add(ObsolescenceRiskAssessment.CreateXML(Constants.PartObsolescenceRiskAssessmentElementName, ns));
+
+            // but the swPart class nees to go in here!
 
             return part;
         }

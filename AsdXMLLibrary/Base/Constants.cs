@@ -73,6 +73,11 @@ namespace AsdXMLLibrary.Base
         public static readonly string HardwarePartAsDesignedElementName = "hwPart";
         public static readonly string HardwarePartHazardousClassElementName = "haz";
         public static readonly string HardwarePartFitmentRequirementElementName = "ftc";
+        public static readonly string HardwarePartElectromagneticIncompatible = "emi";
+        public static readonly string HardwarePartElectrostaticSensitive = "ess";
+        public static readonly string HardwarePartElectromagneticSensitive = "ems";
+        public static readonly string HardwarePartMagneticSensitive = "mse";
+        public static readonly string HardwarePartRadiationSensitive = "rse";
 
         public static readonly string SoftwarePartAsDesignedElementName = "swPart";
         public static readonly string SoftwareTypeElementName = "swType";

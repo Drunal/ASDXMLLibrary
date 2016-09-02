@@ -1,5 +1,7 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
+using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace AsdXMLLibrary.Objects
@@ -7,23 +9,24 @@ namespace AsdXMLLibrary.Objects
     public class HardwarePartAsDesigned : PartAsDesigned
     {
         #region Design Data
+        public string AuthorizedLife { get; set; }
+
         public Classification HazardousClass { get; set; }
         // Authorized Life
         public Classification FitmentRequirement { get; set; }
-        //[XmlElement(ElementName = "emi")]
+        // emi
         public bool? ElectromagneticIncompatible { get; set; }
-        //[XmlElement(ElementName = "ess")]
+        // ess
         public bool? ElectrostaticSensitive { get; set; }
-        //[XmlElement(ElementName = "ems")]
+        // ems
         public bool? ElectromagnecticSensitive { get; set; }
-        //[XmlElement(ElementName = "mse")]
+        // mse
         public bool? MagneticSensitive { get; set; }
-        //[XmlElement(ElementName = "rse")]
+        // rse
         public bool? RadiationSensitive { get; set; }
         #endregion
 
         public HardwarePartAsDesigned()
-            : base(Constants.HardwarePartAsDesignedElementName)
         {
             HazardousClass = new Classification(typeof(HazardousClassClassification));
             FitmentRequirement = new Classification(typeof(FitmentRequirementClassification));
@@ -33,10 +36,31 @@ namespace AsdXMLLibrary.Objects
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement hwPart = base.CreateXML(elementName, ns);
-            if (HazardousClass.HasValue)
-                hwPart.Add(HazardousClass.CreateXML(Constants.HardwarePartHazardousClassElementName, ns));
+            // actually, this should be added _after_ the partNames but before the other base stuff
+            // so we need to find the insert location from the base.
+            XElement insertLocation = hwPart.Elements(ns + Constants.PartAsDesignedPartNameElementName, ns + Constants.PartAsDesignedPartIdElementName).LastOrDefault();
+            if (insertLocation == null)
+            {
+                // TODO: write to log, that this part does not have a name or a id, which is kinda mandatory in S3000L v1.1
+                return null;
+            }
+            // add in inverse order, so that we do not need to update the insertLocation
+            if (RadiationSensitive.HasValue)
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartRadiationSensitive, RadiationSensitive));
+            if (MagneticSensitive.HasValue)
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartMagneticSensitive, MagneticSensitive));
+            if (ElectromagnecticSensitive.HasValue)
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectromagneticSensitive, ElectromagnecticSensitive));
+            if (ElectrostaticSensitive.HasValue)
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectrostaticSensitive, ElectrostaticSensitive));
+            if (ElectromagneticIncompatible.HasValue)
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectromagneticIncompatible, ElectromagneticIncompatible));
+
             if (FitmentRequirement.HasValue)
-                hwPart.Add(FitmentRequirement.CreateXML(Constants.HardwarePartFitmentRequirementElementName, ns));
+                insertLocation.AddAfterSelf(FitmentRequirement.CreateXMLWithAdditionalLevel(Constants.HardwarePartFitmentRequirementElementName, Constants.CodeElementName, ns));
+            // insert AUL
+            if (HazardousClass.HasValue)
+                insertLocation.AddAfterSelf(HazardousClass.CreateXMLWithAdditionalLevel(Constants.HardwarePartHazardousClassElementName, Constants.CodeElementName, ns));
 
             return hwPart;
         }
@@ -47,6 +71,27 @@ namespace AsdXMLLibrary.Objects
             base.ReadfromXML(element, ns);
             HazardousClass.ReadfromXML(element.Element(ns + Constants.HardwarePartHazardousClassElementName), ns);
             FitmentRequirement.ReadfromXML(element.Element(ns + Constants.HardwarePartFitmentRequirementElementName), ns);
+
+            XElement tmp = element.Element(ns + Constants.HardwarePartElectromagneticIncompatible);
+            if (tmp != null)
+                ElectromagneticIncompatible = XmlConvert.ToBoolean(tmp.Value);
+
+            tmp = element.Element(ns + Constants.HardwarePartElectrostaticSensitive);
+            if (tmp != null)
+                ElectrostaticSensitive = XmlConvert.ToBoolean(tmp.Value);
+
+            tmp = element.Element(ns + Constants.HardwarePartElectromagneticSensitive);
+            if (tmp != null)
+                ElectromagnecticSensitive = XmlConvert.ToBoolean(tmp.Value);
+
+            tmp = element.Element(ns + Constants.HardwarePartMagneticSensitive);
+            if (tmp != null)
+                MagneticSensitive = XmlConvert.ToBoolean(tmp.Value);
+
+            tmp = element.Element(ns + Constants.HardwarePartRadiationSensitive);
+            if (tmp != null)
+                RadiationSensitive = XmlConvert.ToBoolean(tmp.Value);
+
             return true;
         }
         #endregion

@@ -106,5 +106,44 @@ namespace AsdXMLLibrary.Tests.Helper
                 return sw;
             }
         }
+
+        public static HardwarePartAsDesigned HardwarePartMinimum
+        {
+            get
+            {
+                var hw = new HardwarePartAsDesigned();
+                hw.PartIds.Primary.ID = "PartNumber-1234";
+                hw.PartIds.Primary.SetBy = OrganizationMinimum.GetReference();
+                return hw;
+            }
+        }
+
+        public static HardwarePartAsDesigned HardwarePartComplete
+        {
+            get
+            {
+                var hw = TestObjects.HardwarePartMinimum;
+                hw.PartNames.Primary.Text = "Partname";
+                hw.PartNames.Primary.Language.Value = "EN";
+
+                hw.MaturityClass.Value = "COTS";
+                hw.MaturityClass.ProvidedDate = DateTime.Now;
+                hw.ObsolescenceRiskAssessment.Text = "obsolescenceRiskAssessment";
+                hw.DemilitarizationClass.Value = "NAT";
+                hw.SpecialHandlingRequirement.Text = "specialhandlingrequirement";
+
+                //Authorized Life
+                //hw.AuthorizedLife = 
+                hw.HazardousClass.Value = "HAZ";
+                hw.FitmentRequirement.Value = "MINOR";
+                hw.ElectromagneticIncompatible = true;
+                hw.ElectrostaticSensitive = false;
+                hw.ElectromagnecticSensitive = true;
+                hw.MagneticSensitive = false;
+                hw.RadiationSensitive = true;
+
+                return hw;
+            }
+        }
     }
 }

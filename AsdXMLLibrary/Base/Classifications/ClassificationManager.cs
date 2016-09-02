@@ -49,7 +49,10 @@ namespace AsdXMLLibrary.Base.Classifications
             Add(new SoftwareSizeUnit {
                 "KB", "MB", "GB"
             });
-            Add(new HazardousClassClassification());
+            Add(new HazardousClassClassification()
+            {
+                "HAZ"
+            });
             Add(new FitmentRequirementClassification {
                 "MINOR", "MAJOR"
             });
