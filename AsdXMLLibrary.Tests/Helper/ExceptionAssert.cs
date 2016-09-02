@@ -31,7 +31,7 @@ namespace AsdXMLLibrary.Tests.Helper
                 action();
                 Assert.Fail("Exception of type {0} expected; got none exception", typeof(TException).Name);
             }
-            catch (TException ex)
+            catch (TException)
             {
                 // all good, we got the exception we expected.
             }
