@@ -69,6 +69,7 @@ namespace AsdXMLLibrary.Objects
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
+            if (element == null) return false;
             // this should read the base information
             base.ReadfromXML(element, ns);
             HazardousClass.ReadfromXML(element.Element(ns + Constants.HardwarePartHazardousClassElementName), ns);

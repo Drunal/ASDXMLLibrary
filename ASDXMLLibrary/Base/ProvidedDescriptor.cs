@@ -44,6 +44,7 @@ namespace AsdXMLLibrary.Base
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
+            if (element == null) return false;
             // this should read name and language
             if (!base.ReadfromXML(element, ns))
                 return false; // return here, because the base wasn't able to read its data

@@ -71,6 +71,7 @@ namespace AsdXMLLibrary.Objects
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
+            if (element == null) return false;
             foreach (XElement idElement in element.Elements(ns + Constants.PartAsDesignedPartIdElementName)) 
             {
                 ProvidedIdentifier<PartIdentifierClassification> id = new ProvidedIdentifier<PartIdentifierClassification>();

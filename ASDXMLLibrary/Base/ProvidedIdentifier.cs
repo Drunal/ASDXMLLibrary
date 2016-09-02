@@ -53,6 +53,7 @@ namespace AsdXMLLibrary.Base
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
+            if (element == null) return false;
             // this should read id and class
             if (!base.ReadfromXML(element, ns))
                 return false; // no need to read anything if the base didn't read anything
