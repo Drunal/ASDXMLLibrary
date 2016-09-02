@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\Classifications\ClassificationExtensionMethods.cs" />
     <Compile Include="Base\Classifications\ClassificationManager.cs" />
+    <Compile Include="Base\Classifications\CodedClassification.cs" />
     <Compile Include="Base\Classifications\DatedClassification.cs" />
     <Compile Include="Base\Constants.cs" />
     <Compile Include="Base\DatedDescriptor.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="Objects\UoF Product and Project\Project.cs" />
     <Compile Include="Objects\References\ProjectReference.cs" />
     <Compile Include="Objects\UoF Part Definition\SoftwarePartAsDesigned.cs" />
-    <Compile Include="Base\Classification.cs" />
+    <Compile Include="Base\Classifications\Classification.cs" />
     <Compile Include="Base\Classifications\Classifications.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

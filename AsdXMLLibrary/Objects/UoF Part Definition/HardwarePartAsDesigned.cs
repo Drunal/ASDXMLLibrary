@@ -11,9 +11,9 @@ namespace AsdXMLLibrary.Objects
         #region Design Data
         public string AuthorizedLife { get; set; }
 
-        public Classification HazardousClass { get; set; }
+        public CodedClassification HazardousClass { get; set; }
         // Authorized Life
-        public Classification FitmentRequirement { get; set; }
+        public CodedClassification FitmentRequirement { get; set; }
         // emi
         public bool? ElectromagneticIncompatible { get; set; }
         // ess
@@ -28,8 +28,8 @@ namespace AsdXMLLibrary.Objects
 
         public HardwarePartAsDesigned()
         {
-            HazardousClass = new Classification(typeof(HazardousClassClassification));
-            FitmentRequirement = new Classification(typeof(FitmentRequirementClassification));
+            HazardousClass = new CodedClassification(typeof(HazardousClassClassification));
+            FitmentRequirement = new CodedClassification(typeof(FitmentRequirementClassification));
         }
 
         #region Serialize Functions
@@ -57,10 +57,10 @@ namespace AsdXMLLibrary.Objects
                 insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectromagneticIncompatible, ElectromagneticIncompatible));
 
             if (FitmentRequirement.HasValue)
-                insertLocation.AddAfterSelf(FitmentRequirement.CreateXMLWithAdditionalLevel(Constants.HardwarePartFitmentRequirementElementName, Constants.CodeElementName, ns));
+                insertLocation.AddAfterSelf(FitmentRequirement.CreateXML(Constants.HardwarePartFitmentRequirementElementName, ns));
             // insert AUL
             if (HazardousClass.HasValue)
-                insertLocation.AddAfterSelf(HazardousClass.CreateXMLWithAdditionalLevel(Constants.HardwarePartHazardousClassElementName, Constants.CodeElementName, ns));
+                insertLocation.AddAfterSelf(HazardousClass.CreateXML(Constants.HardwarePartHazardousClassElementName, ns));
 
             return hwPart;
         }

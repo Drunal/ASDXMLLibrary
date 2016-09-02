@@ -1,23 +1,21 @@
 ﻿using System;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace AsdXMLLibrary.Base.Classifications
 {
-    public class DatedClassification : CodedClassification
+    public class CodedClassification : Classification
     {
-        public DateTime? ProvidedDate { get; set; }
 
         #region Constructor
-        public DatedClassification()
+        public CodedClassification()
             : base()
         { }
 
-        public DatedClassification(Type classificationType)
+        public CodedClassification(Type classificationType)
             : base(classificationType)
         { }
 
-        public DatedClassification(Type classificationType, string value)
+        public CodedClassification(Type classificationType, string value)
             : base(classificationType, value)
         { }
         #endregion
@@ -25,9 +23,13 @@ namespace AsdXMLLibrary.Base.Classifications
         #region ISerialize
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
-            XElement classification = base.CreateXML(elementName, ns, forceElement);
-            if (ProvidedDate.HasValue)
-                classification.Add(new XElement(ns + Constants.DateElementName, ProvidedDate.ToXmlDateString()));
+            // Can't use extension method here, since it would just call this method again. 
+            // --> Stack overflow!
+            XElement classification = new XElement(ns + elementName);
+            XElement code = base.CreateXML(Constants.CodeElementName, ns, forceElement);
+            if (code == null)
+                return null; // because  the underlaying Classification was not created so we do not need to provide a date for it.
+            classification.Add(code);
 
             return classification;
         }
@@ -37,15 +39,11 @@ namespace AsdXMLLibrary.Base.Classifications
             if (element == null)
                 return false; // return here if we dont get any actual content
             // this should read name and language
-            if (!base.ReadfromXML(element, ns))
+            if (!base.ReadfromXML(element.Element(ns + Constants.CodeElementName), ns))
                 return false; // return here, if the base couldn't read its data probably.
-            // date is optional
-            XElement date = element.Element(ns + Constants.DateElementName);
-            if (date != null)
-                ProvidedDate = XmlConvert.ToDateTime(date.Value, XmlDateTimeSerializationMode.Local);
+
             return true;
         }
-
         #endregion
     }
 }
