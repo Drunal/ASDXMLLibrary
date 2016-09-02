@@ -8,7 +8,7 @@ namespace AsdXMLLibrary.Objects
     public class SoftwarePartAsDesigned : PartAsDesigned
     {
         #region Design Data
-        public Classification SoftwareType { get; set; }
+        public CodedClassification SoftwareType { get; set; }
 
         public Property<SoftwareSizeUnit> SoftwarePartSize { get; set; }
         #endregion
@@ -16,7 +16,7 @@ namespace AsdXMLLibrary.Objects
 
         public SoftwarePartAsDesigned()
         {
-            SoftwareType = new Classification(typeof(SoftwareTypeClassification));
+            SoftwareType = new CodedClassification(typeof(SoftwareTypeClassification));
             SoftwarePartSize = new Property<SoftwareSizeUnit>();
         }
 
@@ -25,7 +25,7 @@ namespace AsdXMLLibrary.Objects
         {
             XElement swPart = base.CreateXML(elementName, ns);
             if (SoftwareType.HasValue)
-                swPart.Add(SoftwareType.CreateXMLWithAdditionalLevel(Constants.SoftwareTypeElementName, Constants.CodeElementName, ns));
+                swPart.Add(SoftwareType.CreateXML(Constants.SoftwareTypeElementName, ns));
             if (SoftwarePartSize.HasValue)
                 swPart.Add(SoftwarePartSize.CreateXML(Constants.SoftwarePartSizeElementName, ns));
 
@@ -36,7 +36,7 @@ namespace AsdXMLLibrary.Objects
         {
             // this should read the base information
             base.ReadfromXML(element, ns);
-            SoftwareType.ReadfromXMLWithAdditionalLevel(element.Element(ns + Constants.SoftwareTypeElementName), Constants.CodeElementName, ns);
+            SoftwareType.ReadfromXML(element.Element(ns + Constants.SoftwareTypeElementName), ns);
             SoftwarePartSize.ReadfromXML(element.Element(ns + Constants.SoftwarePartSizeElementName), ns);
             return true;
         }
