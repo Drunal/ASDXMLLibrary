@@ -80,6 +80,19 @@ namespace AsdXMLLibrary.Base
         public static readonly string HardwarePartElectromagneticSensitive = "ems";
         public static readonly string HardwarePartMagneticSensitive = "mse";
         public static readonly string HardwarePartRadiationSensitive = "rse";
+        #region Support Data
+        public static readonly string HardwarePartLogisticsCategoryElementName = "logCat";
+        public static readonly string HardwarePartRepairabilityElementName = "spc";
+        public static readonly string HardwarePartScrapRateElementName = "sra";
+        public static readonly string HardwarePartRepairabilityStrategyElementName = "rpy";
+        public static readonly string HardwarePartMaintenanceStartElementName = "maintStart";
+        public static readonly string HardwarePartWasteProductsInUseDisposalDescriptionElementName = "inUseDispDescr";
+        public static readonly string HardwarePartWasteProductsPlannedDisposalDescriptionElementName = "plndDispDescr";
+        public static readonly string HardwarePartEnvironmentalAspectInUseClassElementName = "envmtInUseClass";
+        public static readonly string HardwarePartEnvironmentalAspectPlannedDisposalClassElementName = "envmtDispClass";
+        public static readonly string HardwarePartConsumptionRateElementName = "consRte";
+
+        #endregion
 
         public static readonly string SoftwarePartAsDesignedElementName = "swPart";
         public static readonly string SoftwareTypeElementName = "swType";

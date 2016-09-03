@@ -25,6 +25,19 @@ namespace AsdXMLLibrary.Objects
         public bool? RadiationSensitive { get; set; }
         #endregion
 
+        #region SupportData
+        public Classification LogisticsCategory { get; set; }
+        public Classification Repairability { get; set; }
+        public MultipleValues<Classification> RepairabilityStrategy { get; set; }
+        public Classification MaintenanceStart { get; set; }
+        public MultipleValues<Descriptor> WasteProductsInUseDisposalDescription { get; set; }
+        public MultipleValues<Descriptor> WasteProductsPlannedDisposalDescription { get; set; }
+        public MultipleValues<DatedClassification> EnvironmentalAspectInUseClass { get; set; }
+        public MultipleValues<DatedClassification> EnvironmentalAspectPlannedDisposalClass { get; set; }
+        public MultipleValues<Property<TimeUnit>> ScrapRate { get; set; }
+        public MultipleValues<Property<TimeUnit>> ConsumptionRate { get; set; }
+        #endregion
+
         public HardwarePartAsDesigned()
         {
             AuthorizedLife = new AuthorizedLifeProperty();
