@@ -71,15 +71,17 @@ namespace AsdXMLLibrary.Base
 
 
         public static readonly string HardwarePartAsDesignedElementName = "hwPart";
+        #region Design Data
         public static readonly string HardwarePartHazardousClassElementName = "haz";
         public static readonly string HardwarePartOperationalAuthorizedLife = "opAul";
         public static readonly string HardwarePartAuthorizedLife = "aul";
         public static readonly string HardwarePartFitmentRequirementElementName = "ftc";
-        public static readonly string HardwarePartElectromagneticIncompatible = "emi";
-        public static readonly string HardwarePartElectrostaticSensitive = "ess";
-        public static readonly string HardwarePartElectromagneticSensitive = "ems";
-        public static readonly string HardwarePartMagneticSensitive = "mse";
-        public static readonly string HardwarePartRadiationSensitive = "rse";
+        public static readonly string HardwarePartElectromagneticIncompatibleElementName = "emi";
+        public static readonly string HardwarePartElectrostaticSensitiveElementName = "ess";
+        public static readonly string HardwarePartElectromagneticSensitiveElementName = "ems";
+        public static readonly string HardwarePartMagneticSensitiveElementName = "mse";
+        public static readonly string HardwarePartRadiationSensitiveElementName = "rse";
+        #endregion
         #region Support Data
         public static readonly string HardwarePartLogisticsCategoryElementName = "logCat";
         public static readonly string HardwarePartRepairabilityElementName = "spc";

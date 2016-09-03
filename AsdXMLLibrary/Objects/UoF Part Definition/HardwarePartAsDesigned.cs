@@ -1,5 +1,6 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
+using AsdXMLLibrary.Base.Properties;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -58,17 +59,25 @@ namespace AsdXMLLibrary.Objects
                 // TODO: write to log, that this part does not have a name or a id, which is kinda mandatory in S3000L v1.1
                 return null;
             }
+
+            CreateDesignData(ns, insertLocation);
+
+            return hwPart;
+        }
+
+        private void CreateDesignData(XNamespace ns, XElement insertLocation)
+        {
             // add in inverse order, so that we do not need to update the insertLocation
             if (RadiationSensitive.HasValue)
-                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartRadiationSensitive, RadiationSensitive));
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartRadiationSensitiveElementName, RadiationSensitive));
             if (MagneticSensitive.HasValue)
-                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartMagneticSensitive, MagneticSensitive));
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartMagneticSensitiveElementName, MagneticSensitive));
             if (ElectromagnecticSensitive.HasValue)
-                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectromagneticSensitive, ElectromagnecticSensitive));
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectromagneticSensitiveElementName, ElectromagnecticSensitive));
             if (ElectrostaticSensitive.HasValue)
-                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectrostaticSensitive, ElectrostaticSensitive));
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectrostaticSensitiveElementName, ElectrostaticSensitive));
             if (ElectromagneticIncompatible.HasValue)
-                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectromagneticIncompatible, ElectromagneticIncompatible));
+                insertLocation.AddAfterSelf(new XElement(ns + Constants.HardwarePartElectromagneticIncompatibleElementName, ElectromagneticIncompatible));
 
             if (FitmentRequirement.HasValue)
                 insertLocation.AddAfterSelf(FitmentRequirement.CreateXML(Constants.HardwarePartFitmentRequirementElementName, ns));
@@ -76,8 +85,6 @@ namespace AsdXMLLibrary.Objects
                 insertLocation.AddAfterSelf(AuthorizedLife.CreateXML(Constants.HardwarePartOperationalAuthorizedLife, ns));
             if (HazardousClass.HasValue)
                 insertLocation.AddAfterSelf(HazardousClass.CreateXML(Constants.HardwarePartHazardousClassElementName, ns));
-
-            return hwPart;
         }
 
         public override bool ReadfromXML(XElement element, XNamespace ns)
@@ -85,33 +92,37 @@ namespace AsdXMLLibrary.Objects
             if (element == null) return false;
             // this should read the base information
             base.ReadfromXML(element, ns);
-            
-            HazardousClass.ReadfromXML(element.Element(ns + Constants.HardwarePartHazardousClassElementName), ns);
 
+            ReadDesignData(element, ns);
+
+            return true;
+        }
+
+        private void ReadDesignData(XElement element, XNamespace ns)
+        {
+			HazardousClass.ReadfromXML(element.Element(ns + Constants.HardwarePartHazardousClassElementName), ns);
             FitmentRequirement.ReadfromXML(element.Element(ns + Constants.HardwarePartFitmentRequirementElementName), ns);
             AuthorizedLife.ReadfromXML(element.Element(ns + Constants.HardwarePartOperationalAuthorizedLife), ns);
 
-            XElement tmp = element.Element(ns + Constants.HardwarePartElectromagneticIncompatible);
+            XElement tmp = element.Element(ns + Constants.HardwarePartElectromagneticIncompatibleElementName);
             if (tmp != null)
                 ElectromagneticIncompatible = XmlConvert.ToBoolean(tmp.Value);
 
-            tmp = element.Element(ns + Constants.HardwarePartElectrostaticSensitive);
+            tmp = element.Element(ns + Constants.HardwarePartElectrostaticSensitiveElementName);
             if (tmp != null)
                 ElectrostaticSensitive = XmlConvert.ToBoolean(tmp.Value);
 
-            tmp = element.Element(ns + Constants.HardwarePartElectromagneticSensitive);
+            tmp = element.Element(ns + Constants.HardwarePartElectromagneticSensitiveElementName);
             if (tmp != null)
                 ElectromagnecticSensitive = XmlConvert.ToBoolean(tmp.Value);
 
-            tmp = element.Element(ns + Constants.HardwarePartMagneticSensitive);
+            tmp = element.Element(ns + Constants.HardwarePartMagneticSensitiveElementName);
             if (tmp != null)
                 MagneticSensitive = XmlConvert.ToBoolean(tmp.Value);
 
-            tmp = element.Element(ns + Constants.HardwarePartRadiationSensitive);
+            tmp = element.Element(ns + Constants.HardwarePartRadiationSensitiveElementName);
             if (tmp != null)
                 RadiationSensitive = XmlConvert.ToBoolean(tmp.Value);
-
-            return true;
         }
         #endregion
     }
