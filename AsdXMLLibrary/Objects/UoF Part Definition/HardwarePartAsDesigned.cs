@@ -12,7 +12,6 @@ namespace AsdXMLLibrary.Objects
         public AuthorizedLifeProperty AuthorizedLife { get; set; }
 
         public CodedClassification HazardousClass { get; set; }
-        // Authorized Life
         public CodedClassification FitmentRequirement { get; set; }
         // emi
         public bool? ElectromagneticIncompatible { get; set; }
@@ -73,7 +72,9 @@ namespace AsdXMLLibrary.Objects
             if (element == null) return false;
             // this should read the base information
             base.ReadfromXML(element, ns);
+            
             HazardousClass.ReadfromXML(element.Element(ns + Constants.HardwarePartHazardousClassElementName), ns);
+
             FitmentRequirement.ReadfromXML(element.Element(ns + Constants.HardwarePartFitmentRequirementElementName), ns);
             AuthorizedLife.ReadfromXML(element.Element(ns + Constants.HardwarePartOperationalAuthorizedLife), ns);
 

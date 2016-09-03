@@ -21,7 +21,9 @@ namespace AsdXMLLibrary.Objects
         #region Constructors
         public PartAsDesigned()
         {
-            PartIds = new MultipleValues<ProvidedIdentifier<PartIdentifierClassification>>();
+            PartIds = new MultipleValues<ProvidedIdentifier<PartIdentifierClassification>>(
+                //() => new ProvidedIdentifier<PartIdentifierClassification>()
+                );
             PartNames = new MultipleValues<ProvidedDescriptor>();
 
             DemilitarizationClass = new DatedClassification(typeof(DemilitarizationClassification));
@@ -50,10 +52,8 @@ namespace AsdXMLLibrary.Objects
         public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
         {
             XElement part = new XElement(ns + elementName);
-            foreach (var id in PartIds)
-                part.Add(id.CreateXML(Constants.PartAsDesignedPartIdElementName, ns));
-            foreach (var name in PartNames)
-                part.Add(name.CreateXML(Constants.PartAsDesignedPartNameElementName, ns));
+            part.Add(PartIds.CreateXML(Constants.PartAsDesignedPartIdElementName, ns));
+            part.Add(PartNames.CreateXML(Constants.PartAsDesignedPartNameElementName, ns));
 
             // for some reason the elements of the hwPart class need to go in here!
                         
@@ -72,20 +72,9 @@ namespace AsdXMLLibrary.Objects
         public override bool ReadfromXML(XElement element, XNamespace ns)
         {
             if (element == null) return false;
-            foreach (XElement idElement in element.Elements(ns + Constants.PartAsDesignedPartIdElementName)) 
-            {
-                ProvidedIdentifier<PartIdentifierClassification> id = new ProvidedIdentifier<PartIdentifierClassification>();
-                id.ReadfromXML(idElement, ns);
-                PartIds.Add(id);
-            }
-                
-            foreach (XElement nameElement in element.Elements(ns + Constants.PartAsDesignedPartNameElementName))
-            {
-                ProvidedDescriptor descr = new ProvidedDescriptor(Constants.PartAsDesignedPartNameElementName);
-                descr.ReadfromXML(nameElement, ns);
-                PartNames.Add(descr);
-            }
-
+            PartIds.ReadfromXML(element.Elements(ns + Constants.PartAsDesignedPartIdElementName), ns);
+            PartNames.ReadfromXML(element.Elements(ns + Constants.PartAsDesignedPartNameElementName), ns);
+            
             DemilitarizationClass.ReadfromXML(element.Element(ns + Constants.PartDemilitarizationClassElementName), ns);
             SpecialHandlingRequirement.ReadfromXML(element.Element(ns + Constants.PartSpecialHandlingRequirementElementName), ns);
             MaturityClass.ReadfromXML(element.Element(ns + Constants.PartMaturityClassElementName), ns);

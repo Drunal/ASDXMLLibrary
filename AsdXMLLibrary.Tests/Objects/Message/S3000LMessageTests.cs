@@ -23,6 +23,23 @@ namespace AsdXMLLibrary.Tests.Objects.Message
             
             result = ObjectStreamtoObject(expected);
             result.ShouldDeepEqualwithDate(expected);
-        } 
+        }
+ 
+        [TestMethod]
+        public void MessageWithMultipleSenders()
+        {
+            S3000LMessage expected = new S3000LMessage();
+            expected.Id.ID = "0001";
+
+            expected.Sender.Add(TestObjects.OrganizationMinimum.GetReference());
+            expected.Sender.Add(TestObjects.OrganizationFull.GetReference());
+            expected.Receiver.Add(TestObjects.OrganizationFull.GetReference());
+            expected.ContentItems.Parts.Add(TestObjects.SoftwarePartMultipleNames);
+
+            S3000LMessage result = new S3000LMessage();
+
+            result = ObjectStreamtoObject(expected);
+            result.ShouldDeepEqualwithDate(expected);
+        }
     }
 }

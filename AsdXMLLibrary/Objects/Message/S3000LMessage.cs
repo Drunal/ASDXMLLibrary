@@ -42,16 +42,9 @@ namespace AsdXMLLibrary.Objects
             if (CreationDate.HasValue)
                 message.Add(new XElement(ns + Constants.MessageDateElementName, CreationDate.ToXmlDateString()));
             message.Add(Language.CreateXML(Constants.MessageLanguageElementName, ns));
-            // TODO: we probably need a container around this
-            XElement senderList = new XElement(ns + Constants.MessageSenderElementName);
-            foreach (var sender in Sender)
-                senderList.Add(sender.CreateXML(Constants.ReferenceOrganizationElementName, ns));
-            XElement receiverList = new XElement(ns + Constants.MessageReceiverElementName);
-            foreach (var receiver in Receiver)
-                receiverList.Add(receiver.CreateXML(Constants.ReferenceOrganizationElementName, ns));
 
-            message.Add(senderList);
-            message.Add(receiverList);
+            message.Add(Sender.CreateXML(Constants.ReferenceOrganizationElementName, ns, Constants.MessageSenderElementName));
+            message.Add(Receiver.CreateXML(Constants.ReferenceOrganizationElementName, ns, Constants.MessageReceiverElementName));
 
             XElement messageContent = new XElement(ns + Constants.MessageContentElementName);
             messageContent.Add(ContentItems.CreateXML(Constants.MessageContentItemsElementName, ns));
@@ -73,22 +66,9 @@ namespace AsdXMLLibrary.Objects
                 CreationDate = XmlConvert.ToDateTime(date.Value, XmlDateTimeSerializationMode.Local);
             Language.ReadfromXML(element.Element(ns + Constants.MessageLanguageElementName), ns);
 
-            Sender.Clear();
-            foreach (XElement senderElement in element.Element(ns + Constants.MessageSenderElementName).Elements(ns + Constants.ReferenceOrganizationElementName))
-            {
-                OrganizationReference orgRef = new OrganizationReference();
-                orgRef.ReadfromXML(senderElement, ns);
-                Sender.Add(orgRef);
-            }
-
-            Receiver.Clear();
-            foreach (XElement receiverElement in element.Element(ns + Constants.MessageReceiverElementName).Elements(ns + Constants.ReferenceOrganizationElementName))
-            {
-                OrganizationReference orgRef = new OrganizationReference();
-                orgRef.ReadfromXML(receiverElement, ns);
-                Receiver.Add(orgRef);
-            }
-
+            Sender.ReadfromXML(element.Elements(ns + Constants.MessageSenderElementName), ns, Constants.ReferenceOrganizationElementName);
+            Receiver.ReadfromXML(element.Elements(ns + Constants.MessageReceiverElementName), ns, Constants.ReferenceOrganizationElementName);
+            
             ContentItems.ReadfromXML(element.Element(ns + Constants.MessageContentElementName).Element(ns + Constants.MessageContentItemsElementName), ns);
             SupportingItems.ReadfromXML(element.Element(ns + Constants.MessageContentElementName).Element(ns + Constants.MessageContentSupportingItemsElementName), ns);
 
