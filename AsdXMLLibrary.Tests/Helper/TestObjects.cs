@@ -12,6 +12,10 @@ namespace AsdXMLLibrary.Tests.Helper
             {
                 var msg = new S3000LMessage();
                 msg.Id.ID = "0001";
+
+                msg.Sender.Add(OrganizationMinimum.GetReference());
+                msg.Receiver.Add(OrganizationMinimum.GetReference());
+
                 return msg;
             }
         }
@@ -123,8 +127,11 @@ namespace AsdXMLLibrary.Tests.Helper
             get
             {
                 var hw = TestObjects.HardwarePartMinimum;
+                hw.PartIds.Add(new AsdXMLLibrary.Base.ProvidedIdentifier<AsdXMLLibrary.Base.Classifications.PartIdentifierClassification>("PartID-2"));
+
                 hw.PartNames.Primary.Text = "Partname";
                 hw.PartNames.Primary.Language.Value = "EN";
+                hw.PartNames.Add(new AsdXMLLibrary.Base.ProvidedDescriptor("Partname-2", "DE"));
 
                 hw.MaturityClass.Value = "COTS";
                 hw.MaturityClass.ProvidedDate = DateTime.Now;
