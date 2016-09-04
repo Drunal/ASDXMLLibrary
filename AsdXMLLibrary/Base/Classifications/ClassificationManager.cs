@@ -46,9 +46,7 @@ namespace AsdXMLLibrary.Base.Classifications
             Add(new ValueDeterminationClassification {
                 "ALC", "CALC", "CONTR", "DSG", "EMP", "EST", "MEAS", "PLAN", "REQ", "SET", "SPEC"
             });
-            Add(new SoftwareSizeUnit {
-                "KB", "MB", "GB"
-            });
+            
             Add(new EventUnit {
                 "C", "FC", "OH", "FH", "S", "LA", "LD", "DL", "OP", "SO", "FI", "RD"
             });
@@ -58,12 +56,38 @@ namespace AsdXMLLibrary.Base.Classifications
             Add(new TimeUnit {
                 "SEC", "MIN", "HR", "DAY", "MON", "YR", "WK"
             });
+            Add(new RelativeUnit
+            {
+                "PCT", "PM"
+            });
             Add(new HazardousClassClassification()
             {
                 "HAZ"
             });
             Add(new FitmentRequirementClassification {
                 "MINOR", "MAJOR"
+            });
+            Add(new LogisticsCategoryClassification {
+                "C", "D", "E", "M", "R", "SE", "SP", "SY" 
+            });
+            Add(new RepairabilityClassification {
+                "N", "P", "R"
+            });
+            Add(new RepairabilityStrategyClassification {
+                "NREP", "PREP", "REP"
+            });
+            Add(new MaintenanceStartClassification
+            {
+                "START", "PROD", "DELIV", "ASSY", "ENDITEM"
+            });
+            Add(new EnvironmentalAspectInUseClassification {
+                "HARM", "ACID", "OZON", "GREEN", "WASTE", "BURN", "RECY"
+            });
+            Add(new EnvironmentalAspectPlannedDisposalClassification {
+                "HARM", "ACID", "OZON", "GREEN", "WASTE", "BURN", "RECY"
+            });
+            Add(new SoftwareSizeUnit {
+                "KB", "MB", "GB"
             });
             Add(new SoftwareTypeClassification { 
                 "D", "E", "L"

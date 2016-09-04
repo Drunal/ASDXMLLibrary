@@ -71,15 +71,30 @@ namespace AsdXMLLibrary.Base
 
 
         public static readonly string HardwarePartAsDesignedElementName = "hwPart";
+        #region Design Data
         public static readonly string HardwarePartHazardousClassElementName = "haz";
         public static readonly string HardwarePartOperationalAuthorizedLife = "opAul";
         public static readonly string HardwarePartAuthorizedLife = "aul";
         public static readonly string HardwarePartFitmentRequirementElementName = "ftc";
-        public static readonly string HardwarePartElectromagneticIncompatible = "emi";
-        public static readonly string HardwarePartElectrostaticSensitive = "ess";
-        public static readonly string HardwarePartElectromagneticSensitive = "ems";
-        public static readonly string HardwarePartMagneticSensitive = "mse";
-        public static readonly string HardwarePartRadiationSensitive = "rse";
+        public static readonly string HardwarePartElectromagneticIncompatibleElementName = "emi";
+        public static readonly string HardwarePartElectrostaticSensitiveElementName = "ess";
+        public static readonly string HardwarePartElectromagneticSensitiveElementName = "ems";
+        public static readonly string HardwarePartMagneticSensitiveElementName = "mse";
+        public static readonly string HardwarePartRadiationSensitiveElementName = "rse";
+        #endregion
+        #region Support Data
+        public static readonly string HardwarePartLogisticsCategoryElementName = "logCat";
+        public static readonly string HardwarePartRepairabilityElementName = "spc";
+        public static readonly string HardwarePartScrapRateElementName = "sra";
+        public static readonly string HardwarePartRepairabilityStrategyElementName = "rpy";
+        public static readonly string HardwarePartMaintenanceStartElementName = "maintStart";
+        public static readonly string HardwarePartWasteProductsInUseDisposalDescriptionElementName = "inUseDispDescr";
+        public static readonly string HardwarePartWasteProductsPlannedDisposalDescriptionElementName = "plndDispDescr";
+        public static readonly string HardwarePartEnvironmentalAspectInUseClassElementName = "envmtInUseClass";
+        public static readonly string HardwarePartEnvironmentalAspectPlannedDisposalClassElementName = "envmtDispClass";
+        public static readonly string HardwarePartConsumptionRateElementName = "consRte";
+
+        #endregion
 
         public static readonly string SoftwarePartAsDesignedElementName = "swPart";
         public static readonly string SoftwareTypeElementName = "swType";

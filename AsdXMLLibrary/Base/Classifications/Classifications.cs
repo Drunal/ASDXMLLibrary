@@ -22,6 +22,7 @@ namespace AsdXMLLibrary.Base.Classifications
     public class EventUnit : ClassificationBase { }
     public class LengthUnit : ClassificationBase { }
     public class TimeUnit : ClassificationBase { }
+    public class RelativeUnit : ClassificationBase { }
     #endregion
 
     #region PartAsDesigned
@@ -32,6 +33,15 @@ namespace AsdXMLLibrary.Base.Classifications
     #region HardwarePartAsDesignedDesignData
     public class HazardousClassClassification : ClassificationBase { }
     public class FitmentRequirementClassification : ClassificationBase { }
+    #endregion
+
+    #region HwardwarePartAsDesignedSupportData
+    public class LogisticsCategoryClassification : ClassificationBase { }
+    public class RepairabilityClassification : ClassificationBase { }
+    public class RepairabilityStrategyClassification : ClassificationBase { }
+    public class MaintenanceStartClassification : ClassificationBase { }
+    public class EnvironmentalAspectInUseClassification : ClassificationBase { }
+    public class EnvironmentalAspectPlannedDisposalClassification : ClassificationBase { }
     #endregion
 
     #region SoftwarePartAsDesignedDesignData
