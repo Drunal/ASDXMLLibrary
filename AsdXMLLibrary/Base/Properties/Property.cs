@@ -109,10 +109,10 @@ namespace AsdXMLLibrary.Base.Properties
         }
 
         #region SingleValue Creation
-        public void CreateSingleValueProperty(double? singleValue)
-        { 
-            CreateSingleValueProperty(singleValue, string.Empty);
-        }
+        //public void CreateSingleValueProperty(double? singleValue)
+        //{ 
+        //    CreateSingleValueProperty(singleValue, string.Empty);
+        //}
 
         public void CreateSingleValueProperty(double? singleValue, string unit)
         {
@@ -128,10 +128,10 @@ namespace AsdXMLLibrary.Base.Properties
         #endregion
 
         #region RangeValue Constructor
-        public void CreateRangeProperty(double? lowerLimit, double? upperLimit)
-        { 
-            CreateRangeProperty(lowerLimit, upperLimit, string.Empty);
-        }
+        //public void CreateRangeProperty(double? lowerLimit, double? upperLimit)
+        //{ 
+        //    CreateRangeProperty(lowerLimit, upperLimit, string.Empty);
+        //}
 
         public void CreateRangeProperty(double? lowerLimit, double? upperLimit, string unit)
         { 
@@ -149,10 +149,10 @@ namespace AsdXMLLibrary.Base.Properties
 
         #region Tolerance Constructor
 
-        public void CreateToleranceValueProperty(double? nominalValue, double? lowerOffset, double? upperOffset)
-        { 
-            CreateToleranceValueProperty(nominalValue, lowerOffset, upperOffset, string.Empty);
-        }   
+        //public void CreateToleranceValueProperty(double? nominalValue, double? lowerOffset, double? upperOffset)
+        //{ 
+        //    CreateToleranceValueProperty(nominalValue, lowerOffset, upperOffset, string.Empty);
+        //}   
 
         public void CreateToleranceValueProperty(double? nominalValue, double? lowerOffset, double? upperOffset, string unit)
         { 
