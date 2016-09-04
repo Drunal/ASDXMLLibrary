@@ -140,13 +140,25 @@ namespace AsdXMLLibrary.Tests.Helper
                 hw.SpecialHandlingRequirement.Text = "specialhandlingrequirement";
 
                 //Authorized Life
-
                 var value = hw.AuthorizedLife.AddValue();
                 value.CreateRangeProperty(12.5, 17.5, "DAY");
                 value = hw.AuthorizedLife.AddValue();
                 value.CreateTextProperty("something funny");
                 hw.AuthorizedLife.LifeAuthorizingOrganization = OrganizationMinimum.GetReference();
 
+                // SupportData
+                hw.LogisticsCategory.Value = "SY";
+                hw.Repairability.Value = "R";
+                hw.RepairabilityStrategy.Primary.Value = "REP";
+                hw.MaintenanceStart.Value = "ENDITEM";
+                hw.WasteProductsInUseDisposalDescription.Primary.Text = "wasteproducts in Use";
+                hw.WasteProductsPlannedDisposalDescription.Primary.Text = "wasteproducts planned";
+                hw.EnvironmentalAspectInUseClass.Primary.Value = "BURN";
+                hw.EnvironmentalAspectPlannedDisposalClass.Primary.Value = "ACID";
+                hw.ScrapRate.Primary.CreateRangeProperty(10, 12, "PCT");
+                hw.ConsumptionRate.Primary.CreateRangeProperty(12, 14, "PCT");
+
+                // Design Data
                 hw.HazardousClass.Value = "HAZ";
                 hw.FitmentRequirement.Value = "MINOR";
                 hw.ElectromagneticIncompatible = true;
