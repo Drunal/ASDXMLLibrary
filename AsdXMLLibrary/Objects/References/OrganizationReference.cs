@@ -17,7 +17,7 @@ namespace AsdXMLLibrary.Objects.References
         public OrganizationReference(Organization org)
             : this()
         {
-            OrgId = org.OrgId;
+            OrgId = org.OrgIds.Primary;
         }
 
         public bool HasValue

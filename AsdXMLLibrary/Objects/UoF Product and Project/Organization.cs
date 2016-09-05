@@ -1,13 +1,14 @@
 ﻿using AsdXMLLibrary.Base;
 using AsdXMLLibrary.Base.Classifications;
 using AsdXMLLibrary.Objects.References;
+using System.Xml.Linq;
 
 namespace AsdXMLLibrary.Objects
 {
     
-    public class Organization : ICanBeReferenced<OrganizationReference>
+    public class Organization : SerializeBase,  ICanBeReferenced<OrganizationReference>
     {
-        public Identifier<OrganizationIdentifierClassification> OrgId { get; set; }
+        public MultipleValues<Identifier<OrganizationIdentifierClassification>> OrgIds { get; set; }
 
         public Descriptor Name { get; set; }
 
@@ -15,7 +16,7 @@ namespace AsdXMLLibrary.Objects
 
         public Organization()
         {
-            OrgId = new Identifier<OrganizationIdentifierClassification>();
+            OrgIds = new MultipleValues<Identifier<OrganizationIdentifierClassification>>();
             Name = new Descriptor();
 
         }
@@ -28,5 +29,24 @@ namespace AsdXMLLibrary.Objects
             }
             return _reference;
         }
+
+        #region Serialze
+        public override XElement CreateXML(string elementName, XNamespace ns, bool forceElement = false)
+        {
+            XElement element = new XElement(ns + elementName);
+            element.Add(OrgIds.CreateXML(Constants.OrganizationIdElementName, ns, null, true));
+            element.Add(Name.CreateXML(Constants.OrganizationNameElementName, ns));
+            return element;
+        }
+
+        public override bool ReadfromXML(XElement element, XNamespace ns)
+        {
+            if (element == null)
+                return false;
+            OrgIds.ReadfromXML(element.Elements(ns + Constants.OrganizationIdElementName), ns);
+            Name.ReadfromXML(element.Element(ns + Constants.OrganizationNameElementName), ns);
+            return true;
+        }
+        #endregion
     }
 }

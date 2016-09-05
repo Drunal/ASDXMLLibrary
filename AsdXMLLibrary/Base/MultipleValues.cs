@@ -48,7 +48,7 @@ namespace AsdXMLLibrary.Base
         #endregion
 
         #region Serialize
-        public List<XElement> CreateXML(string elementName, XNamespace ns, string containerElementName=null)
+        public List<XElement> CreateXML(string elementName, XNamespace ns, string containerElementName=null, bool forceEement=false)
         {
             List<XElement> elements = new List<XElement>();
 
@@ -63,6 +63,9 @@ namespace AsdXMLLibrary.Base
                 else
                     elements.Add(value.CreateXML(elementName, ns));
             }
+
+            if (elements.Count == 0 && forceEement) // create empty additional element if need be
+                elements.Add(GetNewEntry().CreateXML(elementName, ns, true));
 
             return elements;
         }
