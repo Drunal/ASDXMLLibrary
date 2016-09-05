@@ -20,7 +20,13 @@ namespace AsdXMLLibrary.Base
         public static readonly string CodeElementName = "code";
         public static readonly string IdentifierElementName = "id";
         public static readonly string NameElementName = "name";
+        #endregion
+
+        #region Organization
+        public static readonly string OrganizationsContainerElementName = "organizations";
+        public static readonly string OrganizationElementName = "org";
         public static readonly string OrganizationIdElementName = "orgId";
+        public static readonly string OrganizationNameElementName = "name";
         #endregion
 
         #region Message
