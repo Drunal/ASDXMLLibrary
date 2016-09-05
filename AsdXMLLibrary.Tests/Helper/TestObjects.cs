@@ -30,7 +30,7 @@ namespace AsdXMLLibrary.Tests.Helper
             {
                 var org = new Organization();
                 org.Name.Text = "OrgMini";
-                org.OrgId.ID = "N1234";
+                org.OrgIds.Primary.ID = "N1234";
                 return org;
             }
         }
@@ -44,7 +44,7 @@ namespace AsdXMLLibrary.Tests.Helper
             {
                 var org = TestObjects.OrganizationMinimum;
                 org.Name.Language.Value = "EN";
-                org.OrgId.Class.Value = "CAGE";
+                org.OrgIds.Primary.Class.Value = "CAGE";
                 return org;
             }
         }

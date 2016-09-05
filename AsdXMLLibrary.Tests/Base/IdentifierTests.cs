@@ -18,8 +18,8 @@ namespace AsdXMLLibrary.Tests.Base
         {
             Organization expected = TestObjects.OrganizationFull;
             Organization result = new Organization();
-            result.OrgId = ObjectStreamtoObject(expected.OrgId);
-            result.OrgId.ShouldDeepEqualwithDate(expected.OrgId);
+            result.OrgIds.Primary = ObjectStreamtoObject(expected.OrgIds.Primary);
+            result.OrgIds.Primary.ShouldDeepEqualwithDate(expected.OrgIds.Primary);
         }
 
         [TestMethod]
@@ -27,8 +27,8 @@ namespace AsdXMLLibrary.Tests.Base
         {
             Organization expected = TestObjects.OrganizationMinimum;
             Organization result = new Organization();
-            result.OrgId = ObjectStreamtoObject(expected.OrgId);
-            result.OrgId.ShouldDeepEqual(expected.OrgId);
+            result.OrgIds.Primary = ObjectStreamtoObject(expected.OrgIds.Primary);
+            result.OrgIds.Primary.ShouldDeepEqual(expected.OrgIds.Primary);
         }
 
         [TestMethod]
@@ -55,10 +55,10 @@ namespace AsdXMLLibrary.Tests.Base
         public void ShouldThrowOnMissingId()
         {
             Organization expected = TestObjects.OrganizationMinimum;
-            expected.OrgId.ID = string.Empty;
+            expected.OrgIds.Primary.ID = string.Empty;
             Organization result = new Organization();
             ExceptionAssert.Throws<XmlSchemaValidationException>(
-                () => ObjectStreamtoObject(expected.OrgId)
+                () => ObjectStreamtoObject(expected.OrgIds.Primary)
             );
         }
 

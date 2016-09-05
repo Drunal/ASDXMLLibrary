@@ -7,7 +7,7 @@ namespace AsdXMLLibrary.Objects
     
     public class Organization : ICanBeReferenced<OrganizationReference>
     {
-        public Identifier<OrganizationIdentifierClassification> OrgId { get; set; }
+        public MultipleValues<Identifier<OrganizationIdentifierClassification>> OrgIds { get; set; }
 
         public Descriptor Name { get; set; }
 
@@ -15,7 +15,7 @@ namespace AsdXMLLibrary.Objects
 
         public Organization()
         {
-            OrgId = new Identifier<OrganizationIdentifierClassification>();
+            OrgIds = new MultipleValues<Identifier<OrganizationIdentifierClassification>>();
             Name = new Descriptor();
 
         }
